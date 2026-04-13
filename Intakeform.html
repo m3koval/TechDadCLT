@@ -952,7 +952,7 @@ select { cursor: pointer; }
       <div style="font-size:13px; color:#0c4a6e; line-height:1.55;">We will review your answers and reach out within 24 hours to schedule your free onsite audit — usually 45 minutes. No obligation after the visit.</div>
     </div>
 
-    <form id="mainForm" action="https://submit.formspark.io/rkMLUXlZj" method="POST" onsubmit="handleSubmit(event)">
+    <form id="mainForm" action="https://submit-form.com/rkMLUXlZj" method="POST" onsubmit="handleSubmit(event)">
       <input type="hidden" name="name" id="fn-name">
       <input type="hidden" name="email" id="fn-email">
       <input type="hidden" name="phone" id="fn-phone">
@@ -1175,9 +1175,14 @@ function handleSubmit(e) {
   document.getElementById('fn-concern').value = (_con === 'Other' && _conO) ? 'Other: ' + _conO : _con;
 
   const form = document.getElementById('mainForm');
-  const data = new FormData(form);
+  const payload = {};
+  new FormData(form).forEach((val, key) => { payload[key] = val; });
 
-  fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+  fetch(form.action, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+  })
     .then(r => {
       if (r.ok) {
         window.location.href = 'ThankYou.html';
