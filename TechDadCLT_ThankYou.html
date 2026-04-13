@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're all set — TechDad CLT</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --navy: #0f1c2e;
+  --navy2: #1a2d45;
+  --accent: #2563eb;
+  --accent-light: #dbeafe;
+  --green: #059669;
+  --green-light: #d1fae5;
+  --green-mid: #10b981;
+  --text: #1e2532;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Figtree', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER — matches intake form */
+.header {
+  background: var(--navy);
+  padding: 20px 24px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.logo-mark {
+  font-family: 'Figtree', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: white;
+  background: var(--accent);
+  padding: 4px 10px;
+  border-radius: 5px;
+}
+.logo-text {
+  font-family: 'Figtree', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: .02em;
+}
+.logo-sep {
+  color: rgba(255,255,255,0.25);
+  font-size: 13px;
+  margin: 0 2px;
+}
+
+/* MAIN CONTENT */
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px 60px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 48px 40px;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  animation: fadeUp .5s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* CHECK ANIMATION */
+.check-wrap {
+  margin: 0 auto 28px;
+  width: 72px; height: 72px;
+  position: relative;
+}
+.check-circle {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--green-light);
+  display: flex; align-items: center; justify-content: center;
+  animation: popIn .4s cubic-bezier(0.175, 0.885, 0.32, 1.275) .1s both;
+}
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.check-circle svg {
+  width: 36px; height: 36px;
+  stroke: var(--green);
+  stroke-width: 2.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.check-path {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: drawCheck .4s ease .5s both;
+}
+@keyframes drawCheck {
+  to { stroke-dashoffset: 0; }
+}
+
+h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.2;
+  margin-bottom: 12px;
+  animation: fadeUp .4s ease .2s both;
+}
+h1 em {
+  font-style: italic;
+  color: var(--green);
+}
+
+.subtitle {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 380px;
+  margin: 0 auto 32px;
+  animation: fadeUp .4s ease .3s both;
+}
+
+/* WHAT HAPPENS NEXT */
+.next-steps {
+  background: var(--bg);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 28px;
+  text-align: left;
+  animation: fadeUp .4s ease .35s both;
+}
+.next-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.step {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+.step:last-child { margin-bottom: 0; }
+.step-num {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: white;
+  border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.step-text { flex: 1; }
+.step-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.step-desc { font-size: 12px; color: var(--muted); line-height: 1.45; }
+
+/* CONTACT CARD */
+.contact-card {
+  background: var(--navy);
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+  margin-bottom: 24px;
+  animation: fadeUp .4s ease .4s both;
+  position: relative;
+  overflow: hidden;
+}
+.contact-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 0% 50%, rgba(37,99,235,0.3) 0%, transparent 60%);
+}
+.contact-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  font-family: 'Instrument Serif', serif;
+  font-size: 18px;
+  color: white;
+}
+.contact-info { position: relative; flex: 1; }
+.contact-name { font-size: 14px; font-weight: 600; color: white; margin-bottom: 2px; }
+.contact-role { font-size: 12px; color: #93c5fd; margin-bottom: 8px; }
+.contact-links { display: flex; gap: 12px; flex-wrap: wrap; }
+.contact-link {
+  font-size: 12px;
+  color: #bfdbfe;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color .15s;
+}
+.contact-link:hover { color: white; }
+.contact-link svg { width: 13px; height: 13px; fill: currentColor; }
+
+/* BACK LINK */
+.back-link {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color .15s;
+  animation: fadeUp .4s ease .45s both;
+}
+.back-link:hover { color: var(--text); }
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 480px) {
+  .card { padding: 36px 24px; }
+  h1 { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">
+    <span class="logo-mark">TechDad</span>
+    <span class="logo-sep">/</span>
+    <span class="logo-text">Charlotte, NC</span>
+  </div>
+</div>
+
+<div class="main">
+  <div class="card">
+
+    <div class="check-wrap">
+      <div class="check-circle">
+        <svg viewBox="0 0 24 24">
+          <polyline class="check-path" points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+    </div>
+
+    <h1>You're all set —<br>we'll be in <em>touch soon.</em></h1>
+    <p class="subtitle">Your answers have been received. We will review them and reach out within 24 hours to schedule your free onsite audit.</p>
+
+    <div class="next-steps">
+      <div class="next-label">What happens next</div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <div class="step-title">We review your answers</div>
+          <div class="step-desc">Your device inventory and concerns are noted so the visit is already prepared before he arrives.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <div class="step-title">You'll hear back within 24 hours</div>
+          <div class="step-desc">Expect a text or email to schedule your free onsite audit — usually 45 minutes at your home.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <div class="step-title">Free audit — no obligation</div>
+          <div class="step-desc">We walk through every device, show you exactly what's open, and present a protection plan specific to your family.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-avatar">M</div>
+      <div class="contact-info">
+        <div class="contact-name">AMP IT</div>
+        <div class="contact-role">Charlotte, NC · ampitsolutions.com</div>
+        <div class="contact-links">
+          <a href="tel:+19803772733" class="contact-link">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            (980) 377-2733
+          </a>
+          <a href="mailto:hello@ampitsolutions.com" class="contact-link">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            hello@ampitsolutions.com
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <a href="https://ampitsolutions.com" class="back-link">
+      ← Back to ampitsolutions.com
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  © <span id="yr"></span> AMP IT Solutions · Charlotte, NC · <a href="https://ampitsolutions.com" style="color:inherit">ampitsolutions.com</a>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

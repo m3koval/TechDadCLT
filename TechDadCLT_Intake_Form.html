@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechDad CLT — Digital Safety Assessment</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --navy: #0f1c2e;
+  --navy2: #1a2d45;
+  --accent: #2563eb;
+  --accent-light: #dbeafe;
+  --green: #059669;
+  --green-light: #d1fae5;
+  --text: #1e2532;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --border2: #d1d5db;
+  --error: #dc2626;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Figtree', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 0 0 80px;
+}
+
+/* HEADER */
+.header {
+  background: var(--navy);
+  padding: 28px 24px 36px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.header-inner { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.logo-mark {
+  font-family: 'Figtree', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: white;
+  background: var(--accent);
+  padding: 4px 10px;
+  border-radius: 5px;
+}
+.logo-text {
+  font-family: 'Figtree', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: .02em;
+}
+.logo-sep {
+  color: rgba(255,255,255,0.25);
+  font-size: 14px;
+  margin: 0 2px;
+}
+.header h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: white;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+.header h1 em {
+  font-style: italic;
+  color: #93c5fd;
+}
+.header p {
+  font-size: 14px;
+  color: #93c5fd;
+  line-height: 1.6;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* PROGRESS */
+.progress-wrap {
+  background: var(--navy2);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.progress-bar {
+  flex: 1;
+  max-width: 400px;
+  height: 4px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width .4s ease;
+  width: 0%;
+}
+.progress-label {
+  font-size: 12px;
+  color: #93c5fd;
+  white-space: nowrap;
+  min-width: 80px;
+  text-align: right;
+}
+
+/* FORM */
+.form-wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* SECTIONS */
+.section {
+  margin-top: 28px;
+  display: none;
+  animation: fadeUp .35s ease both;
+}
+.section.active { display: block; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.section-num {
+  width: 20px; height: 20px;
+  background: var(--accent-light);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.section-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.section-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* QUESTIONS */
+.q-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  transition: border-color .2s;
+}
+.q-block:focus-within { border-color: var(--accent); }
+.q-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.q-label .req { color: var(--accent); margin-left: 2px; }
+.q-hint {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+/* TEXT INPUTS */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+  width: 100%;
+  font-family: 'Figtree', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color .2s, background .2s;
+  -webkit-appearance: none;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--accent);
+  background: white;
+}
+textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
+select { cursor: pointer; }
+
+/* CHIP SELECTS */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border2);
+  background: var(--bg);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .15s;
+  user-select: none;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+.chip.selected {
+  border-color: var(--accent);
+  background: var(--accent-light);
+  color: var(--accent);
+}
+.chip.selected::before {
+  content: '✓';
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* RADIO CARDS */
+.radio-cards { display: flex; flex-direction: column; gap: 8px; }
+.radio-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border2);
+  border-radius: 10px;
+  background: var(--bg);
+  cursor: pointer;
+  transition: all .15s;
+}
+.radio-card:hover { border-color: var(--accent); background: var(--accent-light); }
+.radio-card.selected {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+.radio-dot {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--border2);
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: all .15s;
+  display: flex; align-items: center; justify-content: center;
+}
+.radio-card.selected .radio-dot {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.radio-card.selected .radio-dot::after {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: white;
+}
+.radio-text { flex: 1; }
+.radio-title { font-size: 13px; font-weight: 500; color: var(--text); }
+.radio-desc { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+
+/* DEVICE BUILDER */
+.device-builder { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.device-tile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border2);
+  border-radius: 10px;
+  background: var(--bg);
+  cursor: pointer;
+  transition: all .15s;
+  user-select: none;
+}
+.device-tile:hover { border-color: var(--accent); }
+.device-tile.selected {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+.device-icon { font-size: 18px; width: 24px; text-align: center; }
+.device-name { font-size: 13px; font-weight: 500; color: var(--text); }
+.device-count {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.device-count button {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--border2);
+  background: white;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all .15s;
+  line-height: 1;
+}
+.device-count button:hover { background: var(--accent); color: white; border-color: var(--accent); }
+.device-count span {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+  min-width: 16px;
+  text-align: center;
+}
+
+/* KID ROWS */
+.kid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.kid-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.kid-label { font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
+
+/* NAV BUTTONS */
+.nav-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn-back {
+  font-family: 'Figtree', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-back:hover { color: var(--text); }
+.btn-next {
+  font-family: 'Figtree', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: all .15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-next:hover { background: #1d4ed8; transform: translateY(-1px); }
+.btn-next:active { transform: translateY(0); }
+.btn-submit {
+  font-family: 'Figtree', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background: var(--green);
+  border: none;
+  border-radius: 10px;
+  padding: 14px 32px;
+  cursor: pointer;
+  transition: all .15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+}
+.btn-submit:hover { background: #047857; transform: translateY(-1px); }
+
+/* SUCCESS */
+.success-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px 24px;
+  text-align: center;
+  margin-top: 28px;
+  display: none;
+}
+.success-card.show { display: block; animation: fadeUp .4s ease both; }
+.success-icon {
+  width: 56px; height: 56px;
+  background: var(--green-light);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 24px;
+}
+.success-card h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.success-card p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+/* VALIDATION */
+.field-error {
+  font-size: 12px;
+  color: var(--error);
+  margin-top: 4px;
+  display: none;
+}
+.q-block.has-error { border-color: var(--error); }
+.q-block.has-error .field-error { display: block; }
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+.q-block.shake { animation: shake .4s ease; }
+
+/* KEYBOARD FOCUS for chips and radio cards */
+.chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.radio-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.device-tile:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* SUBMIT LOADING STATE */
+.btn-submit:disabled {
+  background: var(--muted);
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* REVIEW SUMMARY */
+.review-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 12px;
+}
+.review-item:last-child { border-bottom: none; }
+.review-key { font-size: 12px; color: var(--muted); min-width: 140px; }
+.review-val { font-size: 13px; color: var(--text); font-weight: 500; flex: 1; }
+
+/* ERROR TOAST */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: #1e2532;
+  color: white;
+  font-size: 13px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  z-index: 999;
+  transition: transform .3s ease;
+  white-space: nowrap;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 480px) {
+  .device-builder { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-mark">TechDad</span>
+      <span class="logo-sep">/</span>
+      <span class="logo-text">Charlotte, NC</span>
+    </div>
+    <h1>Let's build your family's<br><em>digital protection plan</em></h1>
+    <p>Takes about 5 minutes. Your answers help us come prepared so we don't waste your time on basics during the visit.</p>
+  </div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">Step 1 of 4</div>
+</div>
+
+<div class="form-wrap">
+
+  <!-- SECTION 1: About Your Family -->
+  <div class="section active" id="sec1">
+    <div class="section-label"><div class="section-num">1</div> Getting started</div>
+    <div class="section-title">About your family</div>
+    <div class="section-sub">Basic info so we can personalize your protection plan.</div>
+
+    <div class="q-block" id="qb-name">
+      <div class="q-label">Your name <span class="req">*</span></div>
+      <input type="text" id="f-name" placeholder="First and last name">
+      <div class="field-error">Please enter your name.</div>
+    </div>
+
+    <div class="q-block" id="qb-email">
+      <div class="q-label">Email address <span class="req">*</span></div>
+      <input type="email" id="f-email" placeholder="you@example.com">
+      <div class="field-error">Please enter a valid email.</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Phone number</div>
+      <input type="tel" id="f-phone" placeholder="(704) 555-0100">
+    </div>
+
+    <div class="q-block" id="qb-area">
+      <div class="q-label">What part of Charlotte are you in? <span class="req">*</span></div>
+      <input type="text" id="f-area" placeholder="e.g. Ballantyne, NoDa, Matthews, Huntersville...">
+      <div class="field-error">Please enter your area.</div>
+    </div>
+
+    <div class="q-block" id="qb-kids">
+      <div class="q-label">How many kids are in the household? <span class="req">*</span></div>
+      <div class="q-hint">We'll ask for their ages on the next step.</div>
+      <div class="chips" id="chip-kids">
+        <div class="chip" data-val="1" onclick="selectChip(this,'chip-kids','f-numkids')">1</div>
+        <div class="chip" data-val="2" onclick="selectChip(this,'chip-kids','f-numkids')">2</div>
+        <div class="chip" data-val="3" onclick="selectChip(this,'chip-kids','f-numkids')">3</div>
+        <div class="chip" data-val="4" onclick="selectChip(this,'chip-kids','f-numkids')">4</div>
+        <div class="chip" data-val="5+" onclick="selectChip(this,'chip-kids','f-numkids')">5+</div>
+      </div>
+      <input type="hidden" id="f-numkids">
+      <div class="field-error" id="err-kids">Please select the number of kids.</div>
+    </div>
+
+    <div class="nav-row">
+      <span></span>
+      <button class="btn-next" onclick="goTo(2)">Continue <span>→</span></button>
+    </div>
+  </div>
+
+  <!-- SECTION 2: Devices -->
+  <div class="section" id="sec2">
+    <div class="section-label"><div class="section-num">2</div> Your household</div>
+    <div class="section-title">Kids' ages & devices</div>
+    <div class="section-sub">List every device a child has access to — even shared ones.</div>
+
+    <div class="q-block" id="qb-ages">
+      <div class="q-label">Ages of your kids <span class="req">*</span></div>
+      <div class="q-hint">Example: 6, 9, 12 — separate with commas</div>
+      <input type="text" id="f-ages" placeholder="e.g. 6, 9, 12">
+      <div class="field-error">Please enter your kids' ages.</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Which devices do your kids have access to? <span class="req">*</span></div>
+      <div class="q-hint">Select all that apply — tap to add, tap again to remove.</div>
+      <div class="device-builder">
+        <div class="device-tile" onclick="toggleDevice(this,'iPhone')">
+          <div class="device-icon">📱</div>
+          <div class="device-name">iPhone</div>
+          <div class="device-count">
+            <button onclick="changeCount(event,this,-1)">−</button>
+            <span>0</span>
+            <button onclick="changeCount(event,this,1)">+</button>
+          </div>
+        </div>
+        <div class="device-tile" onclick="toggleDevice(this,'iPad')">
+          <div class="device-icon">📟</div>
+          <div class="device-name">iPad</div>
+          <div class="device-count">
+            <button onclick="changeCount(event,this,-1)">−</button>
+            <span>0</span>
+            <button onclick="changeCount(event,this,1)">+</button>
+          </div>
+        </div>
+        <div class="device-tile" onclick="toggleDevice(this,'Android phone')">
+          <div class="device-icon">📲</div>
+          <div class="device-name">Android phone</div>
+          <div class="device-count">
+            <button onclick="changeCount(event,this,-1)">−</button>
+            <span>0</span>
+            <button onclick="changeCount(event,this,1)">+</button>
+          </div>
+        </div>
+        <div class="device-tile" onclick="toggleDevice(this,'Amazon Fire tablet')">
+          <div class="device-icon">🔥</div>
+          <div class="device-name">Amazon Fire tablet</div>
+          <div class="device-count">
+            <button onclick="changeCount(event,this,-1)">−</button>
+            <span>0</span>
+            <button onclick="changeCount(event,this,1)">+</button>
+          </div>
+        </div>
+        <div class="device-tile" onclick="toggleDevice(this,'MacBook / Mac')">
+          <div class="device-icon">💻</div>
+          <div class="device-name">MacBook / Mac</div>
+          <div class="device-count">
+            <button onclick="changeCount(event,this,-1)">−</button>
+            <span>0</span>
+            <button onclick="changeCount(event,this,1)">+</button>
+          </div>
+        </div>
+        <div class="device-tile" onclick="toggleDevice(this,'Windows PC / Chromebook')">
+          <div class="device-icon">🖥️</div>
+          <div class="device-name">Windows / Chromebook</div>
+          <div class="device-count">
+            <button onclick="changeCount(event,this,-1)">−</button>
+            <span>0</span>
+            <button onclick="changeCount(event,this,1)">+</button>
+          </div>
+        </div>
+        <div class="device-tile" onclick="toggleDevice(this,'Nintendo Switch')">
+          <div class="device-icon">🎮</div>
+          <div class="device-name">Nintendo Switch</div>
+          <div class="device-count">
+            <button onclick="changeCount(event,this,-1)">−</button>
+            <span>0</span>
+            <button onclick="changeCount(event,this,1)">+</button>
+          </div>
+        </div>
+        <div class="device-tile" onclick="toggleDevice(this,'PlayStation / Xbox')">
+          <div class="device-icon">🕹️</div>
+          <div class="device-name">PlayStation / Xbox</div>
+          <div class="device-count">
+            <button onclick="changeCount(event,this,-1)">−</button>
+            <span>0</span>
+            <button onclick="changeCount(event,this,1)">+</button>
+          </div>
+        </div>
+        <div class="device-tile" onclick="toggleDevice(this,'Smart TV / Streaming stick')">
+          <div class="device-icon">📺</div>
+          <div class="device-name">Smart TV / Roku / Fire TV</div>
+          <div class="device-count">
+            <button onclick="changeCount(event,this,-1)">−</button>
+            <span>0</span>
+            <button onclick="changeCount(event,this,1)">+</button>
+          </div>
+        </div>
+        <div class="device-tile" onclick="toggleDevice(this,'Smart speaker')">
+          <div class="device-icon">🔊</div>
+          <div class="device-name">Alexa / Google Home</div>
+          <div class="device-count">
+            <button onclick="changeCount(event,this,-1)">−</button>
+            <span>0</span>
+            <button onclick="changeCount(event,this,1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Do kids have TVs in their bedrooms?</div>
+      <div class="chips" id="chip-tvroom">
+        <div class="chip" data-val="Yes" onclick="selectChip(this,'chip-tvroom','f-tvroom')">Yes</div>
+        <div class="chip" data-val="No" onclick="selectChip(this,'chip-tvroom','f-tvroom')">No</div>
+        <div class="chip" data-val="Some do" onclick="selectChip(this,'chip-tvroom','f-tvroom')">Some do</div>
+      </div>
+      <input type="hidden" id="f-tvroom">
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">What router / WiFi system do you have?</div>
+      <div class="q-hint">Brand is fine if you don't know the model — e.g. Eero, Netgear, Xfinity box, etc.</div>
+      <input type="text" id="f-router" placeholder="e.g. Eero Pro, Xfinity modem/router combo...">
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-back" onclick="goTo(1)">← Back</button>
+      <button class="btn-next" onclick="goTo(3)">Continue <span>→</span></button>
+    </div>
+  </div>
+
+  <!-- SECTION 3: Current Setup & Concerns -->
+  <div class="section" id="sec3">
+    <div class="section-label"><div class="section-num">3</div> Current situation</div>
+    <div class="section-title">Setup & concerns</div>
+    <div class="section-sub">No wrong answers — this shapes the protection plan we put together for you.</div>
+
+    <div class="q-block">
+      <div class="q-label">Have you set up any parental controls already?</div>
+      <div class="chips" id="chip-existing">
+        <div class="chip" data-val="Apple Screen Time" onclick="multiChip(this,'chip-existing')">Apple Screen Time</div>
+        <div class="chip" data-val="Google Family Link" onclick="multiChip(this,'chip-existing')">Google Family Link</div>
+        <div class="chip" data-val="Amazon Kids" onclick="multiChip(this,'chip-existing')">Amazon Kids</div>
+        <div class="chip" data-val="Bark" onclick="multiChip(this,'chip-existing')">Bark</div>
+        <div class="chip" data-val="Qustodio" onclick="multiChip(this,'chip-existing')">Qustodio</div>
+        <div class="chip" data-val="Aura" onclick="multiChip(this,'chip-existing')">Aura</div>
+        <div class="chip" data-val="Circle" onclick="multiChip(this,'chip-existing')">Circle</div>
+        <div class="chip" data-val="Router settings" onclick="multiChip(this,'chip-existing')">Router settings</div>
+        <div class="chip" data-val="Nothing yet" onclick="multiChip(this,'chip-existing')">Nothing yet</div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Has anything happened that made you realize the current setup wasn't enough?</div>
+      <div class="chips" id="chip-incident">
+        <div class="chip" data-val="Found inappropriate content" onclick="multiChip(this,'chip-incident')">Found inappropriate content</div>
+        <div class="chip" data-val="Kid bypassed a restriction" onclick="multiChip(this,'chip-incident')">Kid bypassed a restriction</div>
+        <div class="chip" data-val="Screen time battles" onclick="multiChip(this,'chip-incident')">Screen time battles</div>
+        <div class="chip" data-val="Stranger contact concern" onclick="multiChip(this,'chip-incident')">Stranger contact concern</div>
+        <div class="chip" data-val="Nothing yet — being proactive" onclick="multiChip(this,'chip-incident')">Nothing yet — being proactive</div>
+        <div class="chip" data-val="Other" onclick="multiChip(this,'chip-incident');toggleOther(this,'incident-other')">Other</div>
+      </div>
+      <div id="incident-other" style="display:none; margin-top:10px;">
+        <input type="text" id="f-incident-other" placeholder="Tell us what happened...">
+      </div>
+    </div>
+
+    <div class="q-block" id="qb-concern">
+      <div class="q-label">What's your #1 concern right now? <span class="req">*</span></div>
+      <div class="radio-cards">
+        <div class="radio-card" onclick="selectRadio(this,'f-concern','Inappropriate content finding its way to my kids')">
+          <div class="radio-dot"></div>
+          <div class="radio-text">
+            <div class="radio-title">Inappropriate content</div>
+            <div class="radio-desc">Porn, violence, disturbing videos — stuff that shouldn't be accessible</div>
+          </div>
+        </div>
+        <div class="radio-card" onclick="selectRadio(this,'f-concern','Too much screen time / addiction')">
+          <div class="radio-dot"></div>
+          <div class="radio-text">
+            <div class="radio-title">Too much screen time</div>
+            <div class="radio-desc">Constant battles, no limits, can't put the device down</div>
+          </div>
+        </div>
+        <div class="radio-card" onclick="selectRadio(this,'f-concern','Online predators / strangers contacting my kids')">
+          <div class="radio-dot"></div>
+          <div class="radio-text">
+            <div class="radio-title">Online predators / stranger contact</div>
+            <div class="radio-desc">Roblox, gaming chat, messaging apps — who is talking to my kid?</div>
+          </div>
+        </div>
+        <div class="radio-card" onclick="selectRadio(this,'f-concern','Social media and mental health')">
+          <div class="radio-dot"></div>
+          <div class="radio-text">
+            <div class="radio-title">Social media / mental health</div>
+            <div class="radio-desc">Instagram, TikTok, Snapchat — the algorithm and comparison trap</div>
+          </div>
+        </div>
+        <div class="radio-card" onclick="selectRadio(this,'f-concern','All of the above equally')">
+          <div class="radio-dot"></div>
+          <div class="radio-text">
+            <div class="radio-title">All of the above equally</div>
+            <div class="radio-desc">I want a comprehensive setup that covers everything</div>
+          </div>
+        </div>
+        <div class="radio-card" onclick="selectRadio(this,'f-concern','Other');toggleOther(this,'concern-other')">
+          <div class="radio-dot"></div>
+          <div class="radio-text">
+            <div class="radio-title">Other</div>
+            <div class="radio-desc">Something specific not listed above</div>
+          </div>
+        </div>
+      </div>
+      <div id="concern-other" style="display:none; margin-top:10px;">
+        <input type="text" id="f-concern-other" placeholder="Describe your main concern...">
+      </div>
+      <input type="hidden" id="f-concern">
+      <div class="field-error" id="err-concern">Please select your main concern.</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">How involved do you want to be day-to-day?</div>
+      <div class="radio-cards">
+        <div class="radio-card" onclick="selectRadio(this,'f-involvement','Set it and forget it — just lock things down')">
+          <div class="radio-dot"></div>
+          <div class="radio-text">
+            <div class="radio-title">Set it and forget it</div>
+            <div class="radio-desc">Lock it down, I don't need to monitor daily</div>
+          </div>
+        </div>
+        <div class="radio-card" onclick="selectRadio(this,'f-involvement','Monthly report is enough')">
+          <div class="radio-dot"></div>
+          <div class="radio-text">
+            <div class="radio-title">Monthly report is enough</div>
+            <div class="radio-desc">I want to know trends but not every detail</div>
+          </div>
+        </div>
+        <div class="radio-card" onclick="selectRadio(this,'f-involvement','Alert me if something concerning happens')">
+          <div class="radio-dot"></div>
+          <div class="radio-text">
+            <div class="radio-title">Alert me when something happens</div>
+            <div class="radio-desc">I want real-time notifications for concerning activity</div>
+          </div>
+        </div>
+        <div class="radio-card" onclick="selectRadio(this,'f-involvement','Full visibility — I want to see everything')">
+          <div class="radio-dot"></div>
+          <div class="radio-text">
+            <div class="radio-title">Full visibility</div>
+            <div class="radio-desc">I want to see usage, browsing, activity — the full picture</div>
+          </div>
+        </div>
+      </div>
+      <input type="hidden" id="f-involvement">
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-back" onclick="goTo(2)">← Back</button>
+      <button class="btn-next" onclick="goTo(4)">Continue <span>→</span></button>
+    </div>
+  </div>
+
+  <!-- SECTION 4: Final Details -->
+  <div class="section" id="sec4">
+    <div class="section-label"><div class="section-num">4</div> Almost done</div>
+    <div class="section-title">Last few things</div>
+    <div class="section-sub">This is where you can share anything specific that's been on your mind.</div>
+
+    <div class="q-block">
+      <div class="q-label">Are both parents on the same page about this?</div>
+      <div class="chips" id="chip-parents">
+        <div class="chip" data-val="Fully aligned" onclick="selectChip(this,'chip-parents','f-parents')">Fully aligned</div>
+        <div class="chip" data-val="One of us is more worried" onclick="selectChip(this,'chip-parents','f-parents')">One of us is more worried</div>
+        <div class="chip" data-val="Single parent household" onclick="selectChip(this,'chip-parents','f-parents')">Single parent household</div>
+        <div class="chip" data-val="We disagree on approach" onclick="selectChip(this,'chip-parents','f-parents')">We disagree on approach</div>
+      </div>
+      <input type="hidden" id="f-parents">
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">How did you hear about us?</div>
+      <div class="chips" id="chip-source">
+        <div class="chip" data-val="Friend / neighbor referral" onclick="selectChip(this,'chip-source','f-source')">Friend / neighbor referral</div>
+        <div class="chip" data-val="Social media" onclick="selectChip(this,'chip-source','f-source')">Social media</div>
+        <div class="chip" data-val="Church community" onclick="selectChip(this,'chip-source','f-source')">Church community</div>
+        <div class="chip" data-val="Google search" onclick="selectChip(this,'chip-source','f-source')">Google search</div>
+        <div class="chip" data-val="Other" onclick="selectChip(this,'chip-source','f-source')">Other</div>
+      </div>
+      <input type="hidden" id="f-source">
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Best time to schedule an onsite visit?</div>
+      <div class="chips" id="chip-timing">
+        <div class="chip" data-val="Weekday morning" onclick="multiChip(this,'chip-timing')">Weekday morning</div>
+        <div class="chip" data-val="Weekday evening" onclick="multiChip(this,'chip-timing')">Weekday evening</div>
+        <div class="chip" data-val="Saturday" onclick="multiChip(this,'chip-timing')">Saturday</div>
+        <div class="chip" data-val="Sunday" onclick="multiChip(this,'chip-timing')">Sunday</div>
+        <div class="chip" data-val="Flexible" onclick="multiChip(this,'chip-timing')">Flexible</div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Anything else we should know before the visit?</div>
+      <div class="q-hint">Specific apps you're worried about, things that have already happened, context about your kids — anything helps.</div>
+      <textarea id="f-notes" placeholder="e.g. My 11-year-old is on Roblox constantly and I found out kids can message strangers. Also not sure what's on the Amazon tablets..."></textarea>
+    </div>
+
+    <!-- HIDDEN FIELDS to collect device data -->
+    <input type="hidden" id="f-devices">
+
+    <div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:10px; padding:14px 16px; margin-bottom:16px;">
+      <div style="font-size:12px; font-weight:600; color:#0369a1; margin-bottom:4px;">What happens next</div>
+      <div style="font-size:13px; color:#0c4a6e; line-height:1.55;">We will review your answers and reach out within 24 hours to schedule your free onsite audit — usually 45 minutes. No obligation after the visit.</div>
+    </div>
+
+    <form id="mainForm" action="https://submit.formspark.io/rkMLUXlZj" method="POST" onsubmit="handleSubmit(event)">
+      <input type="hidden" name="name" id="fn-name">
+      <input type="hidden" name="email" id="fn-email">
+      <input type="hidden" name="phone" id="fn-phone">
+      <input type="hidden" name="area" id="fn-area">
+      <input type="hidden" name="num_kids" id="fn-numkids">
+      <input type="hidden" name="kid_ages" id="fn-ages">
+      <input type="hidden" name="devices" id="fn-devices">
+      <input type="hidden" name="tv_in_bedrooms" id="fn-tvroom">
+      <input type="hidden" name="router" id="fn-router">
+      <input type="hidden" name="existing_controls" id="fn-existing">
+      <input type="hidden" name="incidents" id="fn-incidents">
+      <input type="hidden" name="main_concern" id="fn-concern">
+      <input type="hidden" name="involvement" id="fn-involvement">
+      <input type="hidden" name="parents_aligned" id="fn-parents">
+      <input type="hidden" name="heard_from" id="fn-source">
+      <input type="hidden" name="best_timing" id="fn-timing">
+      <input type="hidden" name="notes" id="fn-notes">
+
+      <div class="nav-row">
+        <button type="button" class="btn-back" onclick="goTo(3)">← Back</button>
+        <button type="submit" class="btn-submit">Submit — Book My Free Audit ✓</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-card" id="successCard">
+    <div class="success-icon">✓</div>
+    <h2>You're all set!</h2>
+    <p>We received your answers and will reach out within 24 hours to schedule your free onsite audit. Check your email at <strong id="success-email"></strong>.</p>
+    <p style="margin-top:12px; font-size:13px;">Questions in the meantime? Text or call us directly.</p>
+  </div>
+
+</div>
+
+<script>
+let currentSection = 1;
+const totalSections = 4;
+
+function updateProgress() {
+  const pct = ((currentSection - 1) / totalSections) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = 'Step ' + currentSection + ' of ' + totalSections;
+}
+
+function goTo(n) {
+  if (n > currentSection && !validateSection(currentSection)) return;
+  document.getElementById('sec' + currentSection).classList.remove('active');
+  currentSection = n;
+  document.getElementById('sec' + currentSection).classList.add('active');
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function validateSection(n) {
+  let valid = true;
+  if (n === 1) {
+    valid &= validateField('f-name', 'qb-name', v => v.trim().length > 1);
+    valid &= validateField('f-email', 'qb-email', v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+    valid &= validateField('f-area', 'qb-area', v => v.trim().length > 1);
+    if (!document.getElementById('f-numkids').value) {
+      document.getElementById('qb-kids').classList.add('has-error');
+      document.getElementById('err-kids').style.display = 'block';
+      valid = false;
+    } else {
+      document.getElementById('qb-kids').classList.remove('has-error');
+      document.getElementById('err-kids').style.display = 'none';
+    }
+  }
+  if (n === 3) {
+    if (!document.getElementById('f-concern').value) {
+      document.getElementById('qb-concern').classList.add('has-error');
+      document.getElementById('err-concern').style.display = 'block';
+      valid = false;
+    } else {
+      document.getElementById('qb-concern').classList.remove('has-error');
+      document.getElementById('err-concern').style.display = 'none';
+    }
+  }
+  return valid;
+}
+
+function validateField(fieldId, blockId, test) {
+  const val = document.getElementById(fieldId).value;
+  const block = document.getElementById(blockId);
+  if (!test(val)) {
+    block.classList.add('has-error');
+    return false;
+  } else {
+    block.classList.remove('has-error');
+    return true;
+  }
+}
+
+function selectChip(el, groupId, hiddenId) {
+  document.querySelectorAll('#' + groupId + ' .chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById(hiddenId).value = el.dataset.val;
+}
+
+function multiChip(el, groupId) {
+  el.classList.toggle('selected');
+}
+
+function getMultiChipValues(groupId) {
+  return Array.from(document.querySelectorAll('#' + groupId + ' .chip.selected')).map(c => c.dataset.val).join(', ');
+}
+
+function selectRadio(el, hiddenId, val) {
+  el.closest('.radio-cards').querySelectorAll('.radio-card').forEach(r => r.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById(hiddenId).value = val;
+}
+
+function toggleOther(el, otherId) {
+  const box = document.getElementById(otherId);
+  if (!box) return;
+  const isRadioCard = el.classList.contains('radio-card');
+  if (isRadioCard) {
+    box.style.display = 'block';
+    const inp = box.querySelector('input');
+    if (inp) setTimeout(() => inp.focus(), 50);
+  } else {
+    box.style.display = el.classList.contains('selected') ? 'block' : 'none';
+  }
+}
+
+function toggleDevice(tile, name) {
+  // Just visual — actual count is via +/- buttons
+}
+
+function changeCount(e, btn, delta) {
+  e.stopPropagation();
+  const countEl = btn.parentElement.querySelector('span');
+  let val = parseInt(countEl.textContent) + delta;
+  if (val < 0) val = 0;
+  countEl.textContent = val;
+  const tile = btn.closest('.device-tile');
+  if (val > 0) tile.classList.add('selected');
+  else tile.classList.remove('selected');
+}
+
+function getDeviceSummary() {
+  const tiles = document.querySelectorAll('.device-tile');
+  const parts = [];
+  tiles.forEach(tile => {
+    const count = parseInt(tile.querySelector('.device-count span').textContent);
+    if (count > 0) {
+      const name = tile.querySelector('.device-name').textContent;
+      parts.push(count + 'x ' + name);
+    }
+  });
+  return parts.join(', ') || 'None selected';
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  // Populate hidden form fields
+  document.getElementById('fn-name').value = document.getElementById('f-name').value;
+  document.getElementById('fn-email').value = document.getElementById('f-email').value;
+  document.getElementById('fn-phone').value = document.getElementById('f-phone').value;
+  document.getElementById('fn-area').value = document.getElementById('f-area').value;
+  document.getElementById('fn-numkids').value = document.getElementById('f-numkids').value;
+  document.getElementById('fn-ages').value = document.getElementById('f-ages').value;
+  document.getElementById('fn-devices').value = getDeviceSummary();
+  document.getElementById('fn-tvroom').value = document.getElementById('f-tvroom').value;
+  document.getElementById('fn-router').value = document.getElementById('f-router').value;
+  document.getElementById('fn-existing').value = getMultiChipValues('chip-existing');
+  const _inc = getMultiChipValues('chip-incident'); const _incO = document.getElementById('f-incident-other').value.trim(); document.getElementById('fn-incidents').value = (_inc && _incO) ? _inc + ' — Other: ' + _incO : (_incO ? 'Other: ' + _incO : _inc);
+  const _con = document.getElementById('f-concern').value; const _conO = document.getElementById('f-concern-other').value.trim(); document.getElementById('fn-concern').value = (_con === 'Other' && _conO) ? 'Other: ' + _conO : _con;
+  document.getElementById('fn-involvement').value = document.getElementById('f-involvement').value;
+  document.getElementById('fn-parents').value = document.getElementById('f-parents').value;
+  document.getElementById('fn-source').value = document.getElementById('f-source').value;
+  document.getElementById('fn-timing').value = getMultiChipValues('chip-timing');
+  document.getElementById('fn-notes').value = document.getElementById('f-notes').value;
+
+  const form = document.getElementById('mainForm');
+  const data = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  }).then(r => {
+    if (r.ok) {
+      document.getElementById('sec4').classList.remove('active');
+      const sc = document.getElementById('successCard');
+      sc.classList.add('show');
+      document.getElementById('success-email').textContent = document.getElementById('f-email').value;
+      document.getElementById('progressFill').style.width = '100%';
+      document.getElementById('progressLabel').textContent = 'Complete!';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      alert('Something went wrong. Please try again or contact us directly.');
+    }
+  }).catch(() => {
+    alert('Network error. Please try again or contact us directly.');
+  });
+}
+
+updateProgress();
+</script>
+</body>
+</html>
