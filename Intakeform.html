@@ -298,6 +298,18 @@ select { cursor: pointer; }
 
 /* DEVICE BUILDER */
 .device-builder { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.device-group {
+  grid-column: 1 / -1;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 6px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--border);
+}
+.device-group:first-child { margin-top: 0; }
 .device-tile {
   display: flex;
   align-items: center;
@@ -528,11 +540,11 @@ select { cursor: pointer; }
 
 <div class="header">
   <div class="header-inner">
-    <div class="logo">
+    <a href="index.html" class="logo" style="text-decoration:none">
       <span class="logo-mark">TechDad</span>
       <span class="logo-sep">/</span>
       <span class="logo-text">Charlotte, NC</span>
-    </div>
+    </a>
     <h1>Let's build your family's<br><em>digital protection plan</em></h1>
     <p>Takes about 5 minutes. Your answers help us come prepared so we don't waste your time on basics during the visit.</p>
   </div>
@@ -611,7 +623,9 @@ select { cursor: pointer; }
       <div class="q-label">Which devices do your kids have access to? <span class="req">*</span></div>
       <div class="q-hint">Select all that apply — tap to add, tap again to remove.</div>
       <div class="device-builder">
-        <div class="device-tile" onclick="toggleDevice(this,'iPhone')">
+
+        <div class="device-group">Phones</div>
+        <div class="device-tile" onclick="toggleDevice(this)">
           <div class="device-icon">📱</div>
           <div class="device-name">iPhone</div>
           <div class="device-count">
@@ -620,16 +634,7 @@ select { cursor: pointer; }
             <button onclick="changeCount(event,this,1)">+</button>
           </div>
         </div>
-        <div class="device-tile" onclick="toggleDevice(this,'iPad')">
-          <div class="device-icon">📟</div>
-          <div class="device-name">iPad</div>
-          <div class="device-count">
-            <button onclick="changeCount(event,this,-1)">−</button>
-            <span>0</span>
-            <button onclick="changeCount(event,this,1)">+</button>
-          </div>
-        </div>
-        <div class="device-tile" onclick="toggleDevice(this,'Android phone')">
+        <div class="device-tile" onclick="toggleDevice(this)">
           <div class="device-icon">📲</div>
           <div class="device-name">Android phone</div>
           <div class="device-count">
@@ -638,7 +643,27 @@ select { cursor: pointer; }
             <button onclick="changeCount(event,this,1)">+</button>
           </div>
         </div>
-        <div class="device-tile" onclick="toggleDevice(this,'Amazon Fire tablet')">
+
+        <div class="device-group">Tablets</div>
+        <div class="device-tile" onclick="toggleDevice(this)">
+          <div class="device-icon">📱</div>
+          <div class="device-name">iPad</div>
+          <div class="device-count">
+            <button onclick="changeCount(event,this,-1)">−</button>
+            <span>0</span>
+            <button onclick="changeCount(event,this,1)">+</button>
+          </div>
+        </div>
+        <div class="device-tile" onclick="toggleDevice(this)">
+          <div class="device-icon">📲</div>
+          <div class="device-name">Android tablet</div>
+          <div class="device-count">
+            <button onclick="changeCount(event,this,-1)">−</button>
+            <span>0</span>
+            <button onclick="changeCount(event,this,1)">+</button>
+          </div>
+        </div>
+        <div class="device-tile" onclick="toggleDevice(this)">
           <div class="device-icon">🔥</div>
           <div class="device-name">Amazon Fire tablet</div>
           <div class="device-count">
@@ -647,7 +672,9 @@ select { cursor: pointer; }
             <button onclick="changeCount(event,this,1)">+</button>
           </div>
         </div>
-        <div class="device-tile" onclick="toggleDevice(this,'MacBook / Mac')">
+
+        <div class="device-group">Computers</div>
+        <div class="device-tile" onclick="toggleDevice(this)">
           <div class="device-icon">💻</div>
           <div class="device-name">MacBook / Mac</div>
           <div class="device-count">
@@ -656,7 +683,7 @@ select { cursor: pointer; }
             <button onclick="changeCount(event,this,1)">+</button>
           </div>
         </div>
-        <div class="device-tile" onclick="toggleDevice(this,'Windows PC / Chromebook')">
+        <div class="device-tile" onclick="toggleDevice(this)">
           <div class="device-icon">🖥️</div>
           <div class="device-name">Windows / Chromebook</div>
           <div class="device-count">
@@ -665,7 +692,9 @@ select { cursor: pointer; }
             <button onclick="changeCount(event,this,1)">+</button>
           </div>
         </div>
-        <div class="device-tile" onclick="toggleDevice(this,'Nintendo Switch')">
+
+        <div class="device-group">Gaming</div>
+        <div class="device-tile" onclick="toggleDevice(this)">
           <div class="device-icon">🎮</div>
           <div class="device-name">Nintendo Switch</div>
           <div class="device-count">
@@ -674,7 +703,7 @@ select { cursor: pointer; }
             <button onclick="changeCount(event,this,1)">+</button>
           </div>
         </div>
-        <div class="device-tile" onclick="toggleDevice(this,'PlayStation / Xbox')">
+        <div class="device-tile" onclick="toggleDevice(this)">
           <div class="device-icon">🕹️</div>
           <div class="device-name">PlayStation / Xbox</div>
           <div class="device-count">
@@ -683,7 +712,18 @@ select { cursor: pointer; }
             <button onclick="changeCount(event,this,1)">+</button>
           </div>
         </div>
-        <div class="device-tile" onclick="toggleDevice(this,'Smart TV / Streaming stick')">
+        <div class="device-tile" onclick="toggleDevice(this)">
+          <div class="device-icon">🥽</div>
+          <div class="device-name">VR headset</div>
+          <div class="device-count">
+            <button onclick="changeCount(event,this,-1)">−</button>
+            <span>0</span>
+            <button onclick="changeCount(event,this,1)">+</button>
+          </div>
+        </div>
+
+        <div class="device-group">Home &amp; Entertainment</div>
+        <div class="device-tile" onclick="toggleDevice(this)">
           <div class="device-icon">📺</div>
           <div class="device-name">Smart TV / Roku / Fire TV</div>
           <div class="device-count">
@@ -692,7 +732,7 @@ select { cursor: pointer; }
             <button onclick="changeCount(event,this,1)">+</button>
           </div>
         </div>
-        <div class="device-tile" onclick="toggleDevice(this,'Smart speaker')">
+        <div class="device-tile" onclick="toggleDevice(this)">
           <div class="device-icon">🔊</div>
           <div class="device-name">Alexa / Google Home</div>
           <div class="device-count">
@@ -701,6 +741,7 @@ select { cursor: pointer; }
             <button onclick="changeCount(event,this,1)">+</button>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -931,7 +972,7 @@ select { cursor: pointer; }
 
       <div class="nav-row">
         <button type="button" class="btn-back" onclick="goTo(3)">← Back</button>
-        <button type="submit" class="btn-submit">Submit — Book My Free Audit ✓</button>
+        <button type="submit" class="btn-submit" id="submitBtn">Submit — Book My Free Audit ✓</button>
       </div>
     </form>
   </div>
@@ -950,12 +991,14 @@ select { cursor: pointer; }
 let currentSection = 1;
 const totalSections = 4;
 
+// ── Progress ──────────────────────────────────────────────
 function updateProgress() {
-  const pct = ((currentSection - 1) / totalSections) * 100;
+  const pct = (currentSection / totalSections) * 100;
   document.getElementById('progressFill').style.width = pct + '%';
   document.getElementById('progressLabel').textContent = 'Step ' + currentSection + ' of ' + totalSections;
 }
 
+// ── Navigation ────────────────────────────────────────────
 function goTo(n) {
   if (n > currentSection && !validateSection(currentSection)) return;
   document.getElementById('sec' + currentSection).classList.remove('active');
@@ -965,14 +1008,15 @@ function goTo(n) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// ── Validation ────────────────────────────────────────────
 function validateSection(n) {
   let valid = true;
   if (n === 1) {
-    valid &= validateField('f-name', 'qb-name', v => v.trim().length > 1);
+    valid &= validateField('f-name',  'qb-name',  v => v.trim().length > 1);
     valid &= validateField('f-email', 'qb-email', v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
-    valid &= validateField('f-area', 'qb-area', v => v.trim().length > 1);
+    valid &= validateField('f-area',  'qb-area',  v => v.trim().length > 1);
     if (!document.getElementById('f-numkids').value) {
-      document.getElementById('qb-kids').classList.add('has-error');
+      shakeError('qb-kids');
       document.getElementById('err-kids').style.display = 'block';
       valid = false;
     } else {
@@ -980,9 +1024,12 @@ function validateSection(n) {
       document.getElementById('err-kids').style.display = 'none';
     }
   }
+  if (n === 2) {
+    valid &= validateField('f-ages', 'qb-ages', v => v.trim().length > 0);
+  }
   if (n === 3) {
     if (!document.getElementById('f-concern').value) {
-      document.getElementById('qb-concern').classList.add('has-error');
+      shakeError('qb-concern');
       document.getElementById('err-concern').style.display = 'block';
       valid = false;
     } else {
@@ -990,14 +1037,14 @@ function validateSection(n) {
       document.getElementById('err-concern').style.display = 'none';
     }
   }
-  return valid;
+  return !!valid;
 }
 
 function validateField(fieldId, blockId, test) {
   const val = document.getElementById(fieldId).value;
   const block = document.getElementById(blockId);
   if (!test(val)) {
-    block.classList.add('has-error');
+    shakeError(blockId);
     return false;
   } else {
     block.classList.remove('has-error');
@@ -1005,13 +1052,22 @@ function validateField(fieldId, blockId, test) {
   }
 }
 
+function shakeError(blockId) {
+  const block = document.getElementById(blockId);
+  block.classList.remove('shake');
+  block.classList.add('has-error');
+  void block.offsetWidth; // reflow to restart animation
+  block.classList.add('shake');
+}
+
+// ── Chip / Radio helpers ──────────────────────────────────
 function selectChip(el, groupId, hiddenId) {
   document.querySelectorAll('#' + groupId + ' .chip').forEach(c => c.classList.remove('selected'));
   el.classList.add('selected');
   document.getElementById(hiddenId).value = el.dataset.val;
 }
 
-function multiChip(el, groupId) {
+function multiChip(el) {
   el.classList.toggle('selected');
 }
 
@@ -1023,23 +1079,31 @@ function selectRadio(el, hiddenId, val) {
   el.closest('.radio-cards').querySelectorAll('.radio-card').forEach(r => r.classList.remove('selected'));
   el.classList.add('selected');
   document.getElementById(hiddenId).value = val;
+  // hide any "other" text box in this group unless this is the Other option
+  const otherBox = el.closest('.q-block').querySelector('[id$="-other"]');
+  if (otherBox) {
+    otherBox.style.display = (val === 'Other') ? 'block' : 'none';
+    if (val === 'Other') {
+      const inp = otherBox.querySelector('input');
+      if (inp) setTimeout(() => inp.focus(), 50);
+    }
+  }
 }
 
 function toggleOther(el, otherId) {
   const box = document.getElementById(otherId);
   if (!box) return;
-  const isRadioCard = el.classList.contains('radio-card');
-  if (isRadioCard) {
-    box.style.display = 'block';
-    const inp = box.querySelector('input');
-    if (inp) setTimeout(() => inp.focus(), 50);
-  } else {
-    box.style.display = el.classList.contains('selected') ? 'block' : 'none';
-  }
+  // chip (multi-select) case — radio case handled in selectRadio
+  box.style.display = el.classList.contains('selected') ? 'block' : 'none';
 }
 
-function toggleDevice(tile, name) {
-  // Just visual — actual count is via +/- buttons
+// ── Device tiles ──────────────────────────────────────────
+function toggleDevice(tile) {
+  const countEl = tile.querySelector('.device-count span');
+  const current = parseInt(countEl.textContent);
+  const next = current === 0 ? 1 : 0;
+  countEl.textContent = next;
+  tile.classList.toggle('selected', next > 0);
 }
 
 function changeCount(e, btn, delta) {
@@ -1049,8 +1113,7 @@ function changeCount(e, btn, delta) {
   if (val < 0) val = 0;
   countEl.textContent = val;
   const tile = btn.closest('.device-tile');
-  if (val > 0) tile.classList.add('selected');
-  else tile.classList.remove('selected');
+  tile.classList.toggle('selected', val > 0);
 }
 
 function getDeviceSummary() {
@@ -1058,58 +1121,102 @@ function getDeviceSummary() {
   const parts = [];
   tiles.forEach(tile => {
     const count = parseInt(tile.querySelector('.device-count span').textContent);
-    if (count > 0) {
-      const name = tile.querySelector('.device-name').textContent;
-      parts.push(count + 'x ' + name);
-    }
+    if (count > 0) parts.push(count + 'x ' + tile.querySelector('.device-name').textContent);
   });
   return parts.join(', ') || 'None selected';
 }
 
+// ── Toast ─────────────────────────────────────────────────
+function showToast(msg) {
+  let t = document.getElementById('errorToast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'errorToast';
+    t.className = 'toast';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// ── Submit ────────────────────────────────────────────────
 function handleSubmit(e) {
   e.preventDefault();
-  // Populate hidden form fields
-  document.getElementById('fn-name').value = document.getElementById('f-name').value;
-  document.getElementById('fn-email').value = document.getElementById('f-email').value;
-  document.getElementById('fn-phone').value = document.getElementById('f-phone').value;
-  document.getElementById('fn-area').value = document.getElementById('f-area').value;
-  document.getElementById('fn-numkids').value = document.getElementById('f-numkids').value;
-  document.getElementById('fn-ages').value = document.getElementById('f-ages').value;
-  document.getElementById('fn-devices').value = getDeviceSummary();
-  document.getElementById('fn-tvroom').value = document.getElementById('f-tvroom').value;
-  document.getElementById('fn-router').value = document.getElementById('f-router').value;
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  // Populate hidden fields
+  document.getElementById('fn-name').value     = document.getElementById('f-name').value;
+  document.getElementById('fn-email').value    = document.getElementById('f-email').value;
+  document.getElementById('fn-phone').value    = document.getElementById('f-phone').value;
+  document.getElementById('fn-area').value     = document.getElementById('f-area').value;
+  document.getElementById('fn-numkids').value  = document.getElementById('f-numkids').value;
+  document.getElementById('fn-ages').value     = document.getElementById('f-ages').value;
+  document.getElementById('fn-devices').value  = getDeviceSummary();
+  document.getElementById('fn-tvroom').value   = document.getElementById('f-tvroom').value;
+  document.getElementById('fn-router').value   = document.getElementById('f-router').value;
   document.getElementById('fn-existing').value = getMultiChipValues('chip-existing');
-  const _inc = getMultiChipValues('chip-incident'); const _incO = document.getElementById('f-incident-other').value.trim(); document.getElementById('fn-incidents').value = (_inc && _incO) ? _inc + ' — Other: ' + _incO : (_incO ? 'Other: ' + _incO : _inc);
-  const _con = document.getElementById('f-concern').value; const _conO = document.getElementById('f-concern-other').value.trim(); document.getElementById('fn-concern').value = (_con === 'Other' && _conO) ? 'Other: ' + _conO : _con;
+  document.getElementById('fn-timing').value   = getMultiChipValues('chip-timing');
   document.getElementById('fn-involvement').value = document.getElementById('f-involvement').value;
-  document.getElementById('fn-parents').value = document.getElementById('f-parents').value;
-  document.getElementById('fn-source').value = document.getElementById('f-source').value;
-  document.getElementById('fn-timing').value = getMultiChipValues('chip-timing');
-  document.getElementById('fn-notes').value = document.getElementById('f-notes').value;
+  document.getElementById('fn-parents').value  = document.getElementById('f-parents').value;
+  document.getElementById('fn-source').value   = document.getElementById('f-source').value;
+  document.getElementById('fn-notes').value    = document.getElementById('f-notes').value;
+
+  const _inc  = getMultiChipValues('chip-incident');
+  const _incO = document.getElementById('f-incident-other').value.trim();
+  document.getElementById('fn-incidents').value = (_inc && _incO) ? _inc + ' — Other: ' + _incO : (_incO ? 'Other: ' + _incO : _inc);
+
+  const _con  = document.getElementById('f-concern').value;
+  const _conO = document.getElementById('f-concern-other').value.trim();
+  document.getElementById('fn-concern').value = (_con === 'Other' && _conO) ? 'Other: ' + _conO : _con;
 
   const form = document.getElementById('mainForm');
   const data = new FormData(form);
 
-  fetch(form.action, {
-    method: 'POST',
-    body: data,
-    headers: { 'Accept': 'application/json' }
-  }).then(r => {
-    if (r.ok) {
-      document.getElementById('sec4').classList.remove('active');
-      const sc = document.getElementById('successCard');
-      sc.classList.add('show');
-      document.getElementById('success-email').textContent = document.getElementById('f-email').value;
-      document.getElementById('progressFill').style.width = '100%';
-      document.getElementById('progressLabel').textContent = 'Complete!';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      alert('Something went wrong. Please try again or contact us directly.');
-    }
-  }).catch(() => {
-    alert('Network error. Please try again or contact us directly.');
-  });
+  fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+    .then(r => {
+      if (r.ok) {
+        window.location.href = 'ThankYou.html';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Submit — Book My Free Audit ✓';
+        showToast('Something went wrong — please try again or call us directly.');
+      }
+    })
+    .catch(() => {
+      btn.disabled = false;
+      btn.textContent = 'Submit — Book My Free Audit ✓';
+      showToast('Network error — please check your connection and try again.');
+    });
 }
+
+// ── Phone formatting ──────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const phone = document.getElementById('f-phone');
+  phone.addEventListener('input', function() {
+    const digits = this.value.replace(/\D/g, '').slice(0, 10);
+    if (digits.length >= 7)
+      this.value = '(' + digits.slice(0,3) + ') ' + digits.slice(3,6) + '-' + digits.slice(6);
+    else if (digits.length >= 4)
+      this.value = '(' + digits.slice(0,3) + ') ' + digits.slice(3);
+    else if (digits.length > 0)
+      this.value = digits;
+  });
+
+  // Keyboard accessibility for chips, radio cards, and device tiles
+  document.querySelectorAll('.chip, .radio-card, .device-tile').forEach(el => {
+    if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    el.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
+      }
+    });
+  });
+});
 
 updateProgress();
 </script>

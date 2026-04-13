@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechDad CLT — Digital Safety for Charlotte Families</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --navy: #0f1c2e;
+  --navy2: #1a2d45;
+  --accent: #2563eb;
+  --accent-light: #dbeafe;
+  --accent-mid: #1d4ed8;
+  --green: #059669;
+  --green-light: #d1fae5;
+  --text: #1e2532;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Figtree', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── NAV ──────────────────────────────────── */
+nav {
+  background: var(--navy);
+  padding: 0 24px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+.logo-mark {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: white;
+  background: var(--accent);
+  padding: 4px 10px;
+  border-radius: 5px;
+}
+.logo-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.8);
+}
+.logo-sep { color: rgba(255,255,255,0.25); margin: 0 2px; }
+
+.nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.nav-phone {
+  font-size: 13px;
+  color: #93c5fd;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-phone:hover { color: white; }
+.nav-phone svg { width: 14px; height: 14px; fill: currentColor; }
+.btn-nav {
+  font-family: 'Figtree', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .15s;
+}
+.btn-nav:hover { background: var(--accent-mid); }
+
+/* ── HERO ─────────────────────────────────── */
+.hero {
+  background: var(--navy);
+  padding: 72px 24px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 60%, rgba(37,99,235,0.25) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 20%, rgba(5,150,105,0.12) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(37,99,235,0.2);
+  border: 1px solid rgba(37,99,235,0.4);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #93c5fd;
+  letter-spacing: .04em;
+  margin-bottom: 24px;
+}
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #93c5fd;
+}
+.hero h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(34px, 6vw, 54px);
+  font-weight: 400;
+  color: white;
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: #93c5fd;
+}
+.hero p {
+  font-size: 17px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.65;
+  max-width: 480px;
+  margin: 0 auto 36px;
+}
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  font-family: 'Figtree', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  background: var(--accent);
+  border: none;
+  border-radius: 12px;
+  padding: 14px 28px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all .15s;
+  box-shadow: 0 4px 14px rgba(37,99,235,0.4);
+}
+.btn-primary:hover { background: var(--accent-mid); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,99,235,0.45); }
+.btn-secondary {
+  font-family: 'Figtree', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 14px 24px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all .15s;
+}
+.btn-secondary:hover { color: white; background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,0.25); }
+
+.hero-trust {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+}
+.trust-item svg { width: 15px; height: 15px; fill: #10b981; flex-shrink: 0; }
+
+/* ── SECTION WRAPPER ──────────────────────── */
+section {
+  padding: 72px 24px;
+}
+.section-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.section-heading {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.section-heading em { font-style: italic; color: var(--accent); }
+.section-sub {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 520px;
+}
+
+/* ── WHAT WE DO ───────────────────────────── */
+.what-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 44px;
+}
+.what-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
+  transition: box-shadow .2s, transform .2s;
+}
+.what-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.what-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: var(--accent-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+.what-card h3 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.what-card p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ── HOW IT WORKS ─────────────────────────── */
+.how-section { background: var(--navy); }
+.how-section .eyebrow { color: #93c5fd; }
+.how-section .section-heading { color: white; }
+.how-section .section-heading em { color: #93c5fd; }
+.how-section .section-sub { color: rgba(255,255,255,0.55); }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+  position: relative;
+}
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: calc(16.67% + 12px);
+  right: calc(16.67% + 12px);
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+}
+.step-card { text-align: center; position: relative; }
+.step-num {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  position: relative;
+  z-index: 1;
+}
+.step-card h3 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+  margin-bottom: 8px;
+}
+.step-card p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+}
+
+/* ── FOR WHO ──────────────────────────────── */
+.who-section { background: var(--bg); }
+.concerns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 44px;
+}
+.concern-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  transition: border-color .2s;
+}
+.concern-item:hover { border-color: var(--accent); }
+.concern-emoji { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.concern-item h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.concern-item p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+/* ── CTA BAND ─────────────────────────────── */
+.cta-section {
+  background: var(--accent);
+  padding: 72px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 120%, rgba(255,255,255,0.1) 0%, transparent 60%);
+}
+.cta-section .section-inner { position: relative; max-width: 560px; }
+.cta-section .section-heading { color: white; }
+.cta-section .section-heading em { color: #bfdbfe; }
+.cta-section .section-sub { color: rgba(255,255,255,0.75); max-width: 420px; margin: 0 auto 36px; }
+.btn-cta {
+  font-family: 'Figtree', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+  background: white;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 36px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all .15s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+.btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+.cta-note {
+  margin-top: 16px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+}
+
+/* ── CONTACT STRIP ────────────────────────── */
+.contact-strip {
+  background: var(--navy2);
+  padding: 36px 24px;
+}
+.contact-strip .section-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.contact-left h3 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  margin-bottom: 4px;
+}
+.contact-left p { font-size: 13px; color: rgba(255,255,255,0.45); }
+.contact-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #93c5fd;
+  text-decoration: none;
+  transition: color .15s;
+}
+.contact-link:hover { color: white; }
+.contact-link svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+
+/* ── FOOTER ───────────────────────────────── */
+footer {
+  background: var(--navy);
+  padding: 20px 24px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+footer a { color: inherit; text-decoration: none; }
+footer a:hover { color: rgba(255,255,255,0.6); }
+
+/* ── ANIMATIONS ───────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-inner > * { animation: fadeUp .5s ease both; }
+.hero-inner > *:nth-child(1) { animation-delay: .05s; }
+.hero-inner > *:nth-child(2) { animation-delay: .15s; }
+.hero-inner > *:nth-child(3) { animation-delay: .25s; }
+.hero-inner > *:nth-child(4) { animation-delay: .35s; }
+.hero-inner > *:nth-child(5) { animation-delay: .42s; }
+
+/* ── RESPONSIVE ───────────────────────────── */
+@media (max-width: 720px) {
+  .what-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .steps::before { display: none; }
+  .concerns { grid-template-columns: 1fr; }
+  .nav-phone { display: none; }
+}
+@media (max-width: 480px) {
+  .hero { padding: 52px 20px 60px; }
+  section { padding: 52px 20px; }
+  .contact-strip .section-inner { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <span class="logo-mark">TechDad</span>
+    <span class="logo-sep">/</span>
+    <span class="logo-text">Charlotte, NC</span>
+  </a>
+  <div class="nav-cta">
+    <a href="tel:+19803772733" class="nav-phone">
+      <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      (980) 377-2733
+    </a>
+    <a href="Intakeform.html" class="btn-nav">Get Free Audit →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding-top:72px;padding-bottom:80px;">
+  <div class="hero-inner">
+    <div class="hero-badge">Serving Charlotte, NC families</div>
+    <h1>Your kids are online.<br>Is your home <em>protected?</em></h1>
+    <p>TechDad CLT visits your home, audits every device, and builds a digital protection plan specific to your family — in about 45 minutes.</p>
+    <div class="hero-actions">
+      <a href="Intakeform.html" class="btn-primary">Book My Free Audit →</a>
+      <a href="tel:+19803772733" class="btn-secondary">
+        <svg style="width:15px;height:15px;fill:currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        Call (980) 377-2733
+      </a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item">
+        <svg viewBox="0 0 20 20"><path d="M16.7 3.3L8 12 4.3 8.3 3 9.6l5 5 10-10z"/></svg>
+        Free — no obligation
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 20 20"><path d="M16.7 3.3L8 12 4.3 8.3 3 9.6l5 5 10-10z"/></svg>
+        Onsite, at your home
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 20 20"><path d="M16.7 3.3L8 12 4.3 8.3 3 9.6l5 5 10-10z"/></svg>
+        Charlotte area only
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section>
+  <div class="section-inner">
+    <div class="eyebrow">What we do</div>
+    <h2 class="section-heading">A complete digital safety<br><em>check-up</em> for your household</h2>
+    <p class="section-sub">Most parental controls are set up once and forgotten — or never set up at all. We walk every device, every platform, and close the gaps.</p>
+
+    <div class="what-grid">
+      <div class="what-card">
+        <div class="what-icon">🔍</div>
+        <h3>Full device audit</h3>
+        <p>We review every phone, tablet, console, and smart TV your kids have access to — not just the obvious ones.</p>
+      </div>
+      <div class="what-card">
+        <div class="what-icon">🛡️</div>
+        <h3>Parental control setup</h3>
+        <p>Screen time limits, content filters, app restrictions, location sharing — configured correctly and actually working.</p>
+      </div>
+      <div class="what-card">
+        <div class="what-icon">📋</div>
+        <h3>A plan built for your family</h3>
+        <p>No two families are the same. You leave with a written protection plan and the tools to maintain it yourself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="section-inner">
+    <div class="eyebrow">How it works</div>
+    <h2 class="section-heading">Simple. Honest. <em>Done right.</em></h2>
+    <p class="section-sub">From first contact to a fully protected home — usually in under a week.</p>
+
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Fill out the intake form</h3>
+        <p>5 minutes. Tell us about your family, your devices, and your biggest concerns so we arrive prepared.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>We schedule your free audit</h3>
+        <p>We'll reach out within 24 hours to find a time that works. Usually a weekday evening or Saturday morning.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>45 minutes. Fully protected.</h3>
+        <p>We walk through every device at your home, set everything up, and hand you a clear protection plan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHO -->
+<section class="who-section">
+  <div class="section-inner">
+    <div class="eyebrow">Is this for you?</div>
+    <h2 class="section-heading">Parents who are done<br><em>guessing</em> if their kids are safe</h2>
+    <p class="section-sub">You don't have to be a tech expert. If any of these sound familiar, this visit is for you.</p>
+
+    <div class="concerns">
+      <div class="concern-item">
+        <div class="concern-emoji">😟</div>
+        <div>
+          <h4>Inappropriate content</h4>
+          <p>You've found something on a device you wish your child hadn't seen — or you're worried it's only a matter of time.</p>
+        </div>
+      </div>
+      <div class="concern-item">
+        <div class="concern-emoji">📵</div>
+        <div>
+          <h4>Screen time battles</h4>
+          <p>Constant fights over devices, no clear limits, and a feeling that the phone is always in their hand.</p>
+        </div>
+      </div>
+      <div class="concern-item">
+        <div class="concern-emoji">🎮</div>
+        <div>
+          <h4>Gaming & chat risks</h4>
+          <p>Roblox, Fortnite, Discord — your kid is talking to people online and you have no idea who.</p>
+        </div>
+      </div>
+      <div class="concern-item">
+        <div class="concern-emoji">📱</div>
+        <div>
+          <h4>Social media & mental health</h4>
+          <p>TikTok, Instagram, Snapchat — the algorithm is designed to keep them scrolling and it's affecting their mood.</p>
+        </div>
+      </div>
+      <div class="concern-item">
+        <div class="concern-emoji">🤷</div>
+        <div>
+          <h4>You set something up but aren't sure it's working</h4>
+          <p>Screen Time is on, but your kid found a workaround. Or you're not sure the router settings actually do anything.</p>
+        </div>
+      </div>
+      <div class="concern-item">
+        <div class="concern-emoji">✅</div>
+        <div>
+          <h4>Being proactive before something happens</h4>
+          <p>Your kids are young and the devices are new. You want to build good habits and locks before they're needed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-section">
+  <div class="section-inner">
+    <h2 class="section-heading">Ready to protect<br>your <em>family's</em> digital life?</h2>
+    <p class="section-sub">Fill out the 5-minute intake form and we'll reach out within 24 hours to schedule your free onsite audit.</p>
+    <a href="Intakeform.html" class="btn-cta">Fill Out the Intake Form to Get Started →</a>
+    <p class="cta-note">No cost. No obligation. Charlotte, NC area only.</p>
+  </div>
+</section>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <div class="section-inner">
+    <div class="contact-left">
+      <h3>Questions? Just reach out.</h3>
+      <p>We're real people — text or email works great.</p>
+    </div>
+    <div class="contact-links">
+      <a href="tel:+19803772733" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        (980) 377-2733
+      </a>
+      <a href="mailto:hello@ampitsolutions.com" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        hello@ampitsolutions.com
+      </a>
+      <a href="https://ampitsolutions.com" class="contact-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        ampitsolutions.com
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  © <span id="yr"></span> AMP IT Solutions · Charlotte, NC ·
+  <a href="Intakeform.html">Free Audit Form</a> ·
+  <a href="https://ampitsolutions.com">ampitsolutions.com</a>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
