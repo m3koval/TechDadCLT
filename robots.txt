@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /ThankYou.html
+
+Sitemap: https://techdadclt.com/sitemap.xml

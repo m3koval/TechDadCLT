@@ -3,7 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TechDad CLT — Digital Safety for Charlotte Families</title>
+<title>TechDad CLT — Kids Online Safety & Parental Controls, Charlotte NC</title>
+<meta name="description" content="TechDad CLT helps Charlotte, NC families protect their kids online. We visit your home, audit every device, and set up parental controls that actually work. Free onsite audit — no obligation.">
+<meta name="keywords" content="parental controls Charlotte NC, kids online safety Charlotte, family digital safety, screen time controls Charlotte, online safety for kids, parental control setup Charlotte">
+<link rel="canonical" href="https://techdadclt.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://techdadclt.com/">
+<meta property="og:site_name" content="TechDad CLT">
+<meta property="og:title" content="TechDad CLT — Kids Online Safety & Parental Controls, Charlotte NC">
+<meta property="og:description" content="We visit your home, audit every device your kids use, and build a digital protection plan specific to your family. Free onsite audit for Charlotte, NC families.">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TechDad CLT — Kids Online Safety, Charlotte NC">
+<meta name="twitter:description" content="We visit your home, audit every device your kids use, and build a digital protection plan specific to your family. Free onsite audit.">
+
+<!-- Local Business Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "TechDad CLT",
+  "alternateName": "AMP IT Solutions",
+  "description": "Digital safety and parental control setup for families in Charlotte, NC. We visit your home, audit every device your kids use, and build a protection plan tailored to your family.",
+  "url": "https://techdadclt.com",
+  "telephone": "+19803772733",
+  "email": "hello@ampitsolutions.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Charlotte",
+    "addressRegion": "NC",
+    "addressCountry": "US"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Charlotte",
+    "sameAs": "https://en.wikipedia.org/wiki/Charlotte,_North_Carolina"
+  },
+  "serviceType": ["Parental Control Setup", "Digital Safety Audit", "Kids Online Safety", "Screen Time Management"],
+  "offers": {
+    "@type": "Offer",
+    "name": "Free Onsite Digital Safety Audit",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Free 45-minute onsite audit of all devices in your home. No obligation."
+  }
+}
+</script>
+
 <script defer src="/_vercel/insights/script.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -220,6 +269,62 @@ nav {
 }
 .trust-item svg { width: 15px; height: 15px; fill: #10b981; flex-shrink: 0; }
 
+/* ── FOUNDER STORY ────────────────────────── */
+.story-section {
+  background: #fef9f0;
+  border-top: 1px solid #f0e6d3;
+  border-bottom: 1px solid #f0e6d3;
+  padding: 64px 24px;
+}
+.story-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 36px;
+  align-items: start;
+}
+.story-avatar {
+  width: 68px; height: 68px;
+  border-radius: 50%;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Instrument Serif', serif;
+  font-size: 26px;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 4px #f0e6d3;
+}
+.story-body blockquote {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(18px, 2.8vw, 23px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--navy);
+  line-height: 1.45;
+  margin-bottom: 18px;
+}
+.story-body p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+.story-body p:last-of-type { margin-bottom: 0; }
+.story-sig {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid #f0e6d3;
+  font-size: 13px;
+}
+.story-sig-name { font-weight: 600; color: var(--text); }
+.story-sig-role { color: var(--muted); margin-top: 2px; }
+
+@media (max-width: 600px) {
+  .story-inner { grid-template-columns: 1fr; gap: 18px; }
+  .story-avatar { width: 52px; height: 52px; font-size: 20px; }
+}
+
 /* ── SECTION WRAPPER ──────────────────────── */
 section {
   padding: 72px 24px;
@@ -253,6 +358,14 @@ section {
 }
 
 /* ── WHAT WE DO ───────────────────────────── */
+.what-icon svg {
+  width: 22px; height: 22px;
+  stroke: var(--accent);
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 .what-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -356,7 +469,21 @@ section {
   transition: border-color .2s;
 }
 .concern-item:hover { border-color: var(--accent); }
-.concern-emoji { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.concern-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.concern-icon svg {
+  width: 19px; height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 .concern-item h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
 .concern-item p { font-size: 13px; color: var(--muted); line-height: 1.5; }
 
@@ -501,8 +628,8 @@ footer a:hover { color: rgba(255,255,255,0.6); }
 <section class="hero" style="padding-top:72px;padding-bottom:80px;">
   <div class="hero-inner">
     <div class="hero-badge">Serving Charlotte, NC families</div>
-    <h1>Your kids are online.<br>Is your home <em>protected?</em></h1>
-    <p>TechDad CLT visits your home, audits every device, and builds a digital protection plan specific to your family — in about 45 minutes.</p>
+    <h1>Your kids are online.<br><em>Let's help you keep them safe.</em></h1>
+    <p>Let us help you build a digital protection plan specific to your family — so you know exactly what's on every device and your kids are protected online.</p>
     <div class="hero-actions">
       <a href="Intakeform.html" class="btn-primary">Book My Free Audit →</a>
       <a href="tel:+19803772733" class="btn-secondary">
@@ -527,6 +654,23 @@ footer a:hover { color: rgba(255,255,255,0.6); }
   </div>
 </section>
 
+<!-- FOUNDER STORY -->
+<section class="story-section">
+  <div class="story-inner">
+    <div class="story-avatar">M</div>
+    <div class="story-body">
+      <blockquote>"I started this because I'm a parent first — and I kept seeing the same thing in family after family."</blockquote>
+      <p>Most parents I talk to have done <em>something</em> — Screen Time is on, there's a filter somewhere, they told their kid the rules. But when I actually sit down with their devices, there's almost always a gap nobody knew about. An app with open messaging. A game console with no restrictions. A tablet that never got set up right in the first place.</p>
+      <p>The internet isn't going away, and our kids are growing up in it. My goal isn't to lock everything down and make them miserable — it's to give you visibility, put the right guardrails in place, and make sure you actually know what's happening on the devices in your home.</p>
+      <p>You shouldn't have to become a tech expert to keep your family safe. That's what I'm here for.</p>
+      <div class="story-sig">
+        <div class="story-sig-name">Mikhail · Founder, TechDad CLT</div>
+        <div class="story-sig-role">Charlotte, NC · AMP IT Solutions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- WHAT WE DO -->
 <section>
   <div class="section-inner">
@@ -536,17 +680,23 @@ footer a:hover { color: rgba(255,255,255,0.6); }
 
     <div class="what-grid">
       <div class="what-card">
-        <div class="what-icon">🔍</div>
+        <div class="what-icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
         <h3>Full device audit</h3>
         <p>We review every phone, tablet, console, and smart TV your kids have access to — not just the obvious ones.</p>
       </div>
       <div class="what-card">
-        <div class="what-icon">🛡️</div>
+        <div class="what-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
         <h3>Parental control setup</h3>
         <p>Screen time limits, content filters, app restrictions, location sharing — configured correctly and actually working.</p>
       </div>
       <div class="what-card">
-        <div class="what-icon">📋</div>
+        <div class="what-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
         <h3>A plan built for your family</h3>
         <p>No two families are the same. You leave with a written protection plan and the tools to maintain it yourself.</p>
       </div>
@@ -590,42 +740,54 @@ footer a:hover { color: rgba(255,255,255,0.6); }
 
     <div class="concerns">
       <div class="concern-item">
-        <div class="concern-emoji">😟</div>
+        <div class="concern-icon" style="background:#fee2e2;color:#dc2626;">
+          <svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+        </div>
         <div>
           <h4>Inappropriate content</h4>
           <p>You've found something on a device you wish your child hadn't seen — or you're worried it's only a matter of time.</p>
         </div>
       </div>
       <div class="concern-item">
-        <div class="concern-emoji">📵</div>
+        <div class="concern-icon" style="background:#dbeafe;color:#2563eb;">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
         <div>
           <h4>Screen time battles</h4>
           <p>Constant fights over devices, no clear limits, and a feeling that the phone is always in their hand.</p>
         </div>
       </div>
       <div class="concern-item">
-        <div class="concern-emoji">🎮</div>
+        <div class="concern-icon" style="background:#ede9fe;color:#7c3aed;">
+          <svg viewBox="0 0 24 24"><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="15" y1="13" x2="15.01" y2="13"/><line x1="18" y1="11" x2="18.01" y2="11"/><rect x="2" y="6" width="20" height="12" rx="2"/></svg>
+        </div>
         <div>
           <h4>Gaming & chat risks</h4>
           <p>Roblox, Fortnite, Discord — your kid is talking to people online and you have no idea who.</p>
         </div>
       </div>
       <div class="concern-item">
-        <div class="concern-emoji">📱</div>
+        <div class="concern-icon" style="background:#fce7f3;color:#db2777;">
+          <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
         <div>
           <h4>Social media & mental health</h4>
           <p>TikTok, Instagram, Snapchat — the algorithm is designed to keep them scrolling and it's affecting their mood.</p>
         </div>
       </div>
       <div class="concern-item">
-        <div class="concern-emoji">🤷</div>
+        <div class="concern-icon" style="background:#fef3c7;color:#d97706;">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </div>
         <div>
           <h4>You set something up but aren't sure it's working</h4>
           <p>Screen Time is on, but your kid found a workaround. Or you're not sure the router settings actually do anything.</p>
         </div>
       </div>
       <div class="concern-item">
-        <div class="concern-emoji">✅</div>
+        <div class="concern-icon" style="background:#d1fae5;color:#059669;">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
         <div>
           <h4>Being proactive before something happens</h4>
           <p>Your kids are young and the devices are new. You want to build good habits and locks before they're needed.</p>
@@ -638,7 +800,7 @@ footer a:hover { color: rgba(255,255,255,0.6); }
 <!-- CTA BAND -->
 <section class="cta-section">
   <div class="section-inner">
-    <h2 class="section-heading">Ready to protect<br>your <em>family's</em> digital life?</h2>
+    <h2 class="section-heading">Your family deserves to<br>feel <em>safe online.</em></h2>
     <p class="section-sub">Fill out the 5-minute intake form and we'll reach out within 24 hours to schedule your free onsite audit.</p>
     <a href="Intakeform.html" class="btn-cta">Fill Out the Intake Form to Get Started →</a>
     <p class="cta-note">No cost. No obligation. Charlotte, NC area only.</p>
