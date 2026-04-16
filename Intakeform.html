@@ -598,6 +598,16 @@ select { cursor: pointer; }
       <div class="field-error">Please enter your area.</div>
     </div>
 
+    <div class="q-block">
+      <div class="q-label">Who are you getting help for?</div>
+      <div class="chips" id="chip-whofor">
+        <div class="chip" data-val="My kids / children at home" onclick="selectChip(this,'chip-whofor','f-whofor');showKidsFields(true)">My kids</div>
+        <div class="chip" data-val="An aging parent" onclick="selectChip(this,'chip-whofor','f-whofor');showKidsFields(false)">An aging parent</div>
+        <div class="chip" data-val="Both" onclick="selectChip(this,'chip-whofor','f-whofor');showKidsFields(true)">Both</div>
+      </div>
+      <input type="hidden" id="f-whofor">
+    </div>
+
     <div class="q-block" id="qb-kids">
       <div class="q-label">How many kids are in the household? <span class="req">*</span></div>
       <div class="q-hint">We'll ask for their ages on the next step.</div>
@@ -621,8 +631,8 @@ select { cursor: pointer; }
   <!-- SECTION 2: Devices -->
   <div class="section" id="sec2">
     <div class="section-label"><div class="section-num">2</div> Your household</div>
-    <div class="section-title">Kids' ages & devices</div>
-    <div class="section-sub">List every device a child has access to — even shared ones.</div>
+    <div class="section-title">Ages & devices</div>
+    <div class="section-sub">List every device a child — or your parent — has access to, including shared ones.</div>
 
     <div class="q-block" id="qb-ages">
       <div class="q-label">Ages of your kids <span class="req">*</span></div>
@@ -807,6 +817,7 @@ select { cursor: pointer; }
         <div class="chip" data-val="Kid bypassed a restriction" onclick="multiChip(this,'chip-incident')">Kid bypassed a restriction</div>
         <div class="chip" data-val="Screen time battles" onclick="multiChip(this,'chip-incident')">Screen time battles</div>
         <div class="chip" data-val="Stranger contact concern" onclick="multiChip(this,'chip-incident')">Stranger contact concern</div>
+        <div class="chip" data-val="Scammed or fraud attempt" onclick="multiChip(this,'chip-incident')">Scammed / fraud attempt</div>
         <div class="chip" data-val="Nothing yet — being proactive" onclick="multiChip(this,'chip-incident')">Nothing yet — being proactive</div>
         <div class="chip" data-val="Other" onclick="multiChip(this,'chip-incident');toggleOther(this,'incident-other')">Other</div>
       </div>
@@ -851,6 +862,13 @@ select { cursor: pointer; }
           <div class="radio-text">
             <div class="radio-title">All of the above equally</div>
             <div class="radio-desc">I want a comprehensive setup that covers everything</div>
+          </div>
+        </div>
+        <div class="radio-card" onclick="selectRadio(this,'f-concern','Protecting an aging parent from online scams')">
+          <div class="radio-dot"></div>
+          <div class="radio-text">
+            <div class="radio-title">Protecting an aging parent from scams</div>
+            <div class="radio-desc">IRS calls, tech support fraud, phishing emails, Facebook scams — their devices need real protection</div>
           </div>
         </div>
         <div class="radio-card" onclick="selectRadio(this,'f-concern','Other');toggleOther(this,'concern-other')">
@@ -964,6 +982,7 @@ select { cursor: pointer; }
     </div>
 
     <form id="mainForm" action="https://submit-form.com/rkMLUXlZj" method="POST" onsubmit="handleSubmit(event)">
+      <input type="hidden" name="who_for" id="fn-whofor">
       <input type="hidden" name="name" id="fn-name">
       <input type="hidden" name="email" id="fn-email">
       <input type="hidden" name="phone" id="fn-phone">
@@ -1027,7 +1046,8 @@ function validateSection(n) {
     valid &= validateField('f-name',  'qb-name',  v => v.trim().length > 1);
     valid &= validateField('f-email', 'qb-email', v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
     valid &= validateField('f-area',  'qb-area',  v => v.trim().length > 1);
-    if (!document.getElementById('f-numkids').value) {
+    const kidsVisible = document.getElementById('qb-kids').style.display !== 'none';
+    if (kidsVisible && !document.getElementById('f-numkids').value) {
       shakeError('qb-kids');
       document.getElementById('err-kids').style.display = 'block';
       valid = false;
@@ -1037,7 +1057,8 @@ function validateSection(n) {
     }
   }
   if (n === 2) {
-    valid &= validateField('f-ages', 'qb-ages', v => v.trim().length > 0);
+    const agesVisible = document.getElementById('qb-ages').style.display !== 'none';
+    if (agesVisible) valid &= validateField('f-ages', 'qb-ages', v => v.trim().length > 0);
   }
   if (n === 3) {
     if (!document.getElementById('f-concern').value) {
@@ -1109,6 +1130,14 @@ function toggleOther(el, otherId) {
   box.style.display = el.classList.contains('selected') ? 'block' : 'none';
 }
 
+// ── Who is this for toggle ────────────────────────────────
+function showKidsFields(show) {
+  const kidsBlock = document.getElementById('qb-kids');
+  if (kidsBlock) kidsBlock.style.display = show ? '' : 'none';
+  const agesBlock = document.getElementById('qb-ages');
+  if (agesBlock) agesBlock.style.display = show ? '' : 'none';
+}
+
 // ── Device tiles ──────────────────────────────────────────
 function toggleDevice(tile) {
   const countEl = tile.querySelector('.device-count span');
@@ -1161,6 +1190,7 @@ function handleSubmit(e) {
   btn.textContent = 'Submitting…';
 
   // Populate hidden fields
+  document.getElementById('fn-whofor').value   = document.getElementById('f-whofor').value;
   document.getElementById('fn-name').value     = document.getElementById('f-name').value;
   document.getElementById('fn-email').value    = document.getElementById('f-email').value;
   document.getElementById('fn-phone').value    = document.getElementById('f-phone').value;
