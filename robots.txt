@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /ThankYou.html
+Disallow: /solutions-comparison.html
 
 Sitemap: https://techdadclt.com/sitemap.xml
