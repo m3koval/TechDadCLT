@@ -27,3 +27,6 @@ ehthumbs.db
 
 # Vercel
 .vercel
+
+# Claude Code worktrees (never commit these)
+.claude/worktrees/
