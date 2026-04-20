@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iPad Safety Outside the Home — Parent Guide | TechDad CLT</title>
+<meta name="description" content="The honest guide to what parental controls actually do on iPads — and how to layer them so they work together. From TechDad CLT in Charlotte, NC.">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --navy: #0f1c2e;
+  --navy2: #1a2d45;
+  --accent: #2563eb;
+  --accent-light: #dbeafe;
+  --green: #059669;
+  --green-light: #d1fae5;
+  --amber: #d97706;
+  --amber-light: #fef3c7;
+  --purple: #7c3aed;
+  --purple-light: #ede9fe;
+  --red: #dc2626;
+  --red-light: #fee2e2;
+  --text: #1e2532;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Figtree', sans-serif; background: var(--bg); color: var(--text); }
+
+/* ── NAV ── */
+nav {
+  background: var(--navy);
+  padding: 0 28px; height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.logo { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+.logo-mark { font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: white; background: var(--accent); padding: 4px 10px; border-radius: 5px; }
+.logo-text { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.7); }
+.logo-sep { color: rgba(255,255,255,0.25); margin: 0 2px; }
+.nav-badge { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 4px 10px; }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  background: var(--navy);
+  padding: 52px 28px 60px;
+  position: relative; overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 15% 70%, rgba(37,99,235,0.22) 0%, transparent 55%),
+              radial-gradient(ellipse at 85% 20%, rgba(124,58,237,0.12) 0%, transparent 50%);
+  pointer-events: none;
+}
+.page-header-inner { position: relative; max-width: 900px; margin: 0 auto; }
+.page-label { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 18px; }
+.page-header h1 { font-family: 'Instrument Serif', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 400; color: white; line-height: 1.2; margin-bottom: 14px; }
+.page-header h1 em { font-style: italic; color: #93c5fd; }
+.page-header p { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 620px; }
+.header-meta {
+  margin-top: 20px;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; color: rgba(255,255,255,0.35);
+  border: 1px solid rgba(255,255,255,0.12); border-radius: 20px;
+  padding: 5px 14px;
+}
+.header-meta svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ── MAIN WRAP ── */
+.wrap { max-width: 900px; margin: 0 auto; padding: 52px 28px 80px; }
+
+/* ── SECTION HEADING ── */
+.section-head {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 24px; margin-top: 56px;
+}
+.section-head:first-child { margin-top: 0; }
+.section-line { flex: 1; height: 1px; background: var(--border); }
+.section-pill {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 20px; white-space: nowrap;
+}
+.pill-navy  { background: var(--navy); color: rgba(255,255,255,0.85); }
+.pill-green { background: var(--green-light); color: var(--green); }
+.pill-blue  { background: var(--accent-light); color: var(--accent); }
+.pill-amber { background: var(--amber-light); color: var(--amber); }
+.pill-purple{ background: var(--purple-light); color: var(--purple); }
+.pill-muted { background: #f3f4f6; color: var(--muted); }
+
+/* ── HONEST REALITY CALLOUT ── */
+.reality-box {
+  background: var(--navy2);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 32px 36px;
+  color: white;
+  margin-bottom: 52px;
+}
+.reality-box h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 22px; font-weight: 400;
+  color: white; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 12px;
+}
+.reality-box h2 .icon-wrap {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(37,99,235,0.2); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.reality-box h2 .icon-wrap svg { width: 18px; height: 18px; stroke: #93c5fd; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.reality-box p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 12px; }
+.reality-box p:last-child { margin-bottom: 0; }
+.reality-box strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+
+/* ── RECOMMENDED STACK ── */
+.stack-steps { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+.stack-step {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 24px;
+  display: flex; gap: 20px; align-items: flex-start;
+}
+.step-num {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 700;
+}
+.step-num-1 { background: var(--purple-light); color: var(--purple); }
+.step-num-2 { background: var(--accent-light); color: var(--accent); }
+.step-num-3 { background: var(--green-light); color: var(--green); }
+.step-body { flex: 1; min-width: 0; }
+.step-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.step-title { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.step-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+.step-desc strong { color: var(--text); font-weight: 600; }
+
+.insight-row {
+  background: var(--green-light);
+  border: 1px solid #a7f3d0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex; gap: 14px; align-items: flex-start;
+  font-size: 13px; color: #065f46; line-height: 1.65;
+  margin-bottom: 52px;
+}
+.insight-row svg { width: 18px; height: 18px; stroke: var(--green); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 1px; }
+
+/* ── PRODUCT CARDS ── */
+.product-cards { display: flex; flex-direction: column; gap: 24px; margin-bottom: 52px; }
+.product-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 30px;
+}
+.product-card-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.product-name {
+  font-size: 20px; font-weight: 700; color: var(--navy);
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+}
+.verdict-pill {
+  font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 20px; white-space: nowrap; flex-shrink: 0;
+}
+.vp-recommended { background: var(--green-light); color: var(--green); border: 1px solid #6ee7b7; }
+.vp-strong      { background: var(--accent-light); color: var(--accent); border: 1px solid #93c5fd; }
+.vp-specialized { background: var(--amber-light); color: var(--amber); border: 1px solid #fcd34d; }
+.vp-limited     { background: #f3f4f6; color: var(--muted); border: 1px solid var(--border); }
+
+.product-tagline { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
+.product-cost {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600; color: var(--muted);
+  background: #f9fafb; border: 1px solid var(--border);
+  border-radius: 20px; padding: 4px 12px; margin-bottom: 20px;
+}
+.product-cost svg { width: 13px; height: 13px; stroke: var(--muted); fill: none; stroke-width: 2; }
+
+.pro-con-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+.pro-con-block h4 {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.pro-con-block.pros h4 { color: var(--green); }
+.pro-con-block.cons h4 { color: var(--red); }
+.pro-con-block ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.pro-con-block ul li {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 13px; color: var(--text); line-height: 1.55;
+}
+.pro-con-block ul li svg { width: 15px; height: 15px; flex-shrink: 0; margin-top: 2px; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.pros ul li svg { stroke: var(--green); }
+.cons ul li svg { stroke: var(--red); }
+
+.bypass-box {
+  background: var(--amber-light);
+  border: 1px solid #fcd34d;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.bypass-box svg { width: 16px; height: 16px; stroke: var(--amber); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 2px; }
+.bypass-box-text { font-size: 12px; color: #92400e; line-height: 1.65; }
+.bypass-box-text strong { font-weight: 700; }
+
+.best-for-row {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding-top: 16px; border-top: 1px solid var(--border);
+  font-size: 13px; color: var(--text); line-height: 1.6;
+}
+.best-for-row .bf-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent); background: var(--accent-light); border-radius: 4px;
+  padding: 2px 7px; flex-shrink: 0; margin-top: 2px;
+}
+
+.key-takeaway {
+  background: var(--navy);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.7;
+}
+.key-takeaway strong { color: #93c5fd; font-weight: 600; }
+.key-takeaway .kt-label {
+  display: block; font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 6px;
+}
+
+/* ── COMPARISON TABLE ── */
+.table-wrap {
+  overflow-x: auto;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  margin-bottom: 52px;
+}
+table {
+  width: 100%; border-collapse: collapse;
+  min-width: 720px;
+  background: var(--surface);
+}
+thead th {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 12px; font-weight: 700;
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+}
+thead th:first-child { min-width: 200px; background: var(--bg); color: var(--navy); }
+.th-hb  { background: #f5f3ff; color: var(--purple); }
+.th-qu  { background: #eff6ff; color: var(--accent); }
+.th-ca  { background: #fff7ed; color: #c2410c; }
+.th-bk  { background: #fdf2f8; color: #9d174d; }
+.th-name { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+.th-sub  { font-size: 10px; font-weight: 500; opacity: .65; }
+
+tbody tr:nth-child(even) td { background: #fafafa; }
+tbody tr:nth-child(even) td.col-hb { background: #f2f0ff; }
+tbody tr:nth-child(even) td.col-qu { background: #f0f7ff; }
+tbody tr:nth-child(even) td.col-ca { background: #fff5ed; }
+tbody tr:nth-child(even) td.col-bk { background: #fef1f7; }
+tbody tr:nth-child(odd) td.col-hb { background: #f8f7ff; }
+tbody tr:nth-child(odd) td.col-qu { background: #f7fbff; }
+tbody tr:nth-child(odd) td.col-ca { background: #fffaf6; }
+tbody tr:nth-child(odd) td.col-bk { background: #fff7fb; }
+
+tbody td {
+  padding: 11px 16px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody td:first-child { font-weight: 500; color: var(--navy); background: var(--bg) !important; }
+.td-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+.cell-inner { display: flex; align-items: center; gap: 8px; }
+.t-yes {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; background: var(--green-light); border-radius: 50%; flex-shrink: 0;
+}
+.t-yes svg { width: 11px; height: 11px; stroke: var(--green); fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.t-no {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; background: var(--red-light); border-radius: 50%; flex-shrink: 0;
+}
+.t-no svg { width: 11px; height: 11px; stroke: var(--red); fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.t-partial {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; background: var(--amber-light); border-radius: 50%; flex-shrink: 0;
+}
+.t-partial svg { width: 11px; height: 11px; stroke: var(--amber); fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.t-label { font-size: 12px; color: var(--text); line-height: 1.4; }
+
+/* ── AGE CARDS ── */
+.age-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 52px;
+}
+.age-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 22px;
+  border-top: 4px solid transparent;
+}
+.age-card-u10  { border-top-color: #34d399; }
+.age-card-1012 { border-top-color: var(--accent); }
+.age-card-1214 { border-top-color: var(--purple); }
+.age-card-14p  { border-top-color: var(--amber); }
+
+.age-label {
+  font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.age-card-u10  .age-label { color: var(--green); }
+.age-card-1012 .age-label { color: var(--accent); }
+.age-card-1214 .age-label { color: var(--purple); }
+.age-card-14p  .age-label { color: var(--amber); }
+
+.age-card h3 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 19px; font-weight: 400;
+  color: var(--navy); margin-bottom: 10px; line-height: 1.3;
+}
+.age-card p { font-size: 13px; color: var(--muted); line-height: 1.68; }
+.age-card p strong { color: var(--text); font-weight: 600; }
+.age-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.age-chip {
+  font-size: 11px; font-weight: 600;
+  padding: 3px 10px; border-radius: 20px;
+  border: 1.5px solid;
+}
+.ac-green  { border-color: var(--green); color: var(--green); background: var(--green-light); }
+.ac-blue   { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+.ac-purple { border-color: var(--purple); color: var(--purple); background: var(--purple-light); }
+.ac-amber  { border-color: var(--amber); color: var(--amber); background: var(--amber-light); }
+.ac-muted  { border-color: var(--border); color: var(--muted); background: #f9fafb; }
+
+/* ── SOURCES ── */
+.sources-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 30px;
+  margin-bottom: 52px;
+}
+.sources-section h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px; font-weight: 400;
+  color: var(--navy); margin-bottom: 6px;
+}
+.sources-intro { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 22px; }
+.sources-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0; }
+.sources-list li {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 13px 0; border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.sources-list li:last-child { border-bottom: none; }
+.src-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+  flex-shrink: 0; margin-top: 5px;
+}
+.src-name { font-weight: 600; color: var(--navy); display: block; margin-bottom: 2px; }
+.src-desc { color: var(--muted); line-height: 1.55; font-size: 12px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy);
+  padding: 24px 28px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+footer a { color: inherit; text-decoration: none; }
+footer a:hover { color: rgba(255,255,255,0.55); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 800px) {
+  .age-grid { grid-template-columns: 1fr; }
+  .pro-con-grid { grid-template-columns: 1fr; }
+  .reality-box { padding: 24px 22px; }
+  .product-card { padding: 22px 20px; }
+  .sources-section { padding: 24px 20px; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 36px 18px 64px; }
+  nav { padding: 0 18px; }
+  .page-header { padding: 36px 18px 48px; }
+  .stack-step { flex-direction: column; gap: 12px; }
+  .step-num { width: 32px; height: 32px; font-size: 14px; }
+  .product-card-head { flex-direction: column; gap: 10px; }
+}
+
+/* ── PRINT ── */
+@media print {
+  nav { position: static; }
+  .page-header { padding: 24px 16px 32px; }
+  .page-header::before { display: none; }
+  .wrap { padding: 24px 16px; }
+  .product-card, .age-card, .stack-step { break-inside: avoid; page-break-inside: avoid; }
+  .table-wrap { overflow: visible; }
+  table { min-width: 0; }
+  footer { padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="index.html" class="logo">
+    <span class="logo-mark">TechDad</span>
+    <span class="logo-sep">/</span>
+    <span class="logo-text">Charlotte, NC</span>
+  </a>
+  <div class="nav-badge">Parent Guide</div>
+</nav>
+
+<!-- ── PAGE HEADER ── -->
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="page-label">TechDad CLT · Parent Education</div>
+    <h1>Keeping your kids safe <em>outside</em> the home</h1>
+    <p>The honest guide to what parental controls actually do on iPads — and how to layer them so they work together.</p>
+    <div class="header-meta">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Last updated: April 2025
+    </div>
+  </div>
+</header>
+
+<!-- ── MAIN WRAP ── -->
+<div class="wrap">
+
+  <!-- ────────────────────────────────────────
+       SECTION 1 — THE HONEST REALITY
+  ──────────────────────────────────────── -->
+  <div class="reality-box">
+    <h2>
+      <span class="icon-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </span>
+      The Honest Reality
+    </h2>
+    <p>Apple builds iOS with strong privacy protections — which means <strong>no third-party app can fully monitor or control an iPad the way Android allows.</strong> Every parental control app works <em>around</em> this limitation in a different way.</p>
+    <p>Understanding <strong>how</strong> each one works is what helps you choose the right combination. There is no single perfect app. The goal is <strong>the right layers for your family.</strong></p>
+  </div>
+
+  <!-- ────────────────────────────────────────
+       SECTION 2 — RECOMMENDED STACK
+  ──────────────────────────────────────── -->
+  <div class="section-head">
+    <span class="section-pill pill-green">Our Recommended Stack</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="stack-steps">
+
+    <!-- Step 1 -->
+    <div class="stack-step">
+      <div class="step-num step-num-1">1</div>
+      <div class="step-body">
+        <div class="step-label">Home Foundation</div>
+        <div class="step-title">Gryphon AX Router</div>
+        <div class="step-desc">Covers <strong>every device in your home</strong> — all TVs, Nintendo Switch, every phone and tablet on WiFi. Safe search enforced. Content categories blocked. No per-device setup needed. This is the foundation everything else builds on.</div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="stack-step">
+      <div class="step-num step-num-2">2</div>
+      <div class="step-body">
+        <div class="step-label">Always Active</div>
+        <div class="step-title">Apple Screen Time</div>
+        <div class="step-desc">Built into iOS. Content restrictions, app limits, downtime schedules. <strong>Lock with a parent-only PIN.</strong> Works everywhere — no VPN required, no app to disable. This layer <strong>cannot be bypassed without your PIN.</strong></div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="stack-step">
+      <div class="step-num step-num-3">3</div>
+      <div class="step-body">
+        <div class="step-label">Outside-Home Coverage</div>
+        <div class="step-title">Gryphon HomeBound <em style="font-style:normal;font-weight:400;color:var(--muted);">or</em> Qustodio</div>
+        <div class="step-desc">
+          <strong>HomeBound</strong> if you already have Gryphon AX and want one unified system ($7.50/mo add-on). Routes iPad traffic through your home router even on cellular.<br><br>
+          <strong>Qustodio</strong> if you want standalone stronger MDM protection, per-app time limits, and real-time location tracking.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="insight-row">
+    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div><strong>Layers beat any single app.</strong> A child would need to bypass your Screen Time PIN + the app's VPN or MDM + the router filter simultaneously. That's a much higher bar than any one tool alone provides.</div>
+  </div>
+
+  <!-- ────────────────────────────────────────
+       SECTION 3 — THE OPTIONS EXPLAINED
+  ──────────────────────────────────────── -->
+  <div class="section-head">
+    <span class="section-pill pill-blue">The Options Explained</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="product-cards">
+
+    <!-- ── GRYPHON HOMEBOUND ── -->
+    <div class="product-card">
+      <div class="product-card-head">
+        <div>
+          <div class="product-name">Gryphon HomeBound</div>
+          <div class="product-tagline">Router extension app — extends your Gryphon AX filters to cellular data and public WiFi</div>
+        </div>
+        <span class="verdict-pill vp-recommended">Recommended</span>
+      </div>
+
+      <div class="product-cost">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        $7.50/mo add-on to Gryphon Premium · $90/yr total
+      </div>
+
+      <div class="pro-con-grid">
+        <div class="pro-con-block pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Routes all iPad traffic back through your Gryphon router — even on cellular or public WiFi
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Enforces the exact same content filters, safe search, and schedules as home — everywhere
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Alerts you immediately if a child disables the app
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Once disabled by a child, cannot be re-enabled without the parent
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              One system, one dashboard — no separate app to manage
+            </li>
+          </ul>
+        </div>
+        <div class="pro-con-block cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Requires Gryphon AX router already set up at home
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              VPN can be disabled from Settings — a determined child can find it
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              No location tracking built in (use Apple Find My)
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Can sometimes over-block or slow cellular data
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bypass-box">
+        <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <div class="bypass-box-text"><strong>Bypass risk:</strong> A child can go to Settings → General → VPN &amp; Device Management and turn off the VPN. You'll get an alert, but there's a gap. Younger kids are unlikely to find it; older tech-savvy teens may.</div>
+      </div>
+
+      <div class="best-for-row">
+        <span class="bf-label">Best for</span>
+        <span>Families who already have a Gryphon AX router and want one unified system with the least additional complexity.</span>
+      </div>
+    </div>
+
+    <!-- ── QUSTODIO ── -->
+    <div class="product-card">
+      <div class="product-card-head">
+        <div>
+          <div class="product-name">Qustodio</div>
+          <div class="product-tagline">Full parental control app — installs MDM profile on iPad for deeper protection</div>
+        </div>
+        <span class="verdict-pill vp-strong">Strong Standalone Choice</span>
+      </div>
+
+      <div class="product-cost">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        $54.95/yr (5 devices) · $99.95/yr (unlimited)
+      </div>
+
+      <div class="pro-con-grid">
+        <div class="pro-con-block pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Installs an MDM profile — stronger and harder to remove than a plain VPN toggle
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Web filtering and app blocking travel with the device on cellular — no WiFi needed
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Blocks 27,000+ iOS apps by category or individually
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Per-app screen time limits, bedtime schedules, internet pause
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Real-time location tracking with 30-day history and geofencing (school, home alerts)
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              YouTube monitoring
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Cannot be uninstalled without parent's Qustodio password
+            </li>
+          </ul>
+        </div>
+        <div class="pro-con-block cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Does not monitor text messages or iMessages on iOS — Apple doesn't allow it
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              No Instagram, TikTok, Snapchat, or Discord message monitoring on iOS
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Tech-savvy teens can find a partial bypass via Settings → VPN → Connect on Demand
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              MDM profile can be removed from Settings — harder than VPN, but possible
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Screen time limits sometimes unreliable in real-world use
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bypass-box">
+        <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <div class="bypass-box-text"><strong>Bypass risk:</strong> Harder than a VPN — MDM removal requires the parent's Qustodio password. However, real-world parent reports of determined teens removing it within 48 hours exist. Best defense: pair with Apple Screen Time PIN locking VPN settings.</div>
+      </div>
+
+      <div class="best-for-row">
+        <span class="bf-label">Best for</span>
+        <span>Families who don't have a Gryphon router, or who want location tracking and per-app limits as a standalone solution on any iPad.</span>
+      </div>
+    </div>
+
+    <!-- ── CANOPY ── -->
+    <div class="product-card">
+      <div class="product-card-head">
+        <div>
+          <div class="product-name">Canopy</div>
+          <div class="product-tagline">AI image and video filtering — works on cellular, focused on explicit content prevention</div>
+        </div>
+        <span class="verdict-pill vp-specialized">Specialized Use Case</span>
+      </div>
+
+      <div class="product-cost">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        $7.99/mo · ~$96/yr
+      </div>
+
+      <div class="pro-con-grid">
+        <div class="pro-con-block pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              AI scans images and videos in real time — blocks explicit content before it reaches the screen
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Works across all browsers — catches bad content even on otherwise "safe" sites
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Sexting prevention — detects inappropriate photos and alerts parents
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Works on cellular and public WiFi
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Anti-tampering removal prevention built in
+            </li>
+          </ul>
+        </div>
+        <div class="pro-con-block cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              App blocking on iOS is unreliable — independent testing found kids could still access blocked apps
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              No screen time limits — schedules only
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              No text or message monitoring, no location tracking
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Can consume 10–13 GB of cellular data per month — real concern for limited data plans
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Works significantly better on Android than iOS
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Website blocking inconsistent on iOS in real-world testing
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bypass-box">
+        <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <div class="bypass-box-text"><strong>Bypass risk:</strong> VPN-based — same toggle issue as HomeBound. Anti-tampering exists but is less robust than Qustodio's MDM profile.</div>
+      </div>
+
+      <div class="best-for-row">
+        <span class="bf-label">Best for</span>
+        <span>Families whose #1 concern is explicit images and video — specifically sexting prevention. NOT the right primary tool if you need reliable app blocking or screen time management.</span>
+      </div>
+    </div>
+
+    <!-- ── BARK ── -->
+    <div class="product-card">
+      <div class="product-card-head">
+        <div>
+          <div class="product-name">Bark</div>
+          <div class="product-tagline">AI monitoring app — excellent for cloud accounts, limited for device content on iPad</div>
+        </div>
+        <span class="verdict-pill vp-limited">Limited on iPad</span>
+      </div>
+
+      <div class="product-cost">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        $99/yr · Unlimited devices
+      </div>
+
+      <div class="pro-con-grid">
+        <div class="pro-con-block pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Best-in-class AI monitoring for cloud accounts — Gmail, iCloud email, Google Drive, WhatsApp, GroupMe — these work anywhere because they sync through the cloud
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Scans for cyberbullying, predatory contact, self-harm, and explicit content in communications
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Alerts with context and guidance — not just a raw notification
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Screen time rules and web filtering via the Bark Kids app (VPN-based)
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              $99/year for unlimited devices — strong value for Android households
+            </li>
+          </ul>
+        </div>
+        <div class="pro-con-block cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Texts, photos, notes, Safari history only sync when iPad is home on WiFi connected to Bark
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Off home network on cellular — device-level content monitoring stops completely
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              No coverage on iOS for TikTok, Instagram, Snapchat, Discord, or Roblox — those apps block all third-party monitoring
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Alerts for device content are delayed until next home WiFi sync — not real-time
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="key-takeaway">
+        <span class="kt-label">Key Takeaway</span>
+        Bark is genuinely excellent for what it does — but on iPads, it's a <strong>retroactive tool for device content.</strong> It catches problems after the fact when the device comes home. Its real value on iPad is <strong>cloud account monitoring</strong> (Gmail, Drive, WhatsApp), which <em>does</em> work anywhere. For families with younger kids whose concern is inappropriate content — not communication monitoring — Bark's on-iPad value is limited.
+      </div>
+
+      <div class="best-for-row">
+        <span class="bf-label">Best for</span>
+        <span>Android devices, the Bark Phone, or families where the concern is social media and communication behavior in older kids and teens. Not the primary outside-the-home protection tool for iPads.</span>
+      </div>
+    </div>
+
+  </div><!-- /product-cards -->
+
+  <!-- ────────────────────────────────────────
+       SECTION 4 — QUICK COMPARISON TABLE
+  ──────────────────────────────────────── -->
+  <div class="section-head">
+    <span class="section-pill pill-navy">Quick Comparison</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th class="th-hb"><div class="th-name">Gryphon HomeBound</div><div class="th-sub">Router extension VPN</div></th>
+          <th class="th-qu"><div class="th-name">Qustodio</div><div class="th-sub">MDM profile app</div></th>
+          <th class="th-ca"><div class="th-name">Canopy</div><div class="th-sub">AI image filter</div></th>
+          <th class="th-bk"><div class="th-name">Bark</div><div class="th-sub">AI monitoring</div></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Works on cellular / off home WiFi</td>
+          <td class="col-hb"><div class="cell-inner"><span class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span class="t-label">Yes</span></div></td>
+          <td class="col-qu"><div class="cell-inner"><span class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span class="t-label">Yes</span></div></td>
+          <td class="col-ca"><div class="cell-inner"><span class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span class="t-label">Yes</span></div></td>
+          <td class="col-bk"><div class="cell-inner"><span class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span class="t-label">Device content: No<div class="td-sub">Cloud accounts: Yes</div></span></div></td>
+        </tr>
+        <tr>
+          <td>Web content filtering (everywhere)</td>
+          <td class="col-hb"><div class="cell-inner"><span class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span class="t-label">Router-level</span></div></td>
+          <td class="col-qu"><div class="cell-inner"><span class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span class="t-label">Strong</span></div></td>
+          <td class="col-ca"><div class="cell-inner"><span class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span class="t-label">AI-based</span></div></td>
+          <td class="col-bk"><div class="cell-inner"><span class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></span><span class="t-label">Home WiFi only</span></div></td>
+        </tr>
+        <tr>
+          <td>App blocking on iPad</td>
+          <td class="col-hb"><div class="cell-inner"><span class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span class="t-label">Yes</span></div></td>
+          <td class="col-qu"><div class="cell-inner"><span class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span class="t-label">27,000+ apps</span></div></td>
+          <td class="col-ca"><div class="cell-inner"><span class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span class="t-label">Unreliable on iOS</span></div></td>
+          <td class="col-bk"><div class="cell-inner"><span class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></span><span class="t-label">Categories only</span></div></td>
+        </tr>
+        <tr>
+          <td>Screen time / schedules</td>
+          <td class="col-hb"><div class="cell-inner"><span class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span class="t-label">Yes</span></div></td>
+          <td class="col-qu"><div class="cell-inner"><span class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span class="t-label">Per-app limits</span></div></td>
+          <td class="col-ca"><div class="cell-inner"><span class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></span><span class="t-label">Schedules only</span></div></td>
+          <td class="col-bk"><div class="cell-inner"><span class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span class="t-label">Yes</span></div></td>
+        </tr>
+        <tr>
+          <td>Explicit image / AI filter</td>
+          <td class="col-hb"><div class="cell-inner"><span class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></span><span class="t-label">Category blocking</span></div></td>
+          <td class="col-qu"><div class="cell-inner"><span class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></span><span class="t-label">Category blocking</span></div></td>
+          <td class="col-ca"><div class="cell-inner"><span class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span class="t-label">Best in class</span></div></td>
+          <td class="col-bk"><div class="cell-inner"><span class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></span><span class="t-label">Home WiFi only</span></div></td>
+        </tr>
+        <tr>
+          <td>Location tracking</td>
+          <td class="col-hb"><div class="cell-inner"><span class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span class="t-label">No<div class="td-sub">Use Apple Find My</div></span></div></td>
+          <td class="col-qu"><div class="cell-inner"><span class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span class="t-label">Real-time + geofence</span></div></td>
+          <td class="col-ca"><div class="cell-inner"><span class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span class="t-label">Real-time</span></div></td>
+          <td class="col-bk"><div class="cell-inner"><span class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span class="t-label">Real-time</span></div></td>
+        </tr>
+        <tr>
+          <td>Message / social monitoring</td>
+          <td class="col-hb"><div class="cell-inner"><span class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span class="t-label">No</span></div></td>
+          <td class="col-qu"><div class="cell-inner"><span class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span class="t-label">iOS limitation</span></div></td>
+          <td class="col-ca"><div class="cell-inner"><span class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span class="t-label">No</span></div></td>
+          <td class="col-bk"><div class="cell-inner"><span class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span class="t-label">Best (cloud accounts)</span></div></td>
+        </tr>
+        <tr>
+          <td>Installation method on iOS</td>
+          <td class="col-hb"><span class="t-label">VPN profile</span></td>
+          <td class="col-qu"><span class="t-label">MDM profile</span></td>
+          <td class="col-ca"><span class="t-label">VPN profile</span></td>
+          <td class="col-bk"><span class="t-label">Sync + Kids app</span></td>
+        </tr>
+        <tr>
+          <td>Annual cost</td>
+          <td class="col-hb"><span style="font-weight:700;color:var(--purple);">$90/yr</span><div class="td-sub">Gryphon Premium req'd</div></td>
+          <td class="col-qu"><span style="font-weight:700;color:var(--accent);">$55–$100/yr</span></td>
+          <td class="col-ca"><span style="font-weight:700;color:#c2410c;">~$96/yr</span></td>
+          <td class="col-bk"><span style="font-weight:700;color:#9d174d;">$99/yr</span></td>
+        </tr>
+        <tr>
+          <td>Requires Gryphon router</td>
+          <td class="col-hb"><div class="cell-inner"><span class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span class="t-label">Yes</span></div></td>
+          <td class="col-qu"><div class="cell-inner"><span class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span class="t-label">No</span></div></td>
+          <td class="col-ca"><div class="cell-inner"><span class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span class="t-label">No</span></div></td>
+          <td class="col-bk"><div class="cell-inner"><span class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span class="t-label">No</span></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ────────────────────────────────────────
+       SECTION 5 — BY YOUR CHILD'S AGE
+  ──────────────────────────────────────── -->
+  <div class="section-head">
+    <span class="section-pill pill-purple">By Your Child's Age</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="age-grid">
+
+    <div class="age-card age-card-u10">
+      <div class="age-label">Under 10</div>
+      <h3>Gryphon + Screen Time is the full solution</h3>
+      <p>HomeBound adds outside-home coverage if needed. <strong>Bark or Qustodio add minimal extra value at this stage</strong> — these kids aren't on social media yet, and the built-in tools handle the risks they actually face.</p>
+      <div class="age-chips">
+        <span class="age-chip ac-green">Gryphon AX</span>
+        <span class="age-chip ac-blue">Apple Screen Time</span>
+        <span class="age-chip ac-green">HomeBound (optional)</span>
+      </div>
+    </div>
+
+    <div class="age-card age-card-1012">
+      <div class="age-label">Ages 10–12</div>
+      <h3>Add outside-home filtering to the stack</h3>
+      <p>As kids gain more independence, outside-home filtering becomes important. <strong>Add Qustodio or HomeBound.</strong> Qustodio's MDM profile is worth the extra protection at this stage — especially with location tracking.</p>
+      <div class="age-chips">
+        <span class="age-chip ac-green">Gryphon AX</span>
+        <span class="age-chip ac-blue">Apple Screen Time</span>
+        <span class="age-chip ac-blue">Qustodio</span>
+        <span class="age-chip ac-green">HomeBound (alt.)</span>
+      </div>
+    </div>
+
+    <div class="age-card age-card-1214">
+      <div class="age-label">Ages 12–14</div>
+      <h3>Qustodio + Bark covers the most ground</h3>
+      <p><strong>Qustodio</strong> handles content and app control. <strong>Bark's cloud account monitoring</strong> catches concerning behavior in Gmail, Drive, and WhatsApp — even off-network. Together they address both device safety and communication concerns.</p>
+      <div class="age-chips">
+        <span class="age-chip ac-blue">Qustodio</span>
+        <span class="age-chip ac-purple">Bark (cloud accounts)</span>
+        <span class="age-chip ac-blue">Apple Screen Time</span>
+      </div>
+    </div>
+
+    <div class="age-card age-card-14p">
+      <div class="age-label">Ages 14+</div>
+      <h3>Conversation matters more than software</h3>
+      <p>Tech-savvy teens can bypass most solutions. <strong>Bark's monitoring respects privacy while catching real dangers.</strong> Tools work best when teens understand the boundaries — not when secretly imposed without discussion.</p>
+      <div class="age-chips">
+        <span class="age-chip ac-purple">Bark</span>
+        <span class="age-chip ac-blue">Apple Screen Time</span>
+        <span class="age-chip ac-muted">Open conversation</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ────────────────────────────────────────
+       SECTION 6 — SOURCES & RESEARCH
+  ──────────────────────────────────────── -->
+  <div class="section-head">
+    <span class="section-pill pill-muted">Sources &amp; Research</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="sources-section">
+    <h2>Where this research comes from</h2>
+    <p class="sources-intro">We cite our sources so you can verify anything here. These are the primary references behind the claims and comparisons on this page.</p>
+    <ul class="sources-list">
+      <li>
+        <span class="src-dot"></span>
+        <div>
+          <span class="src-name">Protect Young Eyes — Independent Router Testing</span>
+          <span class="src-desc">"Gryphon has the most complete parental controls of any router tested." Independent third-party evaluation of home router parental control capabilities.</span>
+        </div>
+      </li>
+      <li>
+        <span class="src-dot"></span>
+        <div>
+          <span class="src-name">Bark Official Documentation — iOS Monitoring Methods</span>
+          <span class="src-desc">bark.us/learn/what-bark-monitors — Details on what Bark monitors by platform and how it accesses device vs. cloud content on iOS.</span>
+        </div>
+      </li>
+      <li>
+        <span class="src-dot"></span>
+        <div>
+          <span class="src-name">Bark Support Docs — iOS Sync Requirement Details</span>
+          <span class="src-desc">Official documentation confirming that device-level content (texts, photos, Safari history) requires home WiFi sync and is not monitored in real time on iOS.</span>
+        </div>
+      </li>
+      <li>
+        <span class="src-dot"></span>
+        <div>
+          <span class="src-name">SafetyDetectives — Qustodio iOS Independent Testing (2025)</span>
+          <span class="src-desc">Long-form hands-on testing of Qustodio on iOS devices including real-world reliability of MDM profiles, app blocking, and screen time limits.</span>
+        </div>
+      </li>
+      <li>
+        <span class="src-dot"></span>
+        <div>
+          <span class="src-name">SafeWise — Bark vs. Qustodio Side-by-Side Comparison</span>
+          <span class="src-desc">Feature-by-feature breakdown comparing both platforms on iOS and Android, including real-world parent feedback and platform limitations.</span>
+        </div>
+      </li>
+      <li>
+        <span class="src-dot"></span>
+        <div>
+          <span class="src-name">All About Cookies — Long-Term Parental Control App Testing (6-Month Study)</span>
+          <span class="src-desc">Extended independent testing covering Qustodio, Bark, Canopy, and others — including bypass vulnerabilities discovered over time and real-world reliability gaps.</span>
+        </div>
+      </li>
+      <li>
+        <span class="src-dot"></span>
+        <div>
+          <span class="src-name">Whitelist.video — Bark iOS WiFi Limitation Analysis</span>
+          <span class="src-desc">Technical analysis of why Bark's on-device monitoring stops working when an iOS device leaves the home WiFi network.</span>
+        </div>
+      </li>
+      <li>
+        <span class="src-dot"></span>
+        <div>
+          <span class="src-name">Qustodio Help Center — iOS Connectivity and MDM Documentation</span>
+          <span class="src-desc">Official Qustodio documentation on how the MDM profile works, cellular coverage behavior, and parent account password protection.</span>
+        </div>
+      </li>
+      <li>
+        <span class="src-dot"></span>
+        <div>
+          <span class="src-name">App Store Reviews — Canopy (3.4★), Qustodio, Bark — Aggregated Parent Feedback</span>
+          <span class="src-desc">Aggregated real-world parent experiences, particularly regarding app blocking reliability on iOS (Canopy) and MDM removal incidents (Qustodio).</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div>&copy; <span id="yr"></span> AMP IT Solutions &middot; TechDad CLT &middot; Charlotte, NC &middot; <a href="https://techdadclt.com">techdadclt.com</a> &middot; <a href="https://ampitsolutions.com">ampitsolutions.com</a></div>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -306,6 +306,10 @@ footer a { color: inherit; text-decoration: none; }
     <div class="page-label">TechDad CLT · Internal Client Resource</div>
     <h1>Digital Protection Solutions —<br><em>What's available and what it actually does</em></h1>
     <p>A practical comparison of every layer of protection we can put in place. Free built-in tools, whole-home network controls, and third-party monitoring apps — and where each one falls short on its own.</p>
+    <div style="margin-top:16px;display:inline-flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.35);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:5px 14px;">
+      <svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Last updated: April 2025 — pricing and platform behavior verified
+    </div>
   </div>
 </div>
 
@@ -350,12 +354,13 @@ footer a { color: inherit; text-decoration: none; }
       <div>
         <span class="tier-pill">Bark</span>
         <span class="tier-pill">Qustodio</span>
+        <span class="tier-pill">Canopy</span>
         <span class="tier-pill">Aura</span>
         <span class="tier-pill">Life360</span>
       </div>
       <div class="tier-limit">
         <svg viewBox="0 0 24 24" style="stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-        <span><strong style="color:var(--text)">Key limitation:</strong> Monthly subscription required. Must be installed on each device individually.</span>
+        <span><strong style="color:var(--text)">Key limitation:</strong> Monthly subscription required. Must be installed on each device individually. <strong style="color:var(--text)">iOS/iPad caveat:</strong> Apple restricts background monitoring — no third-party app can continuously scan device content on iOS. Apps handle this differently; see the iOS Reality Check below.</span>
       </div>
     </div>
   </div>
@@ -481,19 +486,44 @@ footer a { color: inherit; text-decoration: none; }
       </ul>
     </div>
 
-    <div class="sol-card">
-      <div class="sol-tag tag-network">Router · Built-In</div>
+    <div class="sol-card" style="border-color:#bfdbfe;">
+      <div class="sol-tag tag-network">Top-Rated Router · Built-In</div>
       <div class="sol-header">
-        <div class="sol-name">Gryphon</div>
-        <div class="sol-price">$150–200 hardware<br>Subscription included</div>
+        <div class="sol-name">Gryphon AX</div>
+        <div class="sol-price">$150–200 hardware<br>Free controls + $90/yr Premium</div>
       </div>
-      <div class="sol-desc">A mesh router with parental controls baked in — no separate device needed. Replaces the existing router entirely. Strong content filtering and decent reporting.</div>
+      <div class="sol-desc">A mesh router with parental controls baked in — replaces the existing router entirely. Ranked #1 by Protect Young Eyes for most complete parental controls of any router tested (Google, ASUS, and others let too much mature content through). Ad blocking is included in the free tier; Premium adds ESET malware protection and advanced ad blocking.</div>
       <ul class="sol-features">
-        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> All-in-one router + controls</li>
-        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Advanced content filtering</li>
-        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Per-profile time limits</li>
-        <li><svg class="fi fi-no" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Higher upfront cost</li>
-        <li><svg class="fi fi-no" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Home WiFi only</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> #1 rated router for parental controls — Protect Young Eyes</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Ad blocking included free — no subscription required</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Advanced content filtering + safe search enforcement</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Per-profile time limits, schedules & pause</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Covers consoles, smart TVs, any WiFi device</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Custom DNS — can layer AdGuard on top for even tighter blocking</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> <strong>HomeBound add-on ($7.50/mo):</strong> extends Gryphon filters to iPads on cellular everywhere</li>
+        <li><svg class="fi fi-partial" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg> Premium ($90/yr) adds ESET malware + advanced ad blocking</li>
+        <li><svg class="fi fi-no" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Base router: home WiFi only — HomeBound required for cellular</li>
+      </ul>
+      <div style="margin-top:12px;padding:10px 12px;background:#eff6ff;border-radius:8px;border:1px solid #bfdbfe;font-size:12px;color:#1d4ed8;line-height:1.55;">
+        <strong>Key advantage over Circle:</strong> Gryphon IS the router — unplug it and the internet goes down. Circle is an add-on that can be bypassed just by switching to cellular. Add HomeBound and the same filters follow kids' iPads everywhere.
+      </div>
+    </div>
+
+    <div class="sol-card" style="border-color:#bfdbfe;">
+      <div class="sol-tag tag-network">Gryphon Add-On · Outside Home</div>
+      <div class="sol-header">
+        <div class="sol-name">Gryphon HomeBound</div>
+        <div class="sol-price">$7.50/mo add-on<br>Requires Gryphon Premium ($90/yr)</div>
+      </div>
+      <div class="sol-desc">An app that routes all iPad/phone traffic back through your Gryphon AX router at home — even on cellular data or public WiFi. Enforces the exact same content filters, safe search, and schedules your home network uses, everywhere. If you're already on Gryphon AX, this is the most architecturally coherent outside-home solution: one system, one dashboard.</div>
+      <ul class="sol-features">
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Same home filters enforced everywhere — cellular, school, friends' WiFi</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Alerts immediately if child disables the app</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Disabled by child = cannot re-enable without parent</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> No separate dashboard — all managed in Gryphon app</li>
+        <li><svg class="fi fi-partial" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg> VPN can be toggled off in iOS Settings — sends alert but gap exists</li>
+        <li><svg class="fi fi-no" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Requires Gryphon AX already set up at home</li>
+        <li><svg class="fi fi-no" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> No location tracking (use Apple Find My)</li>
       </ul>
     </div>
 
@@ -522,40 +552,78 @@ footer a { color: inherit; text-decoration: none; }
     <div class="section-label-pill apps-pill">Tier 3 — Third-Party Monitoring Apps</div>
     <div class="section-line"></div>
   </div>
+
+  <!-- iOS REALITY CHECK CALLOUT -->
+  <div style="background:#fffbeb;border:1.5px solid #fde68a;border-left:4px solid #d97706;border-radius:12px;padding:18px 22px;margin-bottom:28px;max-width:900px;">
+    <div style="display:flex;align-items:flex-start;gap:12px;">
+      <svg viewBox="0 0 24 24" style="width:20px;height:20px;flex-shrink:0;margin-top:1px;stroke:var(--amber);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:6px;">iOS / iPad Reality Check — this affects every app below</div>
+        <p style="font-size:13px;color:#78350f;line-height:1.65;margin:0;">Apple's privacy policies prevent any third-party app from continuously monitoring device content in the background on iPhone or iPad. <strong>This is an Apple platform restriction — not a flaw in any specific app.</strong> The practical effect: on iOS, deep message and social media scanning requires a sync event (home WiFi, desktop app, or a sync cable). Web filtering and app blocking, however, can run continuously via a VPN/device profile and travel with the device everywhere. The apps below handle this differently — Bark relies entirely on sync; Qustodio and Canopy use a device profile for always-on content filtering.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="solutions-grid">
 
     <div class="sol-card">
-      <div class="sol-tag tag-app">Best for Monitoring</div>
+      <div class="sol-tag tag-app">Best for Android / Older Teens</div>
       <div class="sol-header">
         <div class="sol-name">Bark</div>
         <div class="sol-price">$14/mo or $99/yr<br>Unlimited devices</div>
       </div>
-      <div class="sol-desc">AI-powered monitoring that reads texts, emails, and 30+ social media platforms for signs of bullying, depression, predators, and explicit content. Sends alerts only when something concerning is found — not a play-by-play of everything. Works everywhere.</div>
+      <div class="sol-desc">AI-powered monitoring that reads texts, emails, and 30+ social media platforms for signs of bullying, depression, predators, and explicit content. Alerts only when something concerning is found. <strong style="color:var(--amber)">Best on Android</strong> — on iOS/iPad, device-level monitoring requires a home sync, but <strong>cloud accounts (Gmail, iCloud email, Google Drive, WhatsApp, GroupMe) are monitored anywhere</strong> since they sync through the cloud, not device WiFi.</div>
       <ul class="sol-features">
-        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> AI monitoring of texts, email, social</li>
-        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Real-time alerts for concerning content</li>
-        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Works on cellular & any network</li>
-        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Location tracking included</li>
-        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Screen time & web filtering</li>
-        <li><svg class="fi fi-partial" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg> Monitoring-focused, not full blocking</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> AI monitoring of texts, email, 30+ social platforms</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Cloud accounts (Gmail, Drive, WhatsApp) monitored anywhere — no WiFi needed</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Android: fully live monitoring on cellular everywhere</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Location tracking, screen time &amp; web filtering</li>
+        <li><svg class="fi fi-partial" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg> iOS/iPad device content: retroactive scan at home sync only</li>
+        <li><svg class="fi fi-no" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> iOS: TikTok, Instagram, Snapchat, Discord — zero coverage (Apple blocks all apps)</li>
       </ul>
+      <div style="margin-top:12px;padding:10px 12px;background:#fffbeb;border-radius:8px;border:1px solid #fde68a;font-size:12px;color:#92400e;line-height:1.55;">
+        <strong>iOS families note:</strong> Bark's value on iPad is real — but narrow. Cloud account monitoring works everywhere. Device content monitoring is retroactive (catches it when they get home). Bark's own solution is the Bark Phone (Android hardware they fully control). For iPad content protection away from home, pair with Qustodio or Gryphon HomeBound.
+      </div>
     </div>
 
     <div class="sol-card">
-      <div class="sol-tag tag-app">Most Comprehensive</div>
+      <div class="sol-tag tag-app">Best for iPad / Content Blocking</div>
       <div class="sol-header">
         <div class="sol-name">Qustodio</div>
-        <div class="sol-price">From $54.95/yr<br>5–unlimited devices</div>
+        <div class="sol-price">From $54.95/yr · 5 devices<br>Free tier available</div>
       </div>
-      <div class="sol-desc">The most complete all-in-one parental control solution. Full web filtering, app blocking, screen time, detailed activity logs, location, and alerts. Works on every platform and every network.</div>
+      <div class="sol-desc">Strong all-in-one parental controls that install an <strong>MDM (Mobile Device Management) profile</strong> on iOS — stronger than a plain VPN toggle and requires the parent's Qustodio password to remove. Web filtering, app blocking, and time limits travel with the device everywhere, including cellular. Best option for iPad families where outside-home content protection is the priority.</div>
       <ul class="sol-features">
-        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Comprehensive web & app filtering</li>
-        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Detailed activity logs & reports</li>
-        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Works on every network & cellular</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Web filtering & app blocking via device profile — works everywhere</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Per-app daily time limits (YouTube, TikTok, Instagram, etc.)</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Detailed activity reports & real-time location (30-day history)</li>
         <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> iOS, Android, Windows, Mac, Chromebook</li>
-        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Real-time location tracking</li>
-        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Panic button (Premium)</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Free tier available (limited devices)</li>
+        <li><svg class="fi fi-partial" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg> iOS: call/SMS monitoring requires desktop — Apple restriction</li>
+        <li><svg class="fi fi-partial" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg> Public WiFi (hotels, cafes) can block VPN connection</li>
       </ul>
+    </div>
+
+    <div class="sol-card" style="border:1.5px solid #e9d5ff;">
+      <div class="sol-tag" style="background:#f5f3ff;color:#7c3aed;">AI Visual Blocking · iOS Friendly</div>
+      <div class="sol-header">
+        <div class="sol-name" style="color:#6d28d9;">Canopy</div>
+        <div class="sol-price">$7.99/mo or $95.90/yr<br>3–10 devices</div>
+      </div>
+      <div class="sol-desc">The only parental control app focused on blocking explicit <em>visual content</em> using AI — scanning images and videos in real time rather than just blocking URLs. Runs via a VPN/device profile on iOS so web filtering is always-on, even on cellular away from home. Best for younger kids where the core concern is accidental exposure to explicit content.</div>
+      <ul class="sol-features">
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24" style="stroke:#7c3aed"><polyline points="20 6 9 17 4 12"/></svg> AI scans images & videos for explicit content — not just URLs</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24" style="stroke:#7c3aed"><polyline points="20 6 9 17 4 12"/></svg> Claims 99.8% accuracy; blocked explicit content even on Wikipedia</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24" style="stroke:#7c3aed"><polyline points="20 6 9 17 4 12"/></svg> Always-on device profile — works on cellular & any network</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24" style="stroke:#7c3aed"><polyline points="20 6 9 17 4 12"/></svg> 1-week free trial · App Store 3.4★ · Google Play 3.9★</li>
+        <li><svg class="fi fi-partial" viewBox="0 0 24 24" style="stroke:var(--amber)"><line x1="5" y1="12" x2="19" y2="12"/></svg> AI filter works in browsers only — must block TikTok/Instagram entirely</li>
+        <li><svg class="fi fi-partial" viewBox="0 0 24 24" style="stroke:var(--amber)"><line x1="5" y1="12" x2="19" y2="12"/></svg> VPN can slow device noticeably — common parent complaint</li>
+        <li><svg class="fi fi-partial" viewBox="0 0 24 24" style="stroke:var(--amber)"><line x1="5" y1="12" x2="19" y2="12"/></svg> Can consume 10–13 GB of cellular data per month — real concern on limited plans</li>
+        <li><svg class="fi fi-no" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> No message/text/social monitoring, no location tracking</li>
+      </ul>
+      <div style="margin-top:12px;padding:10px 12px;background:#f5f3ff;border-radius:8px;border:1px solid #e9d5ff;font-size:12px;color:#5b21b6;line-height:1.55;">
+        <strong>Best for:</strong> Families where the #1 concern is explicit images/video reaching kids. Pairs well with Gryphon (network layer) + Screen Time (device rules).
+      </div>
     </div>
 
     <div class="sol-card" style="border:2px solid #99f6e4;position:relative;overflow:visible;">
@@ -648,8 +716,8 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-free"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
           <td class="col-free"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
           <td class="col-network"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">Home WiFi only</span></div></td>
-          <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Everywhere</span></div></td>
-          <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Everywhere</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Android: yes · iOS: home sync only</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Everywhere (device profile)</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">App: everywhere · Circle: home only</span></div></td>
         </tr>
         <tr>
@@ -773,40 +841,40 @@ footer a { color: inherit; text-decoration: none; }
 
   <div class="rec-grid">
     <div class="rec-card">
-      <h4><span>🧒</span> Young kids (under 10)</h4>
+      <h4><span>🧒</span> Young kids (under 10) — iPad household</h4>
       <div class="rec-stack">
         <span class="rec-chip rc-free">Apple Screen Time</span>
-        <span class="rec-chip rc-free">Amazon Kids+</span>
-        <span class="rec-chip rc-network">Eero Plus or Circle</span>
+        <span class="rec-chip rc-network">Gryphon AX</span>
+        <span class="rec-chip rc-app">Qustodio or Canopy</span>
       </div>
-      <p class="rec-note">Free built-ins configured correctly + network filtering covers the home. Monitoring apps aren't necessary yet — focus is on blocking and limits, not surveillance.</p>
+      <p class="rec-note">Screen Time handles device-level rules. Gryphon covers the whole home including consoles and TVs. Qustodio or Canopy adds always-on content filtering that travels with the iPad on cellular — the gap Gryphon can't cover away from home.</p>
     </div>
     <div class="rec-card">
-      <h4><span>📱</span> Tweens (10–13)</h4>
+      <h4><span>📱</span> Tweens (10–13) — iPad + Android mix</h4>
       <div class="rec-stack">
         <span class="rec-chip rc-free">Screen Time / Family Link</span>
-        <span class="rec-chip rc-network">Circle or Eero Plus</span>
-        <span class="rec-chip rc-app">Bark</span>
+        <span class="rec-chip rc-network">Gryphon AX</span>
+        <span class="rec-chip rc-app">Bark (Android) + Qustodio (iPad)</span>
       </div>
-      <p class="rec-note">This is the highest-risk window — social media starts, online friends appear, content gets more complex. Bark's AI monitoring adds the visibility that free tools completely lack.</p>
+      <p class="rec-note">This age is the highest-risk window. On Android, Bark's live AI monitoring is the right tool. On iPad, Bark's iOS sync model limits outside-home coverage — Qustodio's device profile fills that gap with continuous filtering everywhere.</p>
     </div>
     <div class="rec-card">
-      <h4><span>🎮</span> Teens with gaming heavy households</h4>
+      <h4><span>🎮</span> Gaming-heavy household (consoles + iPads)</h4>
       <div class="rec-stack">
         <span class="rec-chip rc-free">Console Native Controls</span>
-        <span class="rec-chip rc-network">Eero Plus or Circle</span>
-        <span class="rec-chip rc-app">Bark or Qustodio</span>
-      </div>
-      <p class="rec-note">Console controls on each device + network-level filtering to catch everything the console controls miss + a monitoring app for what happens outside the home.</p>
-    </div>
-    <div class="rec-card">
-      <h4><span>🔒</span> Maximum protection (any age)</h4>
-      <div class="rec-stack">
-        <span class="rec-chip rc-free">Built-in controls</span>
-        <span class="rec-chip rc-network">Network filtering</span>
+        <span class="rec-chip rc-network">Gryphon AX</span>
         <span class="rec-chip rc-app">Qustodio</span>
       </div>
-      <p class="rec-note">All three layers working together. Built-ins handle device-level rules, network covers the home, Qustodio provides full visibility and protection everywhere the device goes.</p>
+      <p class="rec-note">Console controls on each device + Gryphon catches everything the console controls miss at the network level + Qustodio covers iPads/phones both home and away. Gryphon's network layer handles the Switch and smart TVs that apps can't touch.</p>
+    </div>
+    <div class="rec-card">
+      <h4><span>🔒</span> Maximum protection — content safety first</h4>
+      <div class="rec-stack">
+        <span class="rec-chip rc-free">Screen Time (configured)</span>
+        <span class="rec-chip rc-network">Gryphon AX</span>
+        <span class="rec-chip rc-app">Qustodio + Canopy</span>
+      </div>
+      <p class="rec-note">Three full layers: Screen Time for device rules, Gryphon for the home network, Qustodio for continuous device-profile filtering everywhere + location, and Canopy adds AI visual content detection for explicit images that slip past URL blocking.</p>
     </div>
     <div class="rec-card" style="border-color:#0d9488;background:linear-gradient(135deg,#f0fdfa 0%,#fff 100%);">
       <h4><span>🧓</span> Aging parent / senior safety</h4>
