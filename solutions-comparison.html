@@ -297,7 +297,10 @@ footer a { color: inherit; text-decoration: none; }
     <span class="logo-sep">/</span>
     <span class="logo-text">Charlotte, NC</span>
   </a>
-  <div class="nav-badge">Client Reference</div>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <a href="stack-builder.html" style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.85);background:rgba(37,99,235,0.35);border:1px solid rgba(37,99,235,0.5);border-radius:20px;padding:4px 12px;text-decoration:none;letter-spacing:.02em;">🔧 Stack Builder</a>
+    <div class="nav-badge">Client Reference</div>
+  </div>
 </nav>
 
 <!-- PAGE HEADER -->
@@ -691,43 +694,86 @@ footer a { color: inherit; text-decoration: none; }
   <div class="table-wrap">
     <table>
       <thead>
+        <!-- GROUP LABEL ROW -->
+        <tr>
+          <th style="border-bottom:2px solid var(--border);background:var(--bg);"></th>
+          <th colspan="2" style="text-align:center;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:#eff6ff;border-bottom:3px solid var(--accent);padding:8px 4px;">Free Built-Ins</th>
+          <th colspan="1" style="text-align:center;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);background:#f5f3ff;border-bottom:3px solid var(--purple);padding:8px 4px;">Home Network</th>
+          <th colspan="3" style="text-align:center;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);background:#f0fdf4;border-bottom:3px solid var(--green);padding:8px 4px;">On-Device · Outside Home + Visibility</th>
+          <th colspan="1" style="text-align:center;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0d9488;background:#f0fdfa;border-bottom:3px solid #0d9488;padding:8px 4px;">Hybrid</th>
+        </tr>
+        <!-- PRODUCT NAME ROW -->
         <tr>
           <th>Feature</th>
           <th class="col-free"><div class="th-name">Apple Screen Time</div><div class="th-sub">Free · Apple only</div></th>
           <th class="col-free"><div class="th-name">Google Family Link</div><div class="th-sub">Free · Android only</div></th>
-          <th class="col-network"><div class="th-name">Eero Plus / Circle</div><div class="th-sub">~$10/mo · Network</div></th>
+          <th class="col-network"><div class="th-name">Gryphon AX</div><div class="th-sub">#1 rated router · $90/yr Premium</div></th>
           <th class="col-app"><div class="th-name">Bark</div><div class="th-sub">$14/mo · All devices</div></th>
           <th class="col-app"><div class="th-name">Qustodio</div><div class="th-sub">~$5/mo · All devices</div></th>
-          <th class="col-hybrid"><div class="th-name">Aura + Circle ★</div><div class="th-sub">$37/mo · Tier 2 + 3</div></th>
+          <th class="col-app" style="background:#f5f3ff;"><div class="th-name" style="color:#6d28d9;">Canopy</div><div class="th-sub" style="color:#7c3aed;">$8/mo · AI visual blocking</div></th>
+          <th class="col-hybrid"><div class="th-name">Aura + Circle</div><div class="th-sub">$37/mo · Identity + Controls</div></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Monthly cost<div class="td-sub">Approximate</div></td>
+          <td>Monthly cost<div class="td-sub">Approximate ongoing</div></td>
           <td class="col-free"><span class="price-free">Free</span></td>
           <td class="col-free"><span class="price-free">Free</span></td>
-          <td class="col-network"><span class="price-paid">~$10/mo</span></td>
-          <td class="col-app"><span class="price-paid">$14/mo</span></td>
-          <td class="col-app"><span class="price-paid">~$5/mo</span></td>
-          <td class="col-hybrid"><span class="price-paid">$37/mo family</span><div class="td-sub">+ $99 Circle hardware (one-time)</div></td>
+          <td class="col-network"><span class="price-paid">~$7.50/mo</span><div class="td-sub">$90/yr Premium (amortized) · +$7.50/mo HomeBound optional</div></td>
+          <td class="col-app"><span class="price-paid">$14/mo</span><div class="td-sub">or $8.25/mo billed annually</div></td>
+          <td class="col-app"><span class="price-paid">~$4.58/mo</span><div class="td-sub">billed annually</div></td>
+          <td class="col-app" style="background:#faf5ff;"><span class="price-paid">$7.99/mo</span><div class="td-sub">or $7.99/mo billed annually</div></td>
+          <td class="col-hybrid"><span class="price-paid">$37/mo</span><div class="td-sub">family plan</div></td>
+        </tr>
+        <tr>
+          <td>Annual cost<div class="td-sub">Billed yearly</div></td>
+          <td class="col-free"><span class="price-free">Free</span></td>
+          <td class="col-free"><span class="price-free">Free</span></td>
+          <td class="col-network"><span class="price-paid">$90/yr</span><div class="td-sub">Premium subscription · + $175 hardware yr 1</div></td>
+          <td class="col-app"><span class="price-paid">$99/yr</span></td>
+          <td class="col-app"><span class="price-paid">$54.95/yr</span><div class="td-sub">5 devices</div></td>
+          <td class="col-app" style="background:#faf5ff;"><span class="price-paid">$95.90/yr</span><div class="td-sub">3–10 devices</div></td>
+          <td class="col-hybrid"><span class="price-paid">$444/yr</span><div class="td-sub">+ $99 Circle hardware yr 1</div></td>
+        </tr>
+        <tr style="background:#f8fafc;">
+          <td><strong>3-year total</strong><div class="td-sub">Hardware + all subscriptions</div></td>
+          <td class="col-free"><span class="price-free">Free</span></td>
+          <td class="col-free"><span class="price-free">Free</span></td>
+          <td class="col-network"><strong>~$445</strong><div class="td-sub">$175 hardware + $270 subscriptions</div></td>
+          <td class="col-app"><strong>$297</strong></td>
+          <td class="col-app"><strong>~$165</strong></td>
+          <td class="col-app" style="background:#faf5ff;"><strong>~$288</strong></td>
+          <td class="col-hybrid"><strong>~$1,431</strong><div class="td-sub">$99 hardware + $1,332 subscription</div></td>
         </tr>
         <tr>
           <td>Works on cellular<div class="td-sub">Away from home WiFi</div></td>
           <td class="col-free"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
           <td class="col-free"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
-          <td class="col-network"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">Home WiFi only</span></div></td>
+          <td class="col-network"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">Home WiFi only</span></div><div class="td-sub">HomeBound add-on extends to cellular — but conflicts with on-device VPN solutions</div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Android: yes · iOS: home sync only</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Everywhere (device profile)</span></div></td>
+          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Everywhere (device profile)</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">App: everywhere · Circle: home only</span></div></td>
         </tr>
         <tr>
           <td>Web content filtering</td>
           <td class="col-free"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Basic</span></div></td>
           <td class="col-free"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Basic</span></div></td>
-          <td class="col-network"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Strong</span></div></td>
+          <td class="col-network"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Strong (#1 rated)</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Strong</span></div></td>
+          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">AI visual + URL blocking</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Both layers</span></div></td>
+        </tr>
+        <tr>
+          <td>Ad blocking<div class="td-sub">Blocks ads network-wide</div></td>
+          <td class="col-free"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
+          <td class="col-free"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
+          <td class="col-network"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — free tier · advanced w/ Premium</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
+          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
+          <td class="col-hybrid"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
         </tr>
         <tr>
           <td>Screen time limits</td>
@@ -736,6 +782,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
+          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
         </tr>
         <tr>
@@ -745,6 +792,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Limited</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
+          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Block entirely only</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
         </tr>
         <tr>
@@ -754,15 +802,17 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Basic</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Detailed</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Detailed</span></div></td>
+          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Basic</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Moderate</span></div></td>
         </tr>
         <tr>
           <td>Real-time alerts</td>
           <td class="col-free"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-free"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
-          <td class="col-network"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
+          <td class="col-network"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">App disabled alert only</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — AI-driven</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
+          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Content blocked alerts</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — identity + content</span></div></td>
         </tr>
         <tr>
@@ -770,8 +820,9 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-free"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-free"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-network"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
-          <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">30+ platforms</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Android: 30+ platforms · iOS: zero</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Limited</span></div></td>
+          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No — blocks apps entirely</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
         </tr>
         <tr>
@@ -781,6 +832,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — Android</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Android only</span></div></td>
+          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
         </tr>
         <tr>
@@ -790,6 +842,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
+          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
         </tr>
         <tr>
@@ -799,6 +852,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — network level</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
+          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — via Circle</span></div></td>
         </tr>
         <tr>
@@ -808,15 +862,17 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — network level</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
+          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — via Circle</span></div></td>
         </tr>
         <tr>
           <td>Bypass difficulty<div class="td-sub">How easy for a determined kid</div></td>
           <td class="col-free"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Moderate — second Apple ID</span></div></td>
           <td class="col-free"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Moderate — factory reset</span></div></td>
-          <td class="col-network"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Easy — use cellular data</span></div></td>
+          <td class="col-network"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Hard — IS the router; cellular triggers alert</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Hard — requires uninstall</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Hard — requires uninstall</span></div></td>
+          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Hard — MDM profile, parent password</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Hard — dual layer</span></div></td>
         </tr>
         <tr>
@@ -826,6 +882,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
+          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — whole family</span></div></td>
         </tr>
       </tbody>
@@ -839,61 +896,109 @@ footer a { color: inherit; text-decoration: none; }
     <div class="section-line"></div>
   </div>
 
-  <div class="rec-grid">
+  <!-- VPN CONFLICT NOTE -->
+  <div style="background:#fff7ed;border:1.5px solid #fed7aa;border-left:4px solid #ea580c;border-radius:10px;padding:12px 16px;margin-bottom:28px;max-width:860px;display:flex;gap:10px;align-items:flex-start;">
+    <svg viewBox="0 0 24 24" style="width:16px;height:16px;flex-shrink:0;margin-top:1px;stroke:#ea580c;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <p style="font-size:12px;color:#9a3412;line-height:1.6;margin:0;"><strong>VPN conflict — pick one per device:</strong> HomeBound, Qustodio, Canopy, and Bark's iOS web filter all run as a VPN on iPhone/iPad. iOS only allows one active VPN at a time. The combos below are designed around this — never pair HomeBound with any app-based VPN solution.</p>
+  </div>
+
+  <!-- BY AGE -->
+  <p style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">By Age</p>
+  <div class="rec-grid" style="margin-bottom:36px;">
+
     <div class="rec-card">
-      <h4><span>🧒</span> Young kids (under 10) — iPad household</h4>
+      <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Ages 5–9</div>
+      <h4><span>🧒</span> Young kids — iPad</h4>
       <div class="rec-stack">
         <span class="rec-chip rc-free">Apple Screen Time</span>
         <span class="rec-chip rc-network">Gryphon AX</span>
-        <span class="rec-chip rc-app">Qustodio or Canopy</span>
+        <span class="rec-chip rc-app" style="background:#f5f3ff;color:#6d28d9;border-color:#e9d5ff;">Canopy</span>
       </div>
-      <p class="rec-note">Screen Time handles device-level rules. Gryphon covers the whole home including consoles and TVs. Qustodio or Canopy adds always-on content filtering that travels with the iPad on cellular — the gap Gryphon can't cover away from home.</p>
+      <p class="rec-note">Gryphon covers the whole home — consoles, TVs, every WiFi device — and blocks ads. Canopy's AI visual filter travels with the iPad on cellular, catching explicit images even when URLs aren't blocked. Screen Time handles device rules and downtime. No monitoring needed at this age — focus is purely on blocking.</p>
+      <div style="margin-top:10px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);padding-top:8px;">⚠️ Don't add HomeBound — Canopy's VPN already handles cellular coverage.</div>
     </div>
+
     <div class="rec-card">
-      <h4><span>📱</span> Tweens (10–13) — iPad + Android mix</h4>
+      <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Ages 10–13 · iPad</div>
+      <h4><span>📱</span> Tweens — iPad household</h4>
       <div class="rec-stack">
-        <span class="rec-chip rc-free">Screen Time / Family Link</span>
+        <span class="rec-chip rc-free">Apple Screen Time</span>
         <span class="rec-chip rc-network">Gryphon AX</span>
-        <span class="rec-chip rc-app">Bark (Android) + Qustodio (iPad)</span>
+        <span class="rec-chip rc-app">Qustodio</span>
       </div>
-      <p class="rec-note">This age is the highest-risk window. On Android, Bark's live AI monitoring is the right tool. On iPad, Bark's iOS sync model limits outside-home coverage — Qustodio's device profile fills that gap with continuous filtering everywhere.</p>
+      <p class="rec-note">Highest-risk age window — social media starts, online connections appear. Qustodio's device profile handles filtering everywhere on cellular, adds per-app time limits, and provides the best available visibility on iPad. Gryphon covers home network including consoles. Note: deep message/social scanning isn't possible on iOS — Qustodio sees browsing and app usage, not message content.</p>
+      <div style="margin-top:10px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);padding-top:8px;">⚠️ Don't add HomeBound — Qustodio's VPN already handles cellular coverage.</div>
     </div>
+
     <div class="rec-card">
-      <h4><span>🎮</span> Gaming-heavy household (consoles + iPads)</h4>
+      <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#059669;margin-bottom:6px;">Ages 10–13 · Android</div>
+      <h4><span>📱</span> Tweens — Android household</h4>
+      <div class="rec-stack">
+        <span class="rec-chip rc-free">Google Family Link</span>
+        <span class="rec-chip rc-network">Gryphon AX</span>
+        <span class="rec-chip rc-app">Bark</span>
+      </div>
+      <p class="rec-note">Android is where Bark earns its reputation — full live AI monitoring of texts, 30+ social platforms, and email everywhere, no sync required. Gryphon covers the home network. Family Link handles device-level rules. This is the strongest monitoring stack available at any age.</p>
+    </div>
+
+    <div class="rec-card">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Ages 14–17</div>
+      <h4><span>👦</span> Teens — monitoring over blocking</h4>
+      <div class="rec-stack">
+        <span class="rec-chip rc-network">Gryphon AX</span>
+        <span class="rec-chip rc-app">Bark (Android) / Qustodio (iPad)</span>
+      </div>
+      <p class="rec-note">At this age the conversation shifts from hard blocking to awareness. Gryphon handles the home network and ad blocking. Bark (Android) or Qustodio (iPad) provides visibility — alerts when something concerning appears rather than locking everything down. Heavy-handed blocking tends to backfire with teens; monitoring with trust conversations is more effective.</p>
+    </div>
+
+  </div>
+
+  <!-- BY SITUATION -->
+  <p style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">By Situation</p>
+  <div class="rec-grid">
+
+    <div class="rec-card">
+      <h4><span>🎮</span> Gaming-heavy household</h4>
       <div class="rec-stack">
         <span class="rec-chip rc-free">Console Native Controls</span>
         <span class="rec-chip rc-network">Gryphon AX</span>
         <span class="rec-chip rc-app">Qustodio</span>
       </div>
-      <p class="rec-note">Console controls on each device + Gryphon catches everything the console controls miss at the network level + Qustodio covers iPads/phones both home and away. Gryphon's network layer handles the Switch and smart TVs that apps can't touch.</p>
+      <p class="rec-note">Console controls handle the Switch, PlayStation, Xbox natively. Gryphon catches everything the console controls miss at the network level — including smart TVs and streaming sticks that no app can touch. Qustodio covers phones and iPads everywhere.</p>
     </div>
-    <div class="rec-card">
-      <h4><span>🔒</span> Maximum protection — content safety first</h4>
+
+    <div class="rec-card" style="border-color:#e9d5ff;">
+      <h4><span>🖼️</span> Explicit content is the #1 concern</h4>
       <div class="rec-stack">
-        <span class="rec-chip rc-free">Screen Time (configured)</span>
         <span class="rec-chip rc-network">Gryphon AX</span>
-        <span class="rec-chip rc-app">Qustodio + Canopy</span>
+        <span class="rec-chip rc-app" style="background:#f5f3ff;color:#6d28d9;border-color:#e9d5ff;">Canopy</span>
       </div>
-      <p class="rec-note">Three full layers: Screen Time for device rules, Gryphon for the home network, Qustodio for continuous device-profile filtering everywhere + location, and Canopy adds AI visual content detection for explicit images that slip past URL blocking.</p>
+      <p class="rec-note">Gryphon blocks at the network level — covers every device in the home. Canopy's AI visual scanner catches explicit images that slip past URL-based blocking, running as a device profile everywhere the iPad goes. The most complete content-blocking stack available on iOS. No HomeBound needed — Canopy already handles cellular.</p>
     </div>
+
     <div class="rec-card" style="border-color:#0d9488;background:linear-gradient(135deg,#f0fdfa 0%,#fff 100%);">
       <h4><span>🧓</span> Aging parent / senior safety</h4>
       <div class="rec-stack">
-        <span class="rec-chip" style="background:#ccfbf1;color:#0d9488;border-color:#99f6e4;">Aura + Circle</span>
         <span class="rec-chip" style="background:var(--amber-light);color:var(--amber);border-color:#fde68a;">Hiya / Robokiller</span>
+        <span class="rec-chip" style="background:#ccfbf1;color:#0d9488;border-color:#99f6e4;">Aura</span>
+        <span class="rec-chip rc-free">Incogni</span>
         <span class="rec-chip rc-free">2FA + Password Mgr</span>
       </div>
-      <p class="rec-note">Aura handles network filtering at home (via Circle), device-level controls, identity theft monitoring, and dark web alerts — all in one subscription. Add Hiya for call screening and 2FA on key accounts and you've covered the three biggest scam vectors.</p>
+      <p class="rec-note">Hiya blocks scam calls before they ring. Aura monitors identity, credit, dark web, and sends fraud alerts. Incogni removes their personal info from data broker sites — cutting off scammers at the source before they can find a phone number or address. 2FA on email and banking is the single highest-impact account protection step.</p>
     </div>
+
     <div class="rec-card" style="border-color:#0d9488;background:linear-gradient(135deg,#f0fdfa 0%,#fff 100%);grid-column:1 / -1;">
       <h4><span>🏠</span> Full household — kids <em>and</em> an aging parent</h4>
       <div class="rec-stack">
-        <span class="rec-chip" style="background:#ccfbf1;color:#0d9488;border-color:#99f6e4;">Aura + Circle (covers everyone)</span>
-        <span class="rec-chip rc-app">Bark (kids monitoring)</span>
-        <span class="rec-chip" style="background:var(--amber-light);color:var(--amber);border-color:#fde68a;">Hiya (senior phones)</span>
+        <span class="rec-chip rc-network">Gryphon AX</span>
+        <span class="rec-chip rc-app">Qustodio <em style="font-weight:400;font-size:11px;">(kids' iPads)</em></span>
+        <span class="rec-chip rc-app">Bark <em style="font-weight:400;font-size:11px;">(Android kids)</em></span>
+        <span class="rec-chip" style="background:#ccfbf1;color:#0d9488;border-color:#99f6e4;">Aura <em style="font-weight:400;font-size:11px;">(senior)</em></span>
+        <span class="rec-chip" style="background:var(--amber-light);color:var(--amber);border-color:#fde68a;">Hiya <em style="font-weight:400;font-size:11px;">(senior phone)</em></span>
       </div>
-      <p class="rec-note">This is the scenario where Aura's hybrid architecture earns its keep. Circle's network filtering protects every device in the house — kids and parent alike. Bark adds AI-powered content monitoring for children's devices. Hiya screens calls on the senior's phone. One subscription handles the network layer for the whole house; targeted apps fill the gaps for each audience.</p>
+      <p class="rec-note">Gryphon AX handles the whole home network for everyone — kids and parent alike — including consoles, smart TVs, and ad blocking. Qustodio or Bark covers kids' devices based on platform. Aura and Hiya protect the senior's identity and phone independently. Each layer is targeted; nothing overlaps or conflicts.</p>
     </div>
+
   </div>
 
   <!-- SENIOR PROTECTION TOOLS -->
@@ -972,6 +1077,38 @@ footer a { color: inherit; text-decoration: none; }
         <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Free on most platforms</li>
       </ul>
     </div>
+  </div>
+
+  <!-- ADD-ONS -->
+  <div class="section-head" style="margin-top:48px;">
+    <div class="section-line"></div>
+    <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap;padding:0 14px;">Supplemental Add-Ons</span>
+    <div class="section-line"></div>
+  </div>
+  <p style="font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:20px;max-width:680px;">These aren't part of the parental control or identity theft decision — they layer on top of whatever stack you choose and address a specific gap.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:48px;">
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;flex:1;min-width:220px;max-width:320px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Data Broker Removal</div>
+      <div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:2px;">Incogni</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:10px;">~$6.49/mo · by Surfshark</div>
+      <p style="font-size:12px;color:var(--text);line-height:1.6;margin:0;">Automatically removes your personal info from 420+ data broker and people-search sites — the databases scammers buy to find phone numbers, addresses, and family names. Continuously re-submits every 60–90 days. Independently verified by Deloitte.</p>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;flex:1;min-width:220px;max-width:320px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Data Broker Removal</div>
+      <div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:2px;">DeleteMe</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:10px;">$10.75/mo · human-reviewed</div>
+      <p style="font-size:12px;color:var(--text);line-height:1.6;margin:0;">Human-driven data broker opt-outs — slower than Incogni but more thorough on hard-to-remove sites. Good option if you want a real person verifying the removals. No dark web monitoring included.</p>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;flex:1;min-width:220px;max-width:320px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">VPN · Privacy</div>
+      <div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:2px;">NordVPN</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:10px;">~$4/mo billed annually</div>
+      <p style="font-size:12px;color:var(--text);line-height:1.6;margin:0;">Encrypts internet traffic on public WiFi — hotels, coffee shops, airports. Recommended by Scammer Payback (Pierogi). Not a parental control tool, but worthwhile for any family member using public networks regularly.</p>
+    </div>
+
   </div>
 
 </div>

@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protection Stack Builder — TechDad CLT</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --navy: #0f1c2e;
+  --navy2: #1a2d45;
+  --accent: #2563eb;
+  --accent-light: #dbeafe;
+  --green: #059669;
+  --green-light: #d1fae5;
+  --amber: #d97706;
+  --amber-light: #fef3c7;
+  --purple: #7c3aed;
+  --purple-light: #ede9fe;
+  --red: #dc2626;
+  --red-light: #fee2e2;
+  --text: #1e2532;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --teal: #0d9488;
+  --teal-light: #f0fdfa;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Figtree', sans-serif; background: var(--bg); color: var(--text); }
+
+/* NAV */
+nav {
+  background: var(--navy);
+  padding: 0 28px; height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.logo { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+.logo-mark { font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: white; background: var(--accent); padding: 4px 10px; border-radius: 5px; }
+.logo-text { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.7); }
+.logo-sep { color: rgba(255,255,255,0.25); margin: 0 2px; }
+.nav-badge { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 4px 10px; }
+
+/* PAGE HEADER */
+.page-header {
+  background: var(--navy);
+  padding: 48px 28px 56px;
+  position: relative; overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 15% 70%, rgba(37,99,235,0.2) 0%, transparent 55%),
+              radial-gradient(ellipse at 85% 20%, rgba(124,58,237,0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+.page-header-inner { position: relative; max-width: 1200px; margin: 0 auto; }
+.page-label { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
+.page-header h1 { font-family: 'Instrument Serif', serif; font-size: clamp(26px, 4vw, 40px); font-weight: 400; color: white; line-height: 1.2; margin-bottom: 12px; }
+.page-header h1 em { font-style: italic; color: #93c5fd; }
+.page-header p { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.65; max-width: 580px; }
+.back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; margin-bottom: 16px; transition: color .15s; }
+.back-link:hover { color: rgba(255,255,255,0.7); }
+
+/* MAIN LAYOUT */
+.builder-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 28px 80px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 28px;
+  align-items: start;
+}
+
+/* LEFT COLUMN */
+.builder-left { min-width: 0; }
+
+/* RIGHT COLUMN — sticky results */
+.builder-right {
+  position: sticky;
+  top: 76px;
+  max-height: calc(100vh - 92px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* SECTION CARDS */
+.section-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 26px;
+  margin-bottom: 20px;
+}
+.section-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--navy);
+  margin-bottom: 6px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-step {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px;
+  background: var(--accent); color: white;
+  font-family: 'Figtree', sans-serif;
+  font-size: 12px; font-weight: 700;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.section-sub { font-size: 13px; color: var(--muted); margin-bottom: 22px; line-height: 1.5; }
+
+/* DEVICE STEPPERS */
+.devices-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.device-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+.device-label {
+  font-size: 13px; font-weight: 500; color: var(--navy);
+  display: flex; align-items: center; gap: 7px;
+}
+.device-icon { font-size: 16px; }
+.stepper {
+  display: flex; align-items: center; gap: 0;
+}
+.stepper button {
+  width: 28px; height: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 16px; font-weight: 600;
+  color: var(--navy);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .12s, border-color .12s;
+  line-height: 1;
+}
+.stepper button:hover { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+.stepper-val {
+  min-width: 32px; text-align: center;
+  font-size: 15px; font-weight: 700; color: var(--navy);
+}
+
+/* AGE PILLS */
+.age-label { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
+.age-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.age-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 13px; font-weight: 500;
+  padding: 6px 14px; border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all .14s;
+  user-select: none;
+}
+.age-pill:hover { border-color: var(--accent); color: var(--accent); }
+.age-pill.active {
+  background: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* PRODUCT GROUP HEADERS */
+.group-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; margin-top: 4px;
+}
+.group-line { flex: 1; height: 1px; background: var(--border); }
+.group-pill {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 20px; white-space: nowrap;
+}
+.gp-free { background: var(--accent-light); color: var(--accent); }
+.gp-network { background: var(--purple-light); color: var(--purple); }
+.gp-device { background: var(--green-light); color: var(--green); }
+.gp-hybrid { background: var(--teal-light); color: var(--teal); }
+
+/* AUTO-ENABLED PRODUCT ROWS */
+.auto-product {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--accent-light);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  background: #f0f7ff;
+}
+.auto-product-name { font-size: 13px; font-weight: 700; color: var(--navy); }
+.auto-product-sub { font-size: 11px; color: var(--muted); }
+.auto-badge {
+  margin-left: auto; font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  background: var(--green-light); color: var(--green);
+  padding: 3px 9px; border-radius: 10px;
+}
+
+/* PRODUCT TOGGLE CARDS */
+.product-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.product-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: border-color .14s, box-shadow .14s;
+  position: relative;
+}
+.product-card:hover { border-color: #d1d5db; }
+.product-card.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.08);
+}
+.product-card.disabled-card {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.product-card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 8px;
+}
+.product-card-name { font-size: 14px; font-weight: 700; color: var(--navy); }
+.product-card-price { font-size: 12px; font-weight: 600; color: var(--muted); text-align: right; line-height: 1.4; }
+.product-card-features { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+.product-card-features li { font-size: 12px; color: var(--muted); display: flex; align-items: flex-start; gap: 6px; line-height: 1.45; }
+.feat-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--muted); flex-shrink: 0; margin-top: 5px; }
+.product-card.active .feat-dot { background: var(--accent); }
+
+/* TOGGLE SWITCH */
+.toggle-wrap { display: flex; align-items: center; gap: 8px; }
+.toggle {
+  position: relative; display: inline-block;
+  width: 40px; height: 22px;
+  flex-shrink: 0;
+}
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle-slider {
+  position: absolute; inset: 0;
+  background: #d1d5db; border-radius: 22px;
+  transition: background .15s;
+  cursor: pointer;
+}
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 16px; height: 16px;
+  left: 3px; top: 3px;
+  background: white; border-radius: 50%;
+  transition: transform .15s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+.toggle input:checked + .toggle-slider { background: var(--accent); }
+.toggle input:checked + .toggle-slider::before { transform: translateX(18px); }
+
+/* VPN CONFLICT BANNER */
+.conflict-banner {
+  display: none;
+  align-items: flex-start; gap: 10px;
+  background: var(--amber-light);
+  border: 1px solid #fcd34d;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-top: 10px;
+  font-size: 12px; color: #92400e; line-height: 1.55;
+}
+.conflict-banner.visible { display: flex; }
+
+/* DEPENDENCY NOTE */
+.dep-note {
+  font-size: 11px; color: var(--muted); font-style: italic; margin-top: 6px; padding-left: 2px;
+}
+
+/* RESULTS PANEL */
+.results-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.results-header {
+  background: var(--navy);
+  padding: 18px 22px;
+  color: white;
+}
+.results-header h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 18px; font-weight: 400;
+  margin-bottom: 2px;
+}
+.results-header p { font-size: 12px; color: rgba(255,255,255,0.45); }
+.results-body { padding: 0; }
+
+/* COST SUMMARY */
+.cost-summary {
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--border);
+}
+.cost-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.cost-numbers {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 12px; margin-bottom: 12px;
+}
+.cost-item { text-align: center; }
+.cost-val { font-size: 22px; font-weight: 700; color: var(--navy); line-height: 1; margin-bottom: 3px; }
+.cost-period { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.cost-hw-note {
+  font-size: 11px; color: var(--muted); text-align: center;
+  background: var(--bg); border-radius: 8px; padding: 7px 10px;
+  display: none;
+}
+.cost-hw-note.visible { display: block; }
+.cost-zero { color: var(--muted) !important; font-size: 16px !important; }
+
+/* COVERAGE MAP */
+.coverage-section {
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--border);
+}
+.coverage-section h3 { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+.coverage-grid { display: flex; flex-direction: column; gap: 5px; }
+.coverage-row {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 12px; line-height: 1.45; padding: 5px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+.coverage-row:last-child { border-bottom: none; }
+.cov-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; width: 18px; }
+.cov-area { font-weight: 600; color: var(--navy); min-width: 0; flex: 1; }
+.cov-by { font-size: 11px; color: var(--muted); }
+.cov-row-hidden { display: none; }
+
+/* GAPS PANEL */
+.gaps-section {
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--border);
+}
+.gaps-section h3 { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.gap-item {
+  display: flex; align-items: flex-start; gap: 8px;
+  background: var(--red-light);
+  border-radius: 8px; padding: 9px 11px;
+  margin-bottom: 6px;
+  font-size: 12px; color: #991b1b; line-height: 1.5;
+}
+.gap-icon { flex-shrink: 0; margin-top: 1px; }
+.no-gaps {
+  font-size: 12px; color: var(--green); font-weight: 600;
+  display: flex; align-items: center; gap: 6px;
+  padding: 10px 12px; background: var(--green-light); border-radius: 8px;
+}
+
+/* AGE TIP */
+.age-tip-section { padding: 16px 22px; }
+.age-tip {
+  display: none;
+  align-items: flex-start; gap: 9px;
+  background: var(--purple-light);
+  border-radius: 9px; padding: 11px 13px;
+  font-size: 12px; color: #4c1d95; line-height: 1.5;
+}
+.age-tip.visible { display: flex; }
+
+/* FOOTER */
+footer { background: var(--navy); padding: 20px 28px; text-align: center; font-size: 12px; color: rgba(255,255,255,0.3); border-top: 1px solid rgba(255,255,255,0.06); }
+footer a { color: inherit; text-decoration: none; }
+
+/* EMPTY STATE */
+.empty-state { font-size: 12px; color: var(--muted); font-style: italic; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .builder-wrap {
+    grid-template-columns: 1fr;
+    padding: 28px 20px 60px;
+  }
+  .builder-right {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+  }
+  .devices-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .cost-numbers { gap: 8px; }
+  .cost-val { font-size: 18px; }
+  .page-header { padding: 36px 20px 44px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <span class="logo-mark">TechDad</span>
+    <span class="logo-sep">/</span>
+    <span class="logo-text">Charlotte, NC</span>
+  </a>
+  <div class="nav-badge">Internal Client Resource</div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <a href="solutions-comparison.html" class="back-link">
+      <svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round"><polyline points="15 18 9 12 15 6"/></svg>
+      Full comparison
+    </a>
+    <div class="page-label">TechDad CLT · Interactive Tool</div>
+    <h1>Protection Stack Builder —<br><em>Configure your household, see what you get</em></h1>
+    <p>Tell us about your devices and kids. Toggle products on and off to see live cost breakdowns, coverage maps, and gaps in protection.</p>
+  </div>
+</div>
+
+<!-- BUILDER -->
+<div class="builder-wrap">
+
+  <!-- LEFT: INPUTS + PRODUCT SELECTION -->
+  <div class="builder-left">
+
+    <!-- STEP 1: HOUSEHOLD -->
+    <div class="section-card">
+      <div class="section-title">
+        <span class="section-step">1</span>
+        Your Household
+      </div>
+      <p class="section-sub">How many devices does your family use? This helps us show relevant products and flag coverage gaps.</p>
+
+      <div class="devices-grid">
+        <div class="device-row">
+          <div class="device-label">
+            <span class="device-icon">📱</span>
+            iOS (iPhone / iPad)
+          </div>
+          <div class="stepper">
+            <button onclick="stepDevice('ios', -1)">−</button>
+            <span class="stepper-val" id="val-ios">1</span>
+            <button onclick="stepDevice('ios', 1)">+</button>
+          </div>
+        </div>
+        <div class="device-row">
+          <div class="device-label">
+            <span class="device-icon">🤖</span>
+            Android devices
+          </div>
+          <div class="stepper">
+            <button onclick="stepDevice('android', -1)">−</button>
+            <span class="stepper-val" id="val-android">0</span>
+            <button onclick="stepDevice('android', 1)">+</button>
+          </div>
+        </div>
+        <div class="device-row">
+          <div class="device-label">
+            <span class="device-icon">🎮</span>
+            Gaming consoles
+          </div>
+          <div class="stepper">
+            <button onclick="stepDevice('consoles', -1)">−</button>
+            <span class="stepper-val" id="val-consoles">0</span>
+            <button onclick="stepDevice('consoles', 1)">+</button>
+          </div>
+        </div>
+        <div class="device-row">
+          <div class="device-label">
+            <span class="device-icon">📺</span>
+            Smart TVs / streaming
+          </div>
+          <div class="stepper">
+            <button onclick="stepDevice('tvs', -1)">−</button>
+            <span class="stepper-val" id="val-tvs">0</span>
+            <button onclick="stepDevice('tvs', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="age-label">Kids' ages (select all that apply)</div>
+      <div class="age-pills">
+        <div class="age-pill" data-age="under10" onclick="toggleAge(this)">Under 10</div>
+        <div class="age-pill" data-age="tweens" onclick="toggleAge(this)">Tweens 10–13</div>
+        <div class="age-pill" data-age="teens" onclick="toggleAge(this)">Teens 14+</div>
+      </div>
+    </div>
+
+    <!-- STEP 2: BUILD YOUR STACK -->
+    <div class="section-card">
+      <div class="section-title">
+        <span class="section-step">2</span>
+        Build Your Stack
+      </div>
+      <p class="section-sub">Toggle products on or off. Auto-included free tools appear based on your devices.</p>
+
+      <!-- FREE / AUTO -->
+      <div class="group-header">
+        <div class="group-line"></div>
+        <div class="group-pill gp-free">Always Included (Free)</div>
+        <div class="group-line"></div>
+      </div>
+
+      <div id="auto-products" style="margin-bottom:18px;">
+        <div id="auto-apple" class="auto-product" style="display:none;">
+          <span style="font-size:20px;">🍎</span>
+          <div>
+            <div class="auto-product-name">Apple Screen Time</div>
+            <div class="auto-product-sub">Built-in iOS/iPad controls — app limits, content filters, downtime</div>
+          </div>
+          <div class="auto-badge">Auto-included</div>
+        </div>
+        <div id="auto-google" class="auto-product" style="display:none;">
+          <span style="font-size:20px;">🟢</span>
+          <div>
+            <div class="auto-product-name">Google Family Link</div>
+            <div class="auto-product-sub">Built-in Android controls — app approval, location, screen time</div>
+          </div>
+          <div class="auto-badge">Auto-included</div>
+        </div>
+        <div id="auto-none" class="empty-state" style="padding: 8px 0 4px;">Add iOS or Android devices above to see free built-in tools.</div>
+      </div>
+
+      <!-- HOME NETWORK -->
+      <div class="group-header">
+        <div class="group-line"></div>
+        <div class="group-pill gp-network">Home Network</div>
+        <div class="group-line"></div>
+      </div>
+
+      <div class="product-cards">
+
+        <!-- Gryphon AX -->
+        <div class="product-card" id="card-gryphon" onclick="cardClick('gryphon')">
+          <div class="product-card-header">
+            <div class="product-card-name">Gryphon AX</div>
+            <div class="product-card-price">$90/yr + $175 hardware (one-time)</div>
+            <div class="toggle-wrap" onclick="event.stopPropagation()">
+              <label class="toggle">
+                <input type="checkbox" id="toggle-gryphon" onchange="onProductChange('gryphon')">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <ul class="product-card-features">
+            <li><span class="feat-dot"></span>Replaces your router — filters everything on your home network</li>
+            <li><span class="feat-dot"></span>Covers consoles, smart TVs, and every device on WiFi</li>
+            <li><span class="feat-dot"></span>Very hard to bypass — it IS the internet connection</li>
+          </ul>
+        </div>
+
+        <!-- Gryphon HomeBound -->
+        <div class="product-card disabled-card" id="card-homebound" onclick="cardClick('homebound')">
+          <div class="product-card-header">
+            <div class="product-card-name">Gryphon HomeBound <span style="font-size:10px;color:var(--purple);background:var(--purple-light);padding:2px 7px;border-radius:8px;font-weight:700;margin-left:4px;">ADD-ON</span></div>
+            <div class="product-card-price">$7.50/mo<br><span style="color:var(--muted);font-weight:400;">Requires Gryphon AX</span></div>
+            <div class="toggle-wrap" onclick="event.stopPropagation()">
+              <label class="toggle">
+                <input type="checkbox" id="toggle-homebound" onchange="onProductChange('homebound')" disabled>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <ul class="product-card-features">
+            <li><span class="feat-dot"></span>Extends Gryphon filtering to cellular / away-from-home via VPN</li>
+            <li><span class="feat-dot"></span>Uses iOS VPN slot — conflicts with on-device VPN-based tools</li>
+          </ul>
+          <div id="dep-homebound" class="dep-note">Enable Gryphon AX first to unlock this add-on.</div>
+        </div>
+
+        <div id="conflict-homebound" class="conflict-banner">
+          ⚠️ <span id="conflict-homebound-text"></span>
+        </div>
+
+      </div>
+
+      <!-- ON-DEVICE -->
+      <div class="group-header" style="margin-top:8px;">
+        <div class="group-line"></div>
+        <div class="group-pill gp-device">On-Device · Outside Home + Visibility</div>
+        <div class="group-line"></div>
+      </div>
+
+      <div class="product-cards">
+
+        <!-- Bark -->
+        <div class="product-card" id="card-bark" onclick="cardClick('bark')">
+          <div class="product-card-header">
+            <div class="product-card-name">Bark</div>
+            <div class="product-card-price">$99/yr<br><span style="color:var(--muted);font-weight:400;">Unlimited devices</span></div>
+            <div class="toggle-wrap" onclick="event.stopPropagation()">
+              <label class="toggle">
+                <input type="checkbox" id="toggle-bark" onchange="onProductChange('bark')">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <ul class="product-card-features">
+            <li><span class="feat-dot"></span>AI content monitoring — alerts on concerning activity, not full surveillance</li>
+            <li><span class="feat-dot"></span>Social media & text monitoring on Android; iOS limited by Apple</li>
+            <li><span class="feat-dot"></span>Screen time, app blocking, location tracking, web filtering</li>
+          </ul>
+        </div>
+
+        <div id="conflict-bark" class="conflict-banner">
+          ⚠️ <span id="conflict-bark-text"></span>
+        </div>
+
+        <!-- Qustodio -->
+        <div class="product-card" id="card-qustodio" onclick="cardClick('qustodio')">
+          <div class="product-card-header">
+            <div class="product-card-name">Qustodio</div>
+            <div class="product-card-price">$54.95/yr<br><span id="qust-price-note" style="color:var(--muted);font-weight:400;">Up to 5 devices</span></div>
+            <div class="toggle-wrap" onclick="event.stopPropagation()">
+              <label class="toggle">
+                <input type="checkbox" id="toggle-qustodio" onchange="onProductChange('qustodio')">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <ul class="product-card-features">
+            <li><span class="feat-dot"></span>Detailed activity reports, real-time alerts, location tracking</li>
+            <li><span class="feat-dot"></span>App blocking, screen time scheduling, content filtering on/off-home</li>
+            <li><span class="feat-dot"></span>Installs as MDM profile — hard for kids to remove</li>
+          </ul>
+        </div>
+
+        <div id="conflict-qustodio" class="conflict-banner">
+          ⚠️ <span id="conflict-qustodio-text"></span>
+        </div>
+
+        <!-- Canopy -->
+        <div class="product-card" id="card-canopy" onclick="cardClick('canopy')">
+          <div class="product-card-header">
+            <div class="product-card-name">Canopy</div>
+            <div class="product-card-price">$95.90/yr<br><span style="color:var(--muted);font-weight:400;">3–10 devices</span></div>
+            <div class="toggle-wrap" onclick="event.stopPropagation()">
+              <label class="toggle">
+                <input type="checkbox" id="toggle-canopy" onchange="onProductChange('canopy')">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <ul class="product-card-features">
+            <li><span class="feat-dot"></span>AI visual detection — catches explicit images/videos in real time</li>
+            <li><span class="feat-dot"></span>Content filtering on and off home WiFi via VPN</li>
+            <li><span class="feat-dot"></span>MDM profile install on iOS — resistant to removal</li>
+          </ul>
+        </div>
+
+        <div id="conflict-canopy" class="conflict-banner">
+          ⚠️ <span id="conflict-canopy-text"></span>
+        </div>
+
+      </div>
+
+      <!-- HYBRID -->
+      <div class="group-header" style="margin-top:8px;">
+        <div class="group-line"></div>
+        <div class="group-pill gp-hybrid">Hybrid / Identity</div>
+        <div class="group-line"></div>
+      </div>
+
+      <div class="product-cards">
+
+        <!-- Aura + Circle -->
+        <div class="product-card" id="card-aura" onclick="cardClick('aura')">
+          <div class="product-card-header">
+            <div class="product-card-name">Aura + Circle</div>
+            <div class="product-card-price">$37/mo + $99 hardware (one-time)</div>
+            <div class="toggle-wrap" onclick="event.stopPropagation()">
+              <label class="toggle">
+                <input type="checkbox" id="toggle-aura" onchange="onProductChange('aura')">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <ul class="product-card-features">
+            <li><span class="feat-dot"></span>Parental controls via Circle device (home + mobile coverage)</li>
+            <li><span class="feat-dot"></span>Aura adds identity theft protection + dark web monitoring for whole family</li>
+            <li><span class="feat-dot"></span>Covers consoles and smart TVs via home network hardware</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div><!-- /section-card step 2 -->
+  </div><!-- /builder-left -->
+
+  <!-- RIGHT: RESULTS PANEL -->
+  <div class="builder-right">
+    <div class="results-panel">
+      <div class="results-header">
+        <h2>Your Stack Results</h2>
+        <p>Updates live as you make changes</p>
+      </div>
+      <div class="results-body">
+
+        <!-- COST SUMMARY -->
+        <div class="cost-summary">
+          <div class="cost-label">Cost Summary</div>
+          <div class="cost-numbers">
+            <div class="cost-item">
+              <div class="cost-val" id="cost-monthly">$0</div>
+              <div class="cost-period">Monthly</div>
+            </div>
+            <div class="cost-item">
+              <div class="cost-val" id="cost-annual">$0</div>
+              <div class="cost-period">Annual</div>
+            </div>
+            <div class="cost-item">
+              <div class="cost-val" id="cost-3yr">$0</div>
+              <div class="cost-period">3-Year</div>
+            </div>
+          </div>
+          <div class="cost-hw-note" id="cost-hw-note"></div>
+        </div>
+
+        <!-- COVERAGE MAP -->
+        <div class="coverage-section">
+          <h3>Coverage Map</h3>
+          <div class="coverage-grid" id="coverage-grid">
+            <!-- populated by JS -->
+          </div>
+        </div>
+
+        <!-- GAPS PANEL -->
+        <div class="gaps-section">
+          <h3>Gaps in Your Stack</h3>
+          <div id="gaps-list">
+            <!-- populated by JS -->
+          </div>
+        </div>
+
+        <!-- AGE TIP -->
+        <div class="age-tip-section">
+          <div class="age-tip" id="age-tip">
+            <span style="font-size:16px;">💡</span>
+            <span id="age-tip-text"></span>
+          </div>
+        </div>
+
+      </div><!-- /results-body -->
+    </div><!-- /results-panel -->
+  </div><!-- /builder-right -->
+
+</div><!-- /builder-wrap -->
+
+<footer>
+  © <span id="yr"></span> AMP IT Solutions · TechDad CLT · Charlotte, NC ·
+  <a href="index.html">techdadclt.com</a> ·
+  <a href="https://ampitsolutions.com">ampitsolutions.com</a>
+  &nbsp;·&nbsp; <em>Internal client reference — not for public distribution</em>
+</footer>
+
+<script>
+// ─── STATE ───────────────────────────────────────────────────────────────────
+const state = {
+  devices: { ios: 1, android: 0, consoles: 0, tvs: 0 },
+  ages: new Set(),
+  products: {
+    gryphon: false,
+    homebound: false,
+    bark: false,
+    qustodio: false,
+    canopy: false,
+    aura: false
+  }
+};
+
+// ─── PRICING ─────────────────────────────────────────────────────────────────
+const pricing = {
+  gryphon:   { monthly: 90/12,  annual: 90,     hw: 175 },
+  homebound: { monthly: 7.50,   annual: 90,     hw: 0 },
+  bark:      { monthly: 99/12,  annual: 99,     hw: 0 },
+  qustodio:  { monthly: 54.95/12, annual: 54.95, hw: 0 },
+  canopy:    { monthly: 95.90/12, annual: 95.90, hw: 0 },
+  aura:      { monthly: 37,     annual: 37*12,  hw: 99 }
+};
+
+// ─── DEVICE STEPPERS ─────────────────────────────────────────────────────────
+function stepDevice(type, delta) {
+  state.devices[type] = Math.max(0, state.devices[type] + delta);
+  document.getElementById('val-' + type).textContent = state.devices[type];
+  update();
+}
+
+// ─── AGE PILLS ───────────────────────────────────────────────────────────────
+function toggleAge(el) {
+  const age = el.dataset.age;
+  if (state.ages.has(age)) {
+    state.ages.delete(age);
+    el.classList.remove('active');
+  } else {
+    state.ages.add(age);
+    el.classList.add('active');
+  }
+  update();
+}
+
+// ─── PRODUCT TOGGLES ─────────────────────────────────────────────────────────
+// Called ONLY from the checkbox onchange — the card click just triggers the checkbox
+function onProductChange(id) {
+  const cb = document.getElementById('toggle-' + id);
+  state.products[id] = cb.checked;
+
+  // HomeBound requires Gryphon AX
+  if (id === 'gryphon' && !state.products.gryphon) {
+    state.products.homebound = false;
+    document.getElementById('toggle-homebound').checked = false;
+  }
+
+  update();
+}
+
+// Card click: just programmatically click the checkbox (which fires onchange)
+function cardClick(id) {
+  const cb = document.getElementById('toggle-' + id);
+  if (cb.disabled) return;
+  cb.click();
+}
+
+// ─── VPN CONFLICT DETECTION ──────────────────────────────────────────────────
+// Products that use the iOS VPN slot: homebound, qustodio, canopy, bark
+// (bark's iOS web filter uses VPN)
+function getVpnConflicts() {
+  const vpnProducts = {
+    homebound: 'HomeBound',
+    bark:      'Bark',
+    qustodio:  'Qustodio',
+    canopy:    'Canopy'
+  };
+  const active = Object.entries(vpnProducts).filter(([k]) => state.products[k]).map(([k, v]) => ({ key: k, name: v }));
+  if (active.length < 2) return [];
+
+  // Build conflict pairs
+  const conflicts = [];
+  for (let i = 0; i < active.length; i++) {
+    for (let j = i + 1; j < active.length; j++) {
+      conflicts.push([active[i], active[j]]);
+    }
+  }
+  return conflicts;
+}
+
+// ─── MAIN UPDATE ─────────────────────────────────────────────────────────────
+function update() {
+  updateAutoProducts();
+  updateProductCardStates();
+  updateQustodioNote();
+  updateVpnConflicts();
+  updateCosts();
+  updateCoverageMap();
+  updateGaps();
+  updateAgeTip();
+}
+
+function updateAutoProducts() {
+  const hasIos = state.devices.ios > 0;
+  const hasAndroid = state.devices.android > 0;
+  document.getElementById('auto-apple').style.display = hasIos ? 'flex' : 'none';
+  document.getElementById('auto-google').style.display = hasAndroid ? 'flex' : 'none';
+  document.getElementById('auto-none').style.display = (!hasIos && !hasAndroid) ? 'block' : 'none';
+}
+
+function updateProductCardStates() {
+  const gryphonOn = state.products.gryphon;
+  const hbCard = document.getElementById('card-homebound');
+  const hbCb = document.getElementById('toggle-homebound');
+  const hbDep = document.getElementById('dep-homebound');
+
+  if (gryphonOn) {
+    hbCard.classList.remove('disabled-card');
+    hbCb.disabled = false;
+    if (hbDep) hbDep.style.display = 'none';
+  } else {
+    hbCard.classList.add('disabled-card');
+    hbCb.disabled = true;
+    if (hbDep) hbDep.style.display = 'block';
+  }
+
+  // Update active states on all product cards
+  ['gryphon','homebound','bark','qustodio','canopy','aura'].forEach(id => {
+    const card = document.getElementById('card-' + id);
+    if (!card) return;
+    if (state.products[id]) card.classList.add('active');
+    else card.classList.remove('active');
+  });
+}
+
+function updateQustodioNote() {
+  const note = document.getElementById('qust-price-note');
+  const totalIos = state.devices.ios;
+  if (totalIos > 5) {
+    note.textContent = 'Note: pricing increases above 5 iOS devices';
+    note.style.color = 'var(--amber)';
+  } else {
+    note.textContent = 'Up to 5 devices';
+    note.style.color = '';
+  }
+}
+
+function updateVpnConflicts() {
+  const vpnIds = ['homebound', 'bark', 'qustodio', 'canopy'];
+  // Clear all first
+  vpnIds.forEach(id => {
+    const el = document.getElementById('conflict-' + id);
+    if (el) el.classList.remove('visible');
+  });
+
+  const conflicts = getVpnConflicts();
+  if (conflicts.length === 0) return;
+
+  // Show a banner below each conflicting product
+  // Build a "conflicting with" map
+  const conflictMap = {};
+  conflicts.forEach(([a, b]) => {
+    if (!conflictMap[a.key]) conflictMap[a.key] = [];
+    if (!conflictMap[b.key]) conflictMap[b.key] = [];
+    conflictMap[a.key].push(b.name);
+    conflictMap[b.key].push(a.name);
+  });
+
+  Object.entries(conflictMap).forEach(([key, others]) => {
+    const el = document.getElementById('conflict-' + key);
+    const textEl = document.getElementById('conflict-' + key + '-text');
+    if (!el || !textEl) return;
+    const othersStr = others.join(' and ');
+    const name = { homebound: 'HomeBound', bark: 'Bark', qustodio: 'Qustodio', canopy: 'Canopy' }[key];
+    textEl.textContent = `VPN conflict: ${name} and ${othersStr} both use a VPN on iOS/iPad. Only one will run — choose one or the other for cellular coverage.`;
+    el.classList.add('visible');
+  });
+}
+
+// ─── COSTS ───────────────────────────────────────────────────────────────────
+function fmt(n) {
+  if (n === 0) return '$0';
+  if (Number.isInteger(n)) return '$' + n.toLocaleString();
+  return '$' + n.toFixed(2).replace(/\.00$/, '');
+}
+
+function updateCosts() {
+  let monthly = 0, annual = 0, hw = 0;
+
+  Object.entries(state.products).forEach(([id, on]) => {
+    if (!on) return;
+    const p = pricing[id];
+    monthly += p.monthly;
+    annual += p.annual;
+    hw += p.hw;
+  });
+
+  const yr3 = hw + annual * 3;
+
+  // Year 1 includes hardware
+  document.getElementById('cost-monthly').textContent = fmt(Math.round(monthly * 100) / 100);
+  document.getElementById('cost-annual').textContent = fmt(Math.round((annual + hw) * 100) / 100);
+  document.getElementById('cost-3yr').textContent = fmt(Math.round(yr3 * 100) / 100);
+
+  const hwNote = document.getElementById('cost-hw-note');
+  if (hw > 0) {
+    hwNote.textContent = `Includes $${hw} one-time hardware (Yr 1 only). Annual subscription: ${fmt(annual)}/yr.`;
+    hwNote.classList.add('visible');
+  } else {
+    hwNote.classList.remove('visible');
+  }
+
+  // Style zero values
+  ['cost-monthly','cost-annual','cost-3yr'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el.textContent === '$0') el.classList.add('cost-zero');
+    else el.classList.remove('cost-zero');
+  });
+}
+
+// ─── COVERAGE MAP ─────────────────────────────────────────────────────────────
+function updateCoverageMap() {
+  const p = state.products;
+  const d = state.devices;
+  const hasIos = d.ios > 0;
+  const hasAndroid = d.android > 0;
+  const hasConsoles = d.consoles > 0;
+  const hasTvs = d.tvs > 0;
+
+  // Coverage areas definition
+  // Each: { key, label, alwaysShow, relevant(state), status(state), by(state) }
+  // status: 'yes' | 'partial' | 'no'
+  const areas = [
+    {
+      label: 'Home WiFi — content filtering',
+      always: true,
+      status: () => (p.gryphon || p.aura) ? 'yes' : 'no',
+      by: () => {
+        const r = [];
+        if (p.gryphon) r.push('Gryphon AX');
+        if (p.aura) r.push('Aura+Circle');
+        return r.length ? r.join(', ') : 'Not covered';
+      }
+    },
+    {
+      label: 'Cellular — content filtering',
+      always: true,
+      status: () => {
+        const has = p.qustodio || p.canopy || p.homebound || (p.bark && hasAndroid);
+        const partial = p.bark && hasIos && !p.qustodio && !p.canopy && !p.homebound;
+        if (has) return 'yes';
+        if (partial) return 'partial';
+        return 'no';
+      },
+      by: () => {
+        const r = [];
+        if (p.qustodio) r.push('Qustodio');
+        if (p.canopy) r.push('Canopy');
+        if (p.homebound) r.push('HomeBound');
+        if (p.bark && hasAndroid) r.push('Bark (Android)');
+        if (p.bark && hasIos && !p.qustodio && !p.canopy && !p.homebound) return 'Bark iOS web filter — limited';
+        return r.length ? r.join(', ') : 'Not covered';
+      }
+    },
+    {
+      label: 'AI visual / explicit image detection',
+      always: false,
+      relevant: () => hasIos || hasAndroid,
+      status: () => p.canopy ? 'yes' : 'no',
+      by: () => p.canopy ? 'Canopy' : 'Not covered — Canopy only'
+    },
+    {
+      label: 'Ad blocking — network-wide',
+      always: true,
+      status: () => p.gryphon ? 'yes' : 'no',
+      by: () => p.gryphon ? 'Gryphon AX' : 'Not covered — Gryphon AX only'
+    },
+    {
+      label: 'Gaming consoles & smart TVs',
+      always: false,
+      relevant: () => hasConsoles || hasTvs,
+      status: () => (p.gryphon || p.aura) ? 'yes' : 'no',
+      by: () => {
+        const r = [];
+        if (p.gryphon) r.push('Gryphon AX');
+        if (p.aura) r.push('Aura+Circle');
+        return r.length ? r.join(', ') : 'Not covered';
+      }
+    },
+    {
+      label: 'Screen time limits',
+      always: true,
+      status: () => {
+        const freeIos = hasIos; // Screen Time always there
+        const freeAndroid = hasAndroid; // Family Link always there
+        const paid = p.gryphon || p.bark || p.qustodio || p.canopy || p.aura;
+        return (freeIos || freeAndroid || paid) ? 'yes' : 'no';
+      },
+      by: () => {
+        const r = [];
+        if (hasIos) r.push('Screen Time');
+        if (hasAndroid) r.push('Family Link');
+        if (p.gryphon) r.push('Gryphon');
+        if (p.bark) r.push('Bark');
+        if (p.qustodio) r.push('Qustodio');
+        if (p.canopy) r.push('Canopy');
+        if (p.aura) r.push('Aura');
+        return r.join(', ') || 'Not covered';
+      }
+    },
+    {
+      label: 'App blocking',
+      always: true,
+      status: () => {
+        const full = hasIos || hasAndroid || p.bark || p.qustodio || p.aura;
+        const partial = p.canopy && !full;
+        return full ? 'yes' : partial ? 'partial' : 'no';
+      },
+      by: () => {
+        const r = [];
+        if (hasIos) r.push('Screen Time');
+        if (hasAndroid) r.push('Family Link');
+        if (p.bark) r.push('Bark');
+        if (p.qustodio) r.push('Qustodio');
+        if (p.canopy) r.push('Canopy (block-only)');
+        if (p.aura) r.push('Aura');
+        return r.join(', ') || 'Not covered';
+      }
+    },
+    {
+      label: 'Activity reports & history',
+      always: true,
+      status: () => {
+        const full = p.bark || p.qustodio;
+        const partial = (p.gryphon || p.canopy) && !full;
+        return full ? 'yes' : partial ? 'partial' : 'no';
+      },
+      by: () => {
+        const r = [];
+        if (p.bark) r.push('Bark');
+        if (p.qustodio) r.push('Qustodio');
+        if (p.gryphon) r.push('Gryphon (basic)');
+        if (p.canopy) r.push('Canopy (basic)');
+        return r.join(', ') || 'Not covered';
+      }
+    },
+    {
+      label: 'Real-time alerts',
+      always: true,
+      status: () => {
+        const full = p.bark || p.qustodio || p.aura;
+        const partial = (p.canopy || p.gryphon) && !full;
+        return full ? 'yes' : partial ? 'partial' : 'no';
+      },
+      by: () => {
+        const r = [];
+        if (p.bark) r.push('Bark');
+        if (p.qustodio) r.push('Qustodio');
+        if (p.aura) r.push('Aura');
+        if (p.canopy) r.push('Canopy (content-blocked only)');
+        if (p.gryphon) r.push('Gryphon (app-disabled only)');
+        return r.join(', ') || 'Not covered';
+      }
+    },
+    {
+      label: 'Social media monitoring',
+      always: false,
+      relevant: () => hasAndroid || hasIos,
+      status: () => {
+        if (p.bark && hasAndroid) return 'yes';
+        if (p.qustodio) return 'partial';
+        return 'no';
+      },
+      by: () => {
+        const r = [];
+        if (p.bark && hasAndroid) r.push('Bark (Android — TikTok/Instagram/Snapchat)');
+        if (p.bark && hasIos) r.push('Bark iOS: limited by Apple');
+        if (p.qustodio) r.push('Qustodio (limited)');
+        return r.join(', ') || 'Not covered';
+      }
+    },
+    {
+      label: 'Text & message monitoring',
+      always: false,
+      relevant: () => hasAndroid || hasIos,
+      status: () => {
+        if ((p.bark || p.qustodio) && hasAndroid) return 'yes';
+        if (hasIos && !hasAndroid) return 'no'; // Apple restriction
+        return 'no';
+      },
+      by: () => {
+        const r = [];
+        if (p.bark && hasAndroid) r.push('Bark (Android)');
+        if (p.qustodio && hasAndroid) r.push('Qustodio (Android)');
+        if (hasIos) r.push('iOS: not possible — Apple restriction');
+        return r.join(', ') || 'Not covered';
+      }
+    },
+    {
+      label: 'Location tracking',
+      always: true,
+      status: () => {
+        const full = hasAndroid || p.bark || p.qustodio;
+        const partial = hasIos && !p.bark && !p.qustodio;
+        return full ? 'yes' : partial ? 'partial' : 'no';
+      },
+      by: () => {
+        const r = [];
+        if (hasAndroid) r.push('Family Link');
+        if (p.bark) r.push('Bark');
+        if (p.qustodio) r.push('Qustodio');
+        if (hasIos) r.push('Screen Time (via Find My — partial)');
+        return r.join(', ') || 'Not covered';
+      }
+    },
+    {
+      label: 'Bypass difficulty',
+      always: true,
+      status: () => {
+        if (p.gryphon) return 'yes'; // very hard — IS the router
+        if (p.qustodio || p.canopy || p.bark || p.aura) return 'yes';
+        if (hasIos || hasAndroid) return 'partial';
+        return 'no';
+      },
+      by: () => {
+        const r = [];
+        if (p.gryphon) r.push('Gryphon: very hard — is the router');
+        if (p.qustodio || p.canopy) r.push('Qustodio/Canopy: hard — MDM profile');
+        if (p.bark) r.push('Bark: hard');
+        if (p.aura) r.push('Aura+Circle: moderate');
+        if (hasIos) r.push('Screen Time: moderate');
+        if (hasAndroid) r.push('Family Link: moderate');
+        return r.join(', ') || 'Minimal';
+      }
+    },
+    {
+      label: 'Identity theft & dark web monitoring',
+      always: false,
+      relevant: () => true,
+      status: () => p.aura ? 'yes' : 'no',
+      by: () => p.aura ? 'Aura' : 'Not covered — Aura only'
+    }
+  ];
+
+  const grid = document.getElementById('coverage-grid');
+  grid.innerHTML = '';
+
+  areas.forEach(area => {
+    const isRelevant = area.always || (area.relevant && area.relevant());
+    if (!isRelevant) return;
+
+    const status = area.status();
+    const icon = status === 'yes' ? '✅' : status === 'partial' ? '⚠️' : '❌';
+    const by = area.by();
+
+    const row = document.createElement('div');
+    row.className = 'coverage-row';
+    row.innerHTML = `
+      <span class="cov-icon">${icon}</span>
+      <div>
+        <div class="cov-area">${area.label}</div>
+        <div class="cov-by">${by}</div>
+      </div>
+    `;
+    grid.appendChild(row);
+  });
+}
+
+// ─── GAPS ────────────────────────────────────────────────────────────────────
+function updateGaps() {
+  const p = state.products;
+  const d = state.devices;
+  const hasIos = d.ios > 0;
+  const hasAndroid = d.android > 0;
+  const hasConsoles = d.consoles > 0;
+  const hasTvs = d.tvs > 0;
+
+  const gaps = [];
+
+  // No cellular filtering
+  if (!p.qustodio && !p.canopy && !p.homebound) {
+    if (hasIos || hasAndroid) {
+      gaps.push("No cellular content filtering — kids' devices are unprotected away from home WiFi.");
+    }
+  }
+
+  // No home network filtering
+  if (!p.gryphon && !p.aura) {
+    gaps.push("No home network filtering — any device connecting to your WiFi (consoles, smart TVs, guests) is unfiltered.");
+  }
+
+  // Consoles / TVs with no coverage
+  if ((hasConsoles || hasTvs) && !p.gryphon && !p.aura) {
+    gaps.push("Gaming consoles and smart TVs have no content filtering — on-device apps don't install on these platforms.");
+  }
+
+  // No monitoring / visibility
+  if (!p.bark && !p.qustodio) {
+    gaps.push("No activity visibility or alerts — you won't know what your kids are searching, texting, or watching.");
+  }
+
+  // iOS cellular gap (even with Bark selected but no iOS VPN tool)
+  if (hasIos && !p.qustodio && !p.canopy && !p.homebound) {
+    if (p.bark) {
+      gaps.push("Bark's iOS web filter is limited — it can't enforce the same off-home filtering it provides on Android. Consider adding Canopy or Qustodio for full iOS cellular coverage.");
+    }
+  }
+
+  // Android monitoring gap
+  if (hasAndroid && !p.bark && !p.qustodio) {
+    gaps.push("No Android activity monitoring — Family Link blocks but doesn't show you what your child is doing.");
+  }
+
+  // iOS monitoring gap
+  if (hasIos && !p.bark && !p.qustodio) {
+    gaps.push("No iOS activity monitoring — Screen Time limits usage but doesn't send you alerts or reports.");
+  }
+
+  // No identity protection
+  if (!p.aura) {
+    gaps.push("No family identity theft protection or dark web monitoring — consider Aura if this is a concern.");
+  }
+
+  // AI visual detection gap
+  if (!p.canopy && (hasIos || hasAndroid)) {
+    gaps.push("No AI visual content detection — explicit images in apps, iMessage, and social media won't be flagged. Only Canopy offers this.");
+  }
+
+  const list = document.getElementById('gaps-list');
+  list.innerHTML = '';
+
+  if (gaps.length === 0) {
+    list.innerHTML = '<div class="no-gaps">✅ No major gaps found for your current selection.</div>';
+    return;
+  }
+
+  gaps.forEach(g => {
+    const el = document.createElement('div');
+    el.className = 'gap-item';
+    el.innerHTML = `<span class="gap-icon">❌</span><span>${g}</span>`;
+    list.appendChild(el);
+  });
+}
+
+// ─── AGE TIP ─────────────────────────────────────────────────────────────────
+function updateAgeTip() {
+  const tipEl = document.getElementById('age-tip');
+  const tipText = document.getElementById('age-tip-text');
+  const p = state.products;
+  const ages = state.ages;
+
+  if (ages.size === 0) {
+    tipEl.classList.remove('visible');
+    return;
+  }
+
+  let tip = '';
+
+  if (ages.has('under10')) {
+    if (!p.gryphon && !p.aura) {
+      tip = 'For kids under 10, a home network filter like Gryphon AX is the most parent-friendly solution — it works on every device without installing apps.';
+    } else if (!p.qustodio && !p.bark) {
+      tip = "Under-10s mostly need content blocking — you're in good shape with network coverage. Adding Qustodio gives you a usage dashboard as they get older.";
+    }
+  }
+
+  if (ages.has('tweens') && !tip) {
+    if (!p.bark && !p.qustodio) {
+      tip = 'Tweens (10–13) are the highest-risk age group for encountering harmful content and online predators. Adding Bark for real-time monitoring alerts is strongly recommended at this stage.';
+    } else if (!p.canopy) {
+      tip = "Tweens often encounter explicit imagery in unexpected places. Canopy's AI visual detection is especially valuable for this age group — it catches things content filters miss.";
+    }
+  }
+
+  if (ages.has('teens') && !tip) {
+    if (!p.bark) {
+      tip = 'Teens need less blocking and more open communication — Bark is ideal for this age because it alerts you to real problems without reading every message, preserving trust.';
+    } else if (p.qustodio && !ages.has('tweens')) {
+      tip = 'With teens, consider whether a fully transparent monitoring setup (Qustodio) still feels appropriate — Bark takes a less invasive approach that works better with older teens.';
+    }
+  }
+
+  if (!tip && ages.size > 0) {
+    if (!p.gryphon && !p.bark && !p.qustodio) {
+      tip = 'Your stack has no paid protection layers yet. At minimum, consider adding Bark for monitoring alerts and Gryphon AX for home network filtering.';
+    }
+  }
+
+  if (tip) {
+    tipText.textContent = tip;
+    tipEl.classList.add('visible');
+  } else {
+    tipEl.classList.remove('visible');
+  }
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+document.getElementById('yr').textContent = new Date().getFullYear();
+update();
+</script>
+</body>
+</html>
