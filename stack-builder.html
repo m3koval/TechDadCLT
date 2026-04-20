@@ -553,7 +553,7 @@ footer a { color: inherit; text-decoration: none; }
         <div class="product-card" id="card-gryphon" onclick="cardClick('gryphon')">
           <div class="product-card-header">
             <div class="product-card-name">Gryphon AX</div>
-            <div class="product-card-price">$90/yr + $175 hardware (one-time)</div>
+            <div class="product-card-price">$89.99/yr + $299 hardware (one-time)</div>
             <div class="toggle-wrap" onclick="event.stopPropagation()">
               <label class="toggle">
                 <input type="checkbox" id="toggle-gryphon" onchange="onProductChange('gryphon')">
@@ -572,7 +572,7 @@ footer a { color: inherit; text-decoration: none; }
         <div class="product-card disabled-card" id="card-homebound" onclick="cardClick('homebound')">
           <div class="product-card-header">
             <div class="product-card-name">Gryphon HomeBound <span style="font-size:10px;color:var(--purple);background:var(--purple-light);padding:2px 7px;border-radius:8px;font-weight:700;margin-left:4px;">ADD-ON</span></div>
-            <div class="product-card-price">$7.50/mo<br><span style="color:var(--muted);font-weight:400;">Requires Gryphon AX</span></div>
+            <div class="product-card-price">Included w/ Premium<br><span style="color:var(--muted);font-weight:400;">Requires Gryphon AX ($89.99/yr)</span></div>
             <div class="toggle-wrap" onclick="event.stopPropagation()">
               <label class="toggle">
                 <input type="checkbox" id="toggle-homebound" onchange="onProductChange('homebound')" disabled>
@@ -686,7 +686,7 @@ footer a { color: inherit; text-decoration: none; }
         <div class="product-card" id="card-aura" onclick="cardClick('aura')" style="border-color: var(--border); background: var(--teal-light);">
           <div class="product-card-header">
             <div class="product-card-name" style="color: #0d9488;">Aura</div>
-            <div class="product-card-price">$37/mo family (up to 5)</div>
+            <div class="product-card-price">$50/mo family · $13/mo kids-only</div>
             <div class="toggle-wrap" onclick="event.stopPropagation()">
               <label class="toggle">
                 <input type="checkbox" id="toggle-aura" onchange="onProductChange('aura')">
@@ -791,12 +791,12 @@ const state = {
 
 // ─── PRICING ─────────────────────────────────────────────────────────────────
 const pricing = {
-  gryphon:   { monthly: 90/12,  annual: 90,     hw: 175 },
-  homebound: { monthly: 7.50,   annual: 90,     hw: 0 },
-  bark:      { monthly: 99/12,  annual: 99,     hw: 0 },
-  qustodio:  { monthly: 54.95/12, annual: 54.95, hw: 0 },
-  canopy:    { monthly: 95.90/12, annual: 95.90, hw: 0 },
-  aura:      { monthly: 37,     annual: 37*12,  hw: 0 }
+  gryphon:   { monthly: 89.99/12, annual: 89.99,  hw: 299 },
+  homebound: { monthly: 0,        annual: 0,       hw: 0 },   // included with Gryphon Premium
+  bark:      { monthly: 99/12,    annual: 99,      hw: 0 },
+  qustodio:  { monthly: 54.95/12, annual: 54.95,   hw: 0 },
+  canopy:    { monthly: 95.90/12, annual: 95.90,   hw: 0 },
+  aura:      { monthly: 50,       annual: 384,     hw: 0 }    // family plan ($13/mo kids-only)
 };
 
 // ─── DEVICE STEPPERS ─────────────────────────────────────────────────────────
