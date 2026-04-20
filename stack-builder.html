@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Protection Stack Builder — TechDad CLT</title>
 <meta name="robots" content="noindex, nofollow">
+<script defer src="/_vercel/insights/script.js"></script>
+<script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+" (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||(window.posthog=[]));
+  posthog.init('phc_Cp4Ph3JUfeN63Mc2do2iLX4cVfU8HZdoznGbotcBZBUQ', {
+    api_host: 'https://us.i.posthog.com',
+    person_profiles: 'identified_only'
+  });
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -606,7 +615,7 @@ footer a { color: inherit; text-decoration: none; }
         <div class="product-card" id="card-bark" onclick="cardClick('bark')">
           <div class="product-card-header">
             <div class="product-card-name">Bark</div>
-            <div class="product-card-price">$99/yr<br><span style="color:var(--muted);font-weight:400;">Unlimited devices</span></div>
+            <div class="product-card-price">$99/yr (Premium) · $49/yr (Jr)<br><span style="color:var(--muted);font-weight:400;">Unlimited devices · Premium recommended</span></div>
             <div class="toggle-wrap" onclick="event.stopPropagation()">
               <label class="toggle">
                 <input type="checkbox" id="toggle-bark" onchange="onProductChange('bark')">
@@ -618,6 +627,7 @@ footer a { color: inherit; text-decoration: none; }
             <li><span class="feat-dot"></span>AI content monitoring — alerts on concerning activity, not full surveillance</li>
             <li><span class="feat-dot"></span>Social media & text monitoring on Android; iOS limited by Apple</li>
             <li><span class="feat-dot"></span>Screen time, app blocking, location tracking, web filtering</li>
+            <li><span class="feat-dot" style="background:var(--muted)"></span><em style="color:var(--muted);">Bark Jr ($49/yr) = filtering + screen time only, no monitoring alerts</em></li>
           </ul>
         </div>
 
@@ -629,7 +639,7 @@ footer a { color: inherit; text-decoration: none; }
         <div class="product-card" id="card-qustodio" onclick="cardClick('qustodio')">
           <div class="product-card-header">
             <div class="product-card-name">Qustodio</div>
-            <div class="product-card-price">$54.95/yr<br><span id="qust-price-note" style="color:var(--muted);font-weight:400;">Up to 5 devices</span></div>
+            <div class="product-card-price">$59.95/yr<br><span id="qust-price-note" style="color:var(--muted);font-weight:400;">Up to 5 devices</span></div>
             <div class="toggle-wrap" onclick="event.stopPropagation()">
               <label class="toggle">
                 <input type="checkbox" id="toggle-qustodio" onchange="onProductChange('qustodio')">
@@ -699,7 +709,7 @@ footer a { color: inherit; text-decoration: none; }
             <li><span class="feat-dot" style="background:#0d9488;"></span>Credit, financial &amp; dark web monitoring</li>
             <li><span class="feat-dot" style="background:#0d9488;"></span>Real-time fraud alerts</li>
             <li><span class="feat-dot" style="background:#0d9488;"></span>VPN + antivirus + password manager</li>
-            <li><span class="feat-dot" style="background:#0d9488;"></span><em>Includes Circle parental control features in Aura Family plan — add Circle Home Plus hardware ($99) for full network coverage</em></li>
+            <li><span class="feat-dot" style="background:#0d9488;"></span><em>Includes Circle parental control features in Aura Family plan — add Circle Home Plus hardware ($129) for full home network coverage</em></li>
           </ul>
         </div>
 
@@ -794,7 +804,7 @@ const pricing = {
   gryphon:   { monthly: 89.99/12, annual: 89.99,  hw: 299 },
   homebound: { monthly: 0,        annual: 0,       hw: 0 },   // included with Gryphon Premium
   bark:      { monthly: 99/12,    annual: 99,      hw: 0 },
-  qustodio:  { monthly: 54.95/12, annual: 54.95,   hw: 0 },
+  qustodio:  { monthly: 59.95/12, annual: 59.95,   hw: 0 },
   canopy:    { monthly: 95.90/12, annual: 95.90,   hw: 0 },
   aura:      { monthly: 50,       annual: 384,     hw: 0 }    // family plan ($13/mo kids-only)
 };
