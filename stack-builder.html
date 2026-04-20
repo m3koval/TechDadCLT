@@ -229,6 +229,12 @@ nav {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(37,99,235,0.08);
 }
+#card-aura.active {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(13,148,136,0.10);
+}
+#card-aura .toggle input:checked + .toggle-slider { background: var(--teal); }
+#card-aura.active .feat-dot { background: var(--teal); }
 .product-card.disabled-card {
   opacity: 0.45;
   cursor: not-allowed;
@@ -667,31 +673,33 @@ footer a { color: inherit; text-decoration: none; }
 
       </div>
 
-      <!-- HYBRID -->
+      <!-- IDENTITY & FAMILY SAFETY -->
       <div class="group-header" style="margin-top:8px;">
         <div class="group-line"></div>
-        <div class="group-pill gp-hybrid">Hybrid / Identity</div>
+        <div class="group-pill" style="background: var(--teal-light); color: var(--teal); border-color: #99f6e4;">Identity &amp; Family Safety</div>
         <div class="group-line"></div>
       </div>
 
       <div class="product-cards">
 
-        <!-- Aura + Circle -->
-        <div class="product-card" id="card-aura" onclick="cardClick('aura')">
+        <!-- Aura -->
+        <div class="product-card" id="card-aura" onclick="cardClick('aura')" style="border-color: var(--border); background: var(--teal-light);">
           <div class="product-card-header">
-            <div class="product-card-name">Aura + Circle</div>
-            <div class="product-card-price">$37/mo + $99 hardware (one-time)</div>
+            <div class="product-card-name" style="color: #0d9488;">Aura</div>
+            <div class="product-card-price">$37/mo family (up to 5)</div>
             <div class="toggle-wrap" onclick="event.stopPropagation()">
               <label class="toggle">
                 <input type="checkbox" id="toggle-aura" onchange="onProductChange('aura')">
-                <span class="toggle-slider"></span>
+                <span class="toggle-slider" style=""></span>
               </label>
             </div>
           </div>
           <ul class="product-card-features">
-            <li><span class="feat-dot"></span>Parental controls via Circle device (home + mobile coverage)</li>
-            <li><span class="feat-dot"></span>Aura adds identity theft protection + dark web monitoring for whole family</li>
-            <li><span class="feat-dot"></span>Covers consoles and smart TVs via home network hardware</li>
+            <li><span class="feat-dot" style="background:#0d9488;"></span>Identity theft protection for whole family</li>
+            <li><span class="feat-dot" style="background:#0d9488;"></span>Credit, financial &amp; dark web monitoring</li>
+            <li><span class="feat-dot" style="background:#0d9488;"></span>Real-time fraud alerts</li>
+            <li><span class="feat-dot" style="background:#0d9488;"></span>VPN + antivirus + password manager</li>
+            <li><span class="feat-dot" style="background:#0d9488;"></span><em>Includes Circle parental control features in Aura Family plan — add Circle Home Plus hardware ($99) for full network coverage</em></li>
           </ul>
         </div>
 
@@ -788,7 +796,7 @@ const pricing = {
   bark:      { monthly: 99/12,  annual: 99,     hw: 0 },
   qustodio:  { monthly: 54.95/12, annual: 54.95, hw: 0 },
   canopy:    { monthly: 95.90/12, annual: 95.90, hw: 0 },
-  aura:      { monthly: 37,     annual: 37*12,  hw: 99 }
+  aura:      { monthly: 37,     annual: 37*12,  hw: 0 }
 };
 
 // ─── DEVICE STEPPERS ─────────────────────────────────────────────────────────
@@ -1011,7 +1019,8 @@ function updateCoverageMap() {
       }
     },
     {
-      label: 'Cellular — content filtering',
+      label: "Away from home — cellular & friend's WiFi",
+      note: 'Home network products (Gryphon, Circle) stop working the moment kids leave your WiFi.',
       always: true,
       status: () => {
         const has = p.qustodio || p.canopy || p.homebound || (p.bark && hasAndroid);
@@ -1223,11 +1232,13 @@ function updateCoverageMap() {
 
     const row = document.createElement('div');
     row.className = 'coverage-row';
+    const noteHtml = area.note ? `<div class="cov-by" style="font-style:italic;margin-top:2px;">${area.note}</div>` : '';
     row.innerHTML = `
       <span class="cov-icon">${icon}</span>
       <div>
         <div class="cov-area">${area.label}</div>
         <div class="cov-by">${by}</div>
+        ${noteHtml}
       </div>
     `;
     grid.appendChild(row);
@@ -1250,6 +1261,13 @@ function updateGaps() {
     if (hasIos || hasAndroid) {
       gaps.push("No cellular content filtering — kids' devices are unprotected away from home WiFi.");
     }
+  }
+
+  // Away-from-home gap: home-only stack with mobile devices
+  const hasHomeNetwork = p.gryphon || p.aura;
+  const hasOnDevice = p.bark || p.qustodio || p.canopy;
+  if (hasHomeNetwork && !hasOnDevice && (hasIos || hasAndroid)) {
+    gaps.push("Kids on iOS/Android can bypass all controls by switching to cellular data or connecting to a different WiFi network. Add an on-device solution (Bark, Qustodio, or Canopy) for away-from-home coverage.");
   }
 
   // No home network filtering
