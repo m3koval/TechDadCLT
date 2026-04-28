@@ -770,6 +770,11 @@ footer a:hover { color: rgba(255,255,255,0.55); }
     <div class="section-line"></div>
   </div>
 
+  <div class="insight-box insight-green" style="margin-bottom:16px;">
+    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    <div><strong>All five products block adult and explicit content as a baseline</strong> — pornography, violence, and harmful sites are filtered by every option in this table via URL/category blocking. The rows below show where they <em>differ</em>, not whether they have basic content protection. "No" on a row means that specific capability isn't present — not that the product offers no protection at all.</div>
+  </div>
+
   <div class="matrix-wrap">
     <table class="matrix-table">
       <thead>
@@ -783,6 +788,14 @@ footer a:hover { color: rgba(255,255,255,0.55); }
         </tr>
       </thead>
       <tbody>
+        <tr style="background:#f9fafb;">
+          <td style="font-weight:700;color:var(--green);">Adult content blocking <span style="font-weight:400;font-size:11px;color:var(--muted);">(baseline — all products)</span></td>
+          <td><span class="dot-yes"></span>URL + category</td>
+          <td><span class="dot-yes"></span>URL + category</td>
+          <td><span class="dot-yes"></span>URL + category</td>
+          <td><span class="dot-yes"></span>URL + AI visual</td>
+          <td><span class="dot-yes"></span>URL + category</td>
+        </tr>
         <tr>
           <td>Kids at home on WiFi</td>
           <td><span class="dot-yes"></span>Strong</td>
@@ -824,12 +837,12 @@ footer a:hover { color: rgba(255,255,255,0.55); }
           <td><span class="dot-no"></span>No</td>
         </tr>
         <tr>
-          <td>Explicit image detection (browser)</td>
-          <td><span class="dot-no"></span>No</td>
-          <td><span class="dot-no"></span>No</td>
-          <td><span class="dot-no"></span>No</td>
-          <td><span class="dot-yes"></span>AI scanning</td>
-          <td><span class="dot-no"></span>No</td>
+          <td>AI visual image scanning <span style="font-weight:400;font-size:11px;color:var(--muted);">(beyond URL blocking — scans actual image pixels)</span></td>
+          <td><span class="dot-no"></span>No — URL only</td>
+          <td><span class="dot-no"></span>No — URL only</td>
+          <td><span class="dot-no"></span>No — URL only</td>
+          <td><span class="dot-yes"></span>Yes — AI scans every image</td>
+          <td><span class="dot-no"></span>No — URL only</td>
         </tr>
         <tr>
           <td>PC game chat monitoring</td>
