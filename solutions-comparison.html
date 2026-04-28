@@ -776,10 +776,10 @@ footer a { color: inherit; text-decoration: none; }
         <div class="sol-name" style="color:#6d28d9;">Canopy</div>
         <div class="sol-price">$7.99/mo Individual (3 devices)<br>$9.99/mo Family (10 devices) · billed annually</div>
       </div>
-      <div class="sol-desc">The only parental control app focused on blocking explicit <em>visual content</em> using AI — scanning images and videos in real time rather than just blocking URLs. Runs via a VPN/device profile on iOS so web filtering is always-on, even on cellular away from home. Best for younger kids where the core concern is accidental exposure to explicit content.</div>
+      <div class="sol-desc">The only parental control app focused on blocking explicit <em>visual content</em> using AI — scanning images in real time via TLS interception as traffic passes through its VPN tunnel. Works on browser-based content and unencrypted app feeds. Cannot scan inside iMessage or Snapchat (those encrypt images on-device before the VPN ever sees them). Best for younger kids where the core concern is accidental web exposure to explicit content.</div>
       <ul class="sol-features">
-        <li><svg class="fi fi-yes" viewBox="0 0 24 24" style="stroke:#7c3aed"><polyline points="20 6 9 17 4 12"/></svg> AI scans images & videos for explicit content — not just URLs</li>
-        <li><svg class="fi fi-yes" viewBox="0 0 24 24" style="stroke:#7c3aed"><polyline points="20 6 9 17 4 12"/></svg> Sexting prevention — detects inappropriate photos, alerts parents</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24" style="stroke:#7c3aed"><polyline points="20 6 9 17 4 12"/></svg> AI scans images in browsers and unencrypted app feeds — not just URLs</li>
+        <li><svg class="fi fi-partial" viewBox="0 0 24 24" style="stroke:var(--amber)"><line x1="5" y1="12" x2="19" y2="12"/></svg> "Sexting prevention" = catches explicit images from web/feeds only; does not cover iMessage, Snapchat, or WhatsApp (E2E encrypted before VPN sees them)</li>
         <li><svg class="fi fi-yes" viewBox="0 0 24 24" style="stroke:#7c3aed"><polyline points="20 6 9 17 4 12"/></svg> Always-on device profile — works on cellular & any network</li>
         <li><svg class="fi fi-yes" viewBox="0 0 24 24" style="stroke:#7c3aed"><polyline points="20 6 9 17 4 12"/></svg> Location alerts + geofence notifications</li>
         <li><svg class="fi fi-yes" viewBox="0 0 24 24" style="stroke:#7c3aed"><polyline points="20 6 9 17 4 12"/></svg> Social monitoring — browsing-context alerts for bullying, drugs, alcohol</li>
