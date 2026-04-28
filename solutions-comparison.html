@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Digital Protection Solutions — TechDad CLT Client Reference</title>
 <meta name="robots" content="noindex, nofollow">
+<script defer src="/_vercel/insights/script.js"></script>
+<script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+" (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||(window.posthog=[]));
+  posthog.init('phc_Cp4Ph3JUfeN63Mc2do2iLX4cVfU8HZdoznGbotcBZBUQ', {
+    api_host: 'https://us.i.posthog.com',
+    person_profiles: 'identified_only'
+  });
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -186,10 +195,10 @@ thead th {
   white-space: nowrap;
 }
 thead th:first-child { min-width: 200px; background: var(--bg); }
-thead th.col-free { background: #eff6ff; color: var(--accent); }
-thead th.col-network { background: #f5f3ff; color: var(--purple); }
-thead th.col-app { background: #f0fdf4; color: var(--green); }
-thead th.col-hybrid { background: #f0fdfa; color: #0d9488; border-top: 3px solid #0d9488; }
+thead th.col-free    { background: #eff6ff; color: var(--accent); border-top: 3px solid var(--accent); }
+thead th.col-network { background: #f5f3ff; color: var(--purple); border-top: 3px solid var(--purple); }
+thead th.col-app     { background: #f0fdf4; color: var(--green);  border-top: 3px solid var(--green); }
+thead th.col-hybrid  { background: #f0fdfa; color: #0d9488;       border-top: 3px solid #0d9488; }
 .th-name { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
 .th-sub { font-size: 10px; font-weight: 500; opacity: .7; }
 tbody tr:nth-child(even) td { background: #fafafa; }
@@ -287,6 +296,158 @@ footer a { color: inherit; text-decoration: none; }
   .solutions-grid { grid-template-columns: 1fr; }
   .senior-grid { grid-template-columns: 1fr; }
 }
+
+/* ── DESKTOP PRODUCT PICKER ── */
+.cp-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 22px 16px;
+  margin-bottom: 16px;
+}
+.cp-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px;
+}
+.cp-title {
+  font-size: 13px; font-weight: 700; color: var(--navy);
+  display: flex; align-items: center; gap: 10px;
+}
+.cp-count-badge {
+  font-size: 11px; font-weight: 500; color: var(--muted);
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 20px; padding: 2px 9px;
+}
+.cp-actions { display: flex; gap: 6px; }
+.cp-action-btn {
+  font-size: 11px; font-weight: 600; color: var(--muted);
+  background: none; border: 1px solid var(--border);
+  border-radius: 20px; padding: 3px 11px; cursor: pointer;
+  transition: all .12s; font-family: 'Figtree', sans-serif;
+}
+.cp-action-btn:hover { border-color: #9ca3af; color: var(--text); }
+.cp-groups { display: flex; flex-wrap: wrap; gap: 22px; }
+.cp-group { display: flex; flex-direction: column; gap: 7px; }
+.cp-group-label {
+  font-size: 9px; font-weight: 700; letter-spacing: .11em;
+  text-transform: uppercase; white-space: nowrap;
+}
+.cp-gl-free    { color: var(--accent); }
+.cp-gl-network { color: var(--purple); }
+.cp-gl-app     { color: var(--green); }
+.cp-gl-hybrid  { color: #0d9488; }
+.cp-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.cp-chip {
+  font-size: 12px; font-weight: 600; white-space: nowrap;
+  padding: 5px 13px; border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: var(--surface); color: var(--muted);
+  cursor: pointer; transition: all .12s; user-select: none;
+  font-family: 'Figtree', sans-serif; line-height: 1;
+}
+.cp-chip:hover { border-color: #9ca3af; color: var(--text); }
+.cp-chip.cp-on-free    { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+.cp-chip.cp-on-network { background: var(--purple-light); border-color: var(--purple); color: var(--purple); }
+.cp-chip.cp-on-app     { background: var(--green-light);  border-color: var(--green);  color: var(--green); }
+.cp-chip.cp-on-hybrid  { background: #f0fdfa; border-color: #0d9488; color: #0d9488; }
+/* Column hide helpers */
+.ct-hide-2 th:nth-child(2), .ct-hide-2 td:nth-child(2) { display: none; }
+.ct-hide-3 th:nth-child(3), .ct-hide-3 td:nth-child(3) { display: none; }
+.ct-hide-4 th:nth-child(4), .ct-hide-4 td:nth-child(4) { display: none; }
+.ct-hide-5 th:nth-child(5), .ct-hide-5 td:nth-child(5) { display: none; }
+.ct-hide-6 th:nth-child(6), .ct-hide-6 td:nth-child(6) { display: none; }
+.ct-hide-7 th:nth-child(7), .ct-hide-7 td:nth-child(7) { display: none; }
+.ct-hide-8 th:nth-child(8), .ct-hide-8 td:nth-child(8) { display: none; }
+.ct-hide-9 th:nth-child(9), .ct-hide-9 td:nth-child(9) { display: none; }
+@media (max-width: 900px) { .cp-wrap { display: none; } }
+
+/* ── MOBILE COMPARISON ── */
+.mobile-compare { display: none; }
+
+/* Tab strip */
+.mc-tabs {
+  display: flex; gap: 6px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; padding-bottom: 4px;
+  margin-bottom: 16px;
+}
+.mc-tabs::-webkit-scrollbar { display: none; }
+.mc-tab {
+  flex-shrink: 0;
+  font-size: 12px; font-weight: 600;
+  padding: 7px 13px; border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: var(--surface); color: var(--muted);
+  cursor: pointer; transition: all .14s;
+  white-space: nowrap;
+}
+.mc-tab:hover { border-color: #9ca3af; color: var(--text); }
+.mc-tab.mc-active-free   { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+.mc-tab.mc-active-network{ background: var(--purple-light); border-color: var(--purple); color: var(--purple); }
+.mc-tab.mc-active-app    { background: var(--green-light);  border-color: var(--green);  color: var(--green); }
+.mc-tab.mc-active-hybrid { background: #f0fdfa; border-color: #0d9488; color: #0d9488; }
+
+/* Product card */
+.mc-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.mc-card-head {
+  padding: 16px 18px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.mc-card-tier {
+  font-size: 10px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 20px; display: inline-block; margin-bottom: 7px;
+}
+.mc-tier-free    { background: var(--accent-light); color: var(--accent); }
+.mc-tier-network { background: var(--purple-light); color: var(--purple); }
+.mc-tier-app     { background: var(--green-light);  color: var(--green); }
+.mc-tier-hybrid  { background: #f0fdfa; color: #0d9488; }
+.mc-card-name    { font-family: 'Instrument Serif', serif; font-size: 22px; font-weight: 400; color: var(--navy); line-height: 1.2; margin-bottom: 4px; }
+.mc-card-price   { font-size: 13px; font-weight: 600; color: var(--muted); }
+
+/* Feature rows */
+.mc-section-label {
+  font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); padding: 10px 18px 4px;
+  border-top: 1px solid var(--border); background: var(--bg);
+}
+.mc-section-label:first-child { border-top: none; }
+.mc-row {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 10px; padding: 10px 18px;
+  border-bottom: 1px solid #f3f4f6;
+}
+.mc-row:last-child { border-bottom: none; }
+.mc-feat { font-size: 12px; font-weight: 500; color: var(--navy); flex-shrink: 0; max-width: 45%; }
+.mc-val  { font-size: 12px; color: var(--muted); text-align: right; line-height: 1.4; display: flex; align-items: flex-start; gap: 5px; justify-content: flex-end; }
+.mc-icon {
+  width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center; margin-top: 1px;
+}
+.mc-icon svg { width: 9px; height: 9px; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.mc-yes  { background: var(--green-light); }
+.mc-yes  svg { stroke: var(--green); }
+.mc-no   { background: var(--red-light); }
+.mc-no   svg { stroke: var(--red); }
+.mc-part { background: var(--amber-light); }
+.mc-part svg { stroke: var(--amber); }
+
+/* Hint row */
+.mc-hint {
+  font-size: 11px; color: var(--muted); padding: 12px 18px;
+  background: var(--bg); border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 6px;
+}
+
+@media (max-width: 900px) {
+  .table-wrap { display: none; }
+  .legend { display: none; }
+  .mobile-compare { display: block; }
+}
 </style>
 </head>
 <body>
@@ -311,7 +472,7 @@ footer a { color: inherit; text-decoration: none; }
     <p>A practical comparison of every layer of protection we can put in place. Free built-in tools, whole-home network controls, and third-party monitoring apps — and where each one falls short on its own.</p>
     <div style="margin-top:16px;display:inline-flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.35);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:5px 14px;">
       <svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      Last updated: April 2025 — pricing and platform behavior verified
+      Last updated: April 2026 — pricing and platform behavior verified
     </div>
   </div>
 </div>
@@ -416,7 +577,7 @@ footer a { color: inherit; text-decoration: none; }
       <div class="sol-tag tag-free">Amazon · Free w/ Prime</div>
       <div class="sol-header">
         <div class="sol-name">Amazon Kids+</div>
-        <div class="sol-price">$3–5/mo after trial<br>Free on Fire tablets</div>
+        <div class="sol-price">$5.99/mo w/ Prime · $7.99/mo without<br>$48/yr annual w/ Prime</div>
       </div>
       <div class="sol-desc">Excellent for young children on Amazon Fire tablets. Age-gated content library, time limits, and a kid-friendly interface. Very limited outside the Amazon ecosystem.</div>
       <ul class="sol-features">
@@ -573,7 +734,7 @@ footer a { color: inherit; text-decoration: none; }
       <div class="sol-tag tag-app">Best for Android / Older Teens</div>
       <div class="sol-header">
         <div class="sol-name">Bark</div>
-        <div class="sol-price">$14/mo or $99/yr<br>Unlimited devices</div>
+        <div class="sol-price">$14/mo · $99/yr (Premium)<br>$49/yr Bark Jr · Unlimited devices</div>
       </div>
       <div class="sol-desc">AI-powered monitoring that reads texts, emails, and 30+ social media platforms for signs of bullying, depression, predators, and explicit content. Alerts only when something concerning is found. <strong style="color:var(--amber)">Best on Android</strong> — on iOS/iPad, device-level monitoring requires a home sync, but <strong>cloud accounts (Gmail, iCloud email, Google Drive, WhatsApp, GroupMe) are monitored anywhere</strong> since they sync through the cloud, not device WiFi.</div>
       <ul class="sol-features">
@@ -593,7 +754,7 @@ footer a { color: inherit; text-decoration: none; }
       <div class="sol-tag tag-app">Best for iPad / Content Blocking</div>
       <div class="sol-header">
         <div class="sol-name">Qustodio</div>
-        <div class="sol-price">From $54.95/yr · 5 devices<br>Free tier available</div>
+        <div class="sol-price">From $59.95/yr · 5 devices<br>Free tier (1 device) available</div>
       </div>
       <div class="sol-desc">Strong all-in-one parental controls that install an <strong>MDM (Mobile Device Management) profile</strong> on iOS — stronger than a plain VPN toggle and requires the parent's Qustodio password to remove. Web filtering, app blocking, and time limits travel with the device everywhere, including cellular. Best option for iPad families where outside-home content protection is the priority.</div>
       <ul class="sol-features">
@@ -634,7 +795,7 @@ footer a { color: inherit; text-decoration: none; }
       <div class="sol-tag" style="background:#ccfbf1;color:#0f766e;margin-top:6px;">Network Device · Parental Controls</div>
       <div class="sol-header">
         <div class="sol-name">Circle Home Plus</div>
-        <div class="sol-price">$99.99/yr subscription<br>+ $129 hardware (yr 1 sub included free)</div>
+        <div class="sol-price">$89.99/yr subscription<br>+ $129 hardware (1-yr sub bundled free)</div>
       </div>
       <div class="sol-desc">Circle is a dedicated parental control device that plugs into your existing router. Every device on your home network — phones, tablets, consoles, smart TVs — gets filtered and time-limited through Circle. <strong>Portal note:</strong> Since Aura owns Circle, the Aura Family plan gives you both Circle parental controls <em>and</em> identity protection in one app. Buy Circle standalone if you only want network controls — or get Aura Family if you want one dashboard for everything.</div>
       <ul class="sol-features">
@@ -719,27 +880,28 @@ footer a { color: inherit; text-decoration: none; }
     </div>
   </div>
 
+  <!-- ── MOBILE COMPARISON (hidden on desktop) ── -->
+  <div class="mobile-compare" id="mobile-compare">
+    <div class="mc-tabs" id="mc-tabs"></div>
+    <div class="mc-card" id="mc-card"></div>
+  </div>
+
+  <!-- ── DESKTOP PRODUCT PICKER (hidden on mobile) ── -->
+  <div class="cp-wrap" id="cp-wrap"></div>
+
   <div class="table-wrap">
-    <table>
+    <table id="compare-table">
       <thead>
-        <!-- GROUP LABEL ROW -->
-        <tr>
-          <th style="border-bottom:2px solid var(--border);background:var(--bg);"></th>
-          <th colspan="2" style="text-align:center;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:#eff6ff;border-bottom:3px solid var(--accent);padding:8px 4px;">Free Built-Ins</th>
-          <th colspan="2" style="text-align:center;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);background:#f5f3ff;border-bottom:3px solid var(--purple);padding:8px 4px;">Home Network</th>
-          <th colspan="3" style="text-align:center;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);background:#f0fdf4;border-bottom:3px solid var(--green);padding:8px 4px;">On-Device · Outside Home + Visibility</th>
-          <th colspan="1" style="text-align:center;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0d9488;background:#f0fdfa;border-bottom:3px solid #0d9488;padding:8px 4px;">Identity &amp; Family Safety</th>
-        </tr>
         <!-- PRODUCT NAME ROW -->
         <tr>
           <th>Feature</th>
           <th class="col-free"><div class="th-name">Apple Screen Time</div><div class="th-sub">Free · Apple only</div></th>
           <th class="col-free"><div class="th-name">Google Family Link</div><div class="th-sub">Free · Android only</div></th>
           <th class="col-network"><div class="th-name">Gryphon AX</div><div class="th-sub">#1 rated router · $89.99/yr Premium</div></th>
-          <th class="col-network"><div class="th-name">Circle Home Plus</div><div class="th-sub">$99/yr · Home network controls</div></th>
+          <th class="col-network"><div class="th-name">Circle Home Plus</div><div class="th-sub">$89.99/yr · Home network controls</div></th>
           <th class="col-app"><div class="th-name">Bark</div><div class="th-sub">$14/mo · All devices</div></th>
           <th class="col-app"><div class="th-name">Qustodio</div><div class="th-sub">~$5/mo · All devices</div></th>
-          <th class="col-app" style="background:#f5f3ff;"><div class="th-name" style="color:#6d28d9;">Canopy</div><div class="th-sub" style="color:#7c3aed;">$8/mo · AI visual blocking</div></th>
+          <th class="col-app"><div class="th-name">Canopy</div><div class="th-sub">$8/mo · AI visual blocking</div></th>
           <th class="col-hybrid"><div class="th-name">Aura</div><div class="th-sub">$50/mo family · $13/mo kids-only · Parental controls + Identity</div></th>
         </tr>
       </thead>
@@ -749,10 +911,10 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-free"><span class="price-free">Free</span></td>
           <td class="col-free"><span class="price-free">Free</span></td>
           <td class="col-network"><span class="price-paid">~$7.50/mo</span><div class="td-sub">$89.99/yr Premium (amortized) · HomeBound VPN included</div></td>
-          <td class="col-network"><span class="price-paid">~$8.33/mo</span><div class="td-sub">$99.99/yr (amortized) · + $129 hardware yr 1 (yr 1 sub included)</div></td>
+          <td class="col-network"><span class="price-paid">~$7.50/mo</span><div class="td-sub">$89.99/yr (amortized) · + $129 hardware yr 1 (yr 1 sub bundled)</div></td>
           <td class="col-app"><span class="price-paid">$14/mo</span><div class="td-sub">or $8.25/mo billed annually</div></td>
-          <td class="col-app"><span class="price-paid">~$4.58/mo</span><div class="td-sub">billed annually</div></td>
-          <td class="col-app" style="background:#faf5ff;"><span class="price-paid">$7.99/mo</span><div class="td-sub">or $7.99/mo billed annually</div></td>
+          <td class="col-app"><span class="price-paid">~$5.00/mo</span><div class="td-sub">billed annually ($59.95/yr)</div></td>
+          <td class="col-app"><span class="price-paid">$7.99/mo</span><div class="td-sub">or $7.99/mo billed annually</div></td>
           <td class="col-hybrid"><span class="price-paid">$50/mo</span><div class="td-sub">family (5 adults + unlimited kids) · or $13/mo kids-only plan</div></td>
         </tr>
         <tr>
@@ -760,10 +922,10 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-free"><span class="price-free">Free</span></td>
           <td class="col-free"><span class="price-free">Free</span></td>
           <td class="col-network"><span class="price-paid">$89.99/yr</span><div class="td-sub">Premium subscription · + $299 hardware (one-time)</div></td>
-          <td class="col-network"><span class="price-paid">$99.99/yr</span><div class="td-sub">after yr 1 · $129 hardware includes first year free</div></td>
-          <td class="col-app"><span class="price-paid">$99/yr</span></td>
-          <td class="col-app"><span class="price-paid">$54.95/yr</span><div class="td-sub">5 devices</div></td>
-          <td class="col-app" style="background:#faf5ff;"><span class="price-paid">$95.90/yr</span><div class="td-sub">3–10 devices</div></td>
+          <td class="col-network"><span class="price-paid">$89.99/yr</span><div class="td-sub">after yr 1 · $129 hardware includes first year sub free</div></td>
+          <td class="col-app"><span class="price-paid">$99/yr</span><div class="td-sub">Premium · $49/yr Bark Jr (filtering only)</div></td>
+          <td class="col-app"><span class="price-paid">$59.95/yr</span><div class="td-sub">5 devices · $109.95/yr unlimited</div></td>
+          <td class="col-app"><span class="price-paid">$95.90/yr</span><div class="td-sub">3–10 devices</div></td>
           <td class="col-hybrid"><span class="price-paid">$384/yr</span><div class="td-sub">family intro · renews ~$420/yr · or $120/yr kids-only</div></td>
         </tr>
         <tr style="background:#f8fafc;">
@@ -771,10 +933,10 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-free"><span class="price-free">Free</span></td>
           <td class="col-free"><span class="price-free">Free</span></td>
           <td class="col-network"><strong>~$569</strong><div class="td-sub">$299 hardware + $270 subscriptions</div></td>
-          <td class="col-network"><strong>~$329</strong><div class="td-sub">$129 hardware (yr 1 free) + $200 subscriptions yrs 2–3</div></td>
+          <td class="col-network"><strong>~$309</strong><div class="td-sub">$129 hardware (yr 1 free) + $179.98 subscriptions yrs 2–3</div></td>
           <td class="col-app"><strong>$297</strong></td>
-          <td class="col-app"><strong>~$165</strong></td>
-          <td class="col-app" style="background:#faf5ff;"><strong>~$288</strong></td>
+          <td class="col-app"><strong>~$180</strong><div class="td-sub">$59.95 × 3 yrs</div></td>
+          <td class="col-app"><strong>~$288</strong></td>
           <td class="col-hybrid"><strong>~$1,224</strong><div class="td-sub">$384 intro yr + ~$420 × 2 renewals · no hardware needed</div></td>
         </tr>
         <tr>
@@ -785,7 +947,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">Home WiFi only</span></div><div class="td-sub">Circle app extends some limits to mobile data, but filtering is home-only</div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Android: yes · iOS: home sync only</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Everywhere (device profile)</span></div></td>
-          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Everywhere (device profile)</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Everywhere (device profile)</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — app-based</span></div></td>
         </tr>
         <tr>
@@ -796,7 +958,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — network level</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Strong</span></div></td>
-          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">AI visual + URL blocking</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">AI visual + URL blocking</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — SafeSearch, YouTube Restricted, site blocking</span></div></td>
         </tr>
         <tr>
@@ -807,7 +969,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
-          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
         </tr>
         <tr>
@@ -818,7 +980,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
-          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — bedtimes, focus time, pause internet</span></div></td>
         </tr>
         <tr>
@@ -829,7 +991,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — per-app controls</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
-          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Block entirely only</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Block entirely only</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — per-app &amp; site controls</span></div></td>
         </tr>
         <tr>
@@ -840,7 +1002,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Basic — usage history</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Detailed</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Detailed</span></div></td>
-          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Basic</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Basic</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — browser history, app usage, weekly summaries</span></div></td>
         </tr>
         <tr>
@@ -851,7 +1013,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Limit reached alerts</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — AI-driven</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
-          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Content blocked alerts</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Content blocked alerts</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — risk signals, self-harm, predator alerts + fraud alerts</span></div></td>
         </tr>
         <tr>
@@ -862,7 +1024,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Android: 30+ platforms · iOS: zero</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Limited</span></div></td>
-          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No — blocks apps entirely</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No — blocks apps entirely</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Partial — messaging app usage insights, AI alerts</span></div></td>
         </tr>
         <tr>
@@ -873,7 +1035,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — Android</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Android only</span></div></td>
-          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Partial — messaging app usage, not message content</span></div></td>
         </tr>
         <tr>
@@ -884,7 +1046,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes</span></div></td>
-          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
         </tr>
         <tr>
@@ -895,7 +1057,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — network level</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
-          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
         </tr>
         <tr>
@@ -906,7 +1068,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — network level</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
-          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
         </tr>
         <tr>
@@ -917,7 +1079,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Moderate — switch to mobile data bypasses it</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Hard — requires uninstall</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Hard — requires uninstall</span></div></td>
-          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Hard — MDM profile, parent password</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Hard — MDM profile, parent password</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-partial"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div><span class="t-label">Moderate — app can be uninstalled; parent email re-locks</span></div></td>
         </tr>
         <tr>
@@ -928,7 +1090,7 @@ footer a { color: inherit; text-decoration: none; }
           <td class="col-network"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
-          <td class="col-app" style="background:#faf5ff;"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
+          <td class="col-app"><div class="cell-inner"><div class="t-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><span class="t-label">No</span></div></td>
           <td class="col-hybrid"><div class="cell-inner"><div class="t-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="t-label">Yes — whole family, credit + dark web</span></div></td>
         </tr>
       </tbody>
@@ -958,7 +1120,7 @@ footer a { color: inherit; text-decoration: none; }
       <div class="rec-stack">
         <span class="rec-chip rc-free">Apple Screen Time</span>
         <span class="rec-chip rc-network">Gryphon AX</span>
-        <span class="rec-chip rc-app" style="background:#f5f3ff;color:#6d28d9;border-color:#e9d5ff;">Canopy</span>
+        <span class="rec-chip rc-app">Canopy</span>
       </div>
       <p class="rec-note">Gryphon covers the whole home — consoles, TVs, every WiFi device — and blocks ads. Canopy's AI visual filter travels with the iPad on cellular, catching explicit images even when URLs aren't blocked. Screen Time handles device rules and downtime. No monitoring needed at this age — focus is purely on blocking.</p>
       <div style="margin-top:10px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);padding-top:8px;">⚠️ Don't add HomeBound — Canopy's VPN already handles cellular coverage.</div>
@@ -1017,7 +1179,7 @@ footer a { color: inherit; text-decoration: none; }
       <h4><span>🖼️</span> Explicit content is the #1 concern</h4>
       <div class="rec-stack">
         <span class="rec-chip rc-network">Gryphon AX</span>
-        <span class="rec-chip rc-app" style="background:#f5f3ff;color:#6d28d9;border-color:#e9d5ff;">Canopy</span>
+        <span class="rec-chip rc-app">Canopy</span>
       </div>
       <p class="rec-note">Gryphon blocks at the network level — covers every device in the home. Canopy's AI visual scanner catches explicit images that slip past URL-based blocking, running as a device profile everywhere the iPad goes. The most complete content-blocking stack available on iOS. No HomeBound needed — Canopy already handles cellular.</p>
     </div>
@@ -1025,7 +1187,8 @@ footer a { color: inherit; text-decoration: none; }
     <div class="rec-card" style="border-color:#0d9488;background:linear-gradient(135deg,#f0fdfa 0%,#fff 100%);">
       <h4><span>🧓</span> Aging parent / senior safety</h4>
       <div class="rec-stack">
-        <span class="rec-chip" style="background:var(--amber-light);color:var(--amber);border-color:#fde68a;">Hiya / Robokiller</span>
+        <span class="rec-chip" style="background:var(--amber-light);color:var(--amber);border-color:#fde68a;">Hiya</span>
+        <span class="rec-chip" style="background:var(--amber-light);color:var(--amber);border-color:#fde68a;">Robokiller</span>
         <span class="rec-chip" style="background:#ccfbf1;color:#0d9488;border-color:#99f6e4;">Aura</span>
         <span class="rec-chip rc-free">Incogni</span>
         <span class="rec-chip rc-free">2FA + Password Mgr</span>
@@ -1056,16 +1219,32 @@ footer a { color: inherit; text-decoration: none; }
   <p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:24px;max-width:700px;">Different tools apply for seniors. The goal isn't parental controls — it's blocking scam vectors, filtering malicious content, and reducing the attack surface on their devices and accounts.</p>
   <div class="senior-grid">
     <div class="senior-tool-card">
-      <div class="sol-tag tag-senior">Call Screening · Free/Paid</div>
+      <div class="sol-tag tag-senior">Call Screening · Free + Paid tiers</div>
       <div class="sol-header">
-        <div class="sol-name">Hiya / Robokiller</div>
-        <div class="sol-price">Free–$4/mo</div>
+        <div class="sol-name">Hiya</div>
+        <div class="sol-price">Free basic · $2.99/mo Premium<br>$9.99/mo AI Phone (live screening)</div>
       </div>
-      <div class="sol-desc">Identifies and blocks scam, spam, and robocalls before they ring. One of the highest-impact interventions for seniors — most scam attempts start with a phone call.</div>
+      <div class="sol-desc">Identifies and blocks scam, spam, and robocalls before they ring. The free tier covers basic spam ID — Premium adds enhanced caller ID and faster database updates. The newer AI Phone tier uses real-time AI to screen live calls and detect deepfake voice scams.</div>
       <ul class="sol-features">
-        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Scam call identification & blocking</li>
-        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Robocall screening</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Free tier available — basic spam call ID & blocking</li>
         <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Works on iPhone and Android</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> AI Phone: live call screening + deepfake detection ($9.99/mo)</li>
+        <li><svg class="fi fi-partial" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg> Caller ID database less aggressive than Robokiller — fewer false positives</li>
+      </ul>
+    </div>
+    <div class="senior-tool-card">
+      <div class="sol-tag tag-senior">Robocall Blocking · Paid</div>
+      <div class="sol-header">
+        <div class="sol-name">Robokiller</div>
+        <div class="sol-price">$89.99/yr <span style="font-size:11px;font-weight:400;color:var(--muted);">(raised from $39.99 in July 2025)</span><br>7-day free trial</div>
+      </div>
+      <div class="sol-desc">More aggressive blocking than Hiya — answers suspected robocalls with "answer bots" that waste scammer time. Better for seniors who receive a very high volume of spam calls and want maximum blocking over caller ID accuracy.</div>
+      <ul class="sol-features">
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Answer bots pick up scam calls so your senior doesn't have to</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Very high spam call block rate — more aggressive than Hiya</li>
+        <li><svg class="fi fi-yes" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Works on iPhone and Android</li>
+        <li><svg class="fi fi-partial" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg> More false positives than Hiya — occasional legitimate calls blocked</li>
+        <li><svg class="fi fi-partial" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg> Price jumped 125% in July 2025 — now $89.99/yr vs. former $39.99/yr</li>
       </ul>
     </div>
     <div class="senior-tool-card" style="border-color:#5eead4;background:linear-gradient(135deg,#f0fdfa 0%,#fff 100%);">
@@ -1087,7 +1266,7 @@ footer a { color: inherit; text-decoration: none; }
       <div class="sol-tag tag-senior">Identity Protection · Paid</div>
       <div class="sol-header">
         <div class="sol-name">LifeLock (by Norton)</div>
-        <div class="sol-price">$9–30/mo</div>
+        <div class="sol-price">$12–35/mo</div>
       </div>
       <div class="sol-desc">Norton's identity protection product — well-known, widely trusted, and solid for standalone identity monitoring. A good fit if the household doesn't need Circle's network controls and wants a brand seniors may already recognize.</div>
       <ul class="sol-features">
@@ -1159,6 +1338,24 @@ footer a { color: inherit; text-decoration: none; }
 
 </div>
 
+<!-- STACK BUILDER BANNER -->
+<div style="background:var(--navy);padding:56px 28px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 75% 50%,rgba(37,99,235,0.2) 0%,transparent 60%),radial-gradient(ellipse at 20% 60%,rgba(5,150,105,0.1) 0%,transparent 55%);pointer-events:none;"></div>
+  <div style="max-width:1100px;margin:0 auto;position:relative;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;">
+    <div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#93c5fd;margin-bottom:12px;">Next step</div>
+      <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(22px,3vw,34px);font-weight:400;color:white;line-height:1.2;margin-bottom:10px;">Know what you need —<br><em style="color:#93c5fd;">now build your stack.</em></h2>
+      <p style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.65;max-width:480px;margin:0;">Answer a few questions about your household and get a tailored recommendation with real pricing — so you walk into the audit knowing exactly what you want.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-end;flex-shrink:0;">
+      <a href="stack-builder.html" style="display:inline-flex;align-items:center;gap:10px;font-family:'Figtree',sans-serif;font-size:15px;font-weight:600;color:white;background:var(--accent);border-radius:12px;padding:14px 26px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 14px rgba(37,99,235,0.4);">
+        🔧 Build My Stack →
+      </a>
+      <a href="Intakeform.html" style="font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;text-align:center;">or book the free audit directly</a>
+    </div>
+  </div>
+</div>
+
 <footer>
   © <span id="yr"></span> AMP IT Solutions · TechDad CLT · Charlotte, NC ·
   <a href="index.html">techdadclt.com</a> ·
@@ -1166,6 +1363,372 @@ footer a { color: inherit; text-decoration: none; }
   &nbsp;·&nbsp; <em>Internal client reference — not for public distribution</em>
 </footer>
 
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// ── DESKTOP PRODUCT PICKER ─────────────────────────────────────────────────
+(function () {
+  var PRODUCTS = [
+    { id: 'screen-time', label: 'Screen Time',  group: 'free',    col: 2 },
+    { id: 'family-link', label: 'Family Link',  group: 'free',    col: 3 },
+    { id: 'gryphon',     label: 'Gryphon AX',   group: 'network', col: 4 },
+    { id: 'circle',      label: 'Circle',        group: 'network', col: 5 },
+    { id: 'bark',        label: 'Bark',          group: 'app',     col: 6 },
+    { id: 'qustodio',    label: 'Qustodio',      group: 'app',     col: 7 },
+    { id: 'canopy',      label: 'Canopy',        group: 'app',     col: 8 },
+    { id: 'aura',        label: 'Aura',          group: 'hybrid',  col: 9 }
+  ];
+  var GROUPS = [
+    { id: 'free',    label: 'Free Built-Ins',          cls: 'cp-gl-free' },
+    { id: 'network', label: 'Home Network',             cls: 'cp-gl-network' },
+    { id: 'app',     label: 'On-Device Apps',           cls: 'cp-gl-app' },
+    { id: 'hybrid',  label: 'Identity &amp; Safety',   cls: 'cp-gl-hybrid' }
+  ];
+
+  var selected = new Set(PRODUCTS.map(function (p) { return p.id; }));
+  var table = document.getElementById('compare-table');
+
+  function updateTable() {
+    PRODUCTS.forEach(function (p) {
+      table.classList.toggle('ct-hide-' + p.col, !selected.has(p.id));
+    });
+  }
+
+  function render() {
+    var count = selected.size;
+    var groupsHTML = GROUPS.map(function (g) {
+      var chips = PRODUCTS.filter(function (p) { return p.group === g.id; }).map(function (p) {
+        var on = selected.has(p.id) ? ' cp-on-' + p.group : '';
+        return '<button class="cp-chip' + on + '" onclick="cpToggle(\'' + p.id + '\')">' + p.label + '</button>';
+      }).join('');
+      return '<div class="cp-group"><div class="cp-group-label ' + g.cls + '">' + g.label + '</div><div class="cp-chips">' + chips + '</div></div>';
+    }).join('');
+
+    document.getElementById('cp-wrap').innerHTML =
+      '<div class="cp-header">' +
+        '<div class="cp-title">Compare products <span class="cp-count-badge">' + count + ' of ' + PRODUCTS.length + ' selected</span></div>' +
+        '<div class="cp-actions">' +
+          '<button class="cp-action-btn" onclick="cpAll()">Select all</button>' +
+          '<button class="cp-action-btn" onclick="cpClear()">Clear</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="cp-groups">' + groupsHTML + '</div>';
+
+    updateTable();
+  }
+
+  window.cpToggle = function (id) {
+    if (selected.has(id) && selected.size === 1) return;
+    if (selected.has(id)) { selected.delete(id); } else { selected.add(id); }
+    render();
+  };
+  window.cpAll = function () {
+    PRODUCTS.forEach(function (p) { selected.add(p.id); });
+    render();
+  };
+  window.cpClear = function () {
+    var first = PRODUCTS[0].id;
+    selected.clear();
+    selected.add(first);
+    render();
+  };
+
+  render();
+})();
+
+// ── MOBILE COMPARISON ──────────────────────────────────────────────────────
+(function() {
+  const Y = 'yes', N = 'no', P = 'partial';
+  const products = [
+    {
+      id: 'screen-time', tab: 'Screen Time', name: 'Apple Screen Time',
+      tier: 'free', tierLabel: 'Free Built-In · iOS/iPad only',
+      price: 'Free',
+      features: [
+        { group: 'Cost' },
+        { feat: 'Monthly cost',       s: Y, val: 'Free' },
+        { feat: 'Annual cost',        s: Y, val: 'Free' },
+        { feat: '3-year total',       s: Y, val: 'Free' },
+        { group: 'Coverage' },
+        { feat: 'Away from home',     s: Y, val: 'Yes — travels with device' },
+        { feat: 'Home network (WiFi)', s: P, val: 'Basic — no router filtering' },
+        { feat: 'Consoles & smart TVs', s: N, val: 'No — iOS/iPad only' },
+        { group: 'Parental Controls' },
+        { feat: 'Web filtering',      s: P, val: 'Basic (built-in)' },
+        { feat: 'Screen time limits', s: Y, val: 'Yes — app limits + downtime' },
+        { feat: 'App blocking',       s: Y, val: 'Yes' },
+        { feat: 'Ad blocking',        s: N, val: 'No' },
+        { group: 'Monitoring & Reports' },
+        { feat: 'Activity reports',   s: N, val: 'No' },
+        { feat: 'Real-time alerts',   s: N, val: 'No' },
+        { feat: 'Social monitoring',  s: N, val: 'No' },
+        { feat: 'Text monitoring',    s: N, val: 'No' },
+        { feat: 'Location tracking',  s: P, val: 'Via Find My (limited)' },
+        { group: 'Security' },
+        { feat: 'Bypass difficulty',  s: P, val: 'Moderate — second Apple ID bypass' },
+        { feat: 'Identity protection',s: N, val: 'No' },
+      ]
+    },
+    {
+      id: 'family-link', tab: 'Family Link', name: 'Google Family Link',
+      tier: 'free', tierLabel: 'Free Built-In · Android only',
+      price: 'Free',
+      features: [
+        { group: 'Cost' },
+        { feat: 'Monthly cost',       s: Y, val: 'Free' },
+        { feat: 'Annual cost',        s: Y, val: 'Free' },
+        { feat: '3-year total',       s: Y, val: 'Free' },
+        { group: 'Coverage' },
+        { feat: 'Away from home',     s: Y, val: 'Yes — travels with device' },
+        { feat: 'Home network (WiFi)', s: P, val: 'Basic — no router filtering' },
+        { feat: 'Consoles & smart TVs', s: N, val: 'No — Android only' },
+        { group: 'Parental Controls' },
+        { feat: 'Web filtering',      s: P, val: 'Basic (built-in)' },
+        { feat: 'Screen time limits', s: Y, val: 'Yes' },
+        { feat: 'App blocking',       s: Y, val: 'Yes — app approval required' },
+        { feat: 'Ad blocking',        s: N, val: 'No' },
+        { group: 'Monitoring & Reports' },
+        { feat: 'Activity reports',   s: N, val: 'No' },
+        { feat: 'Real-time alerts',   s: N, val: 'No' },
+        { feat: 'Social monitoring',  s: N, val: 'No' },
+        { feat: 'Text monitoring',    s: N, val: 'No' },
+        { feat: 'Location tracking',  s: Y, val: 'Yes' },
+        { group: 'Security' },
+        { feat: 'Bypass difficulty',  s: P, val: 'Moderate — factory reset' },
+        { feat: 'Identity protection',s: N, val: 'No' },
+      ]
+    },
+    {
+      id: 'gryphon', tab: 'Gryphon AX', name: 'Gryphon AX',
+      tier: 'network', tierLabel: 'Home Network Router',
+      price: '$89.99/yr + $299 hardware',
+      features: [
+        { group: 'Cost' },
+        { feat: 'Monthly cost',       s: P, val: '~$7.50/mo (amortized)' },
+        { feat: 'Annual cost',        s: P, val: '$89.99/yr Premium subscription' },
+        { feat: '3-year total',       s: P, val: '~$569 (hardware + 3 yrs sub)' },
+        { group: 'Coverage' },
+        { feat: 'Away from home',     s: P, val: 'HomeBound VPN included — conflicts with on-device VPN apps' },
+        { feat: 'Home network (WiFi)', s: Y, val: 'Yes — #1 rated router filtering' },
+        { feat: 'Consoles & smart TVs', s: Y, val: 'Yes — network level' },
+        { group: 'Parental Controls' },
+        { feat: 'Web filtering',      s: Y, val: 'Strong (#1 rated)' },
+        { feat: 'Screen time limits', s: Y, val: 'Yes' },
+        { feat: 'App blocking',       s: P, val: 'Limited — category blocking' },
+        { feat: 'Ad blocking',        s: Y, val: 'Yes — free + advanced w/ Premium' },
+        { group: 'Monitoring & Reports' },
+        { feat: 'Activity reports',   s: P, val: 'Basic' },
+        { feat: 'Real-time alerts',   s: P, val: 'App-disabled alerts only' },
+        { feat: 'Social monitoring',  s: N, val: 'No' },
+        { feat: 'Text monitoring',    s: N, val: 'No' },
+        { feat: 'Location tracking',  s: N, val: 'No' },
+        { group: 'Security' },
+        { feat: 'Bypass difficulty',  s: Y, val: 'Hard — IS the router; cellular triggers alert' },
+        { feat: 'Identity protection',s: N, val: 'No' },
+      ]
+    },
+    {
+      id: 'circle', tab: 'Circle', name: 'Circle Home Plus',
+      tier: 'network', tierLabel: 'Home Network Device',
+      price: '$89.99/yr + $129 hardware',
+      features: [
+        { group: 'Cost' },
+        { feat: 'Monthly cost',       s: P, val: '~$7.50/mo (amortized after yr 1)' },
+        { feat: 'Annual cost',        s: P, val: '$89.99/yr after yr 1 (yr 1 bundled free)' },
+        { feat: '3-year total',       s: P, val: '~$309 (hardware + 2 yrs sub)' },
+        { group: 'Coverage' },
+        { feat: 'Away from home',     s: N, val: 'Home WiFi only — cellular bypasses it' },
+        { feat: 'Home network (WiFi)', s: Y, val: 'Yes — network level, all devices' },
+        { feat: 'Consoles & smart TVs', s: Y, val: 'Yes — network level' },
+        { group: 'Parental Controls' },
+        { feat: 'Web filtering',      s: Y, val: 'Yes — network level' },
+        { feat: 'Screen time limits', s: Y, val: 'Yes' },
+        { feat: 'App blocking',       s: Y, val: 'Yes — per-app controls' },
+        { feat: 'Ad blocking',        s: N, val: 'No' },
+        { group: 'Monitoring & Reports' },
+        { feat: 'Activity reports',   s: P, val: 'Basic — usage history' },
+        { feat: 'Real-time alerts',   s: P, val: 'Limit-reached alerts' },
+        { feat: 'Social monitoring',  s: N, val: 'No' },
+        { feat: 'Text monitoring',    s: N, val: 'No' },
+        { feat: 'Location tracking',  s: N, val: 'No' },
+        { group: 'Security' },
+        { feat: 'Bypass difficulty',  s: P, val: 'Moderate — switching to cellular bypasses it' },
+        { feat: 'Identity protection',s: N, val: 'No' },
+      ]
+    },
+    {
+      id: 'bark', tab: 'Bark', name: 'Bark',
+      tier: 'app', tierLabel: 'On-Device · Monitoring',
+      price: '$14/mo · $99/yr Premium',
+      features: [
+        { group: 'Cost' },
+        { feat: 'Monthly cost',       s: P, val: '$14/mo (or ~$8.25/mo billed annually)' },
+        { feat: 'Annual cost',        s: P, val: '$99/yr Premium · $49/yr Bark Jr (filtering only)' },
+        { feat: '3-year total',       s: P, val: '$297 (3 × $99)' },
+        { group: 'Coverage' },
+        { feat: 'Away from home',     s: P, val: 'Android: yes · iOS: home WiFi sync only' },
+        { feat: 'Home network (WiFi)', s: P, val: 'Partial — no router-level filtering' },
+        { feat: 'Consoles & smart TVs', s: N, val: 'No' },
+        { group: 'Parental Controls' },
+        { feat: 'Web filtering',      s: Y, val: 'Yes' },
+        { feat: 'Screen time limits', s: Y, val: 'Yes' },
+        { feat: 'App blocking',       s: Y, val: 'Yes' },
+        { feat: 'Ad blocking',        s: N, val: 'No' },
+        { group: 'Monitoring & Reports' },
+        { feat: 'Activity reports',   s: Y, val: 'Detailed' },
+        { feat: 'Real-time alerts',   s: Y, val: 'Yes — AI-driven' },
+        { feat: 'Social monitoring',  s: P, val: 'Android: 30+ platforms · iOS: zero (Apple blocks it)' },
+        { feat: 'Text monitoring',    s: P, val: 'Android only' },
+        { feat: 'Location tracking',  s: Y, val: 'Yes' },
+        { group: 'Security' },
+        { feat: 'Bypass difficulty',  s: P, val: 'Hard — requires uninstall' },
+        { feat: 'Identity protection',s: N, val: 'No' },
+      ]
+    },
+    {
+      id: 'qustodio', tab: 'Qustodio', name: 'Qustodio',
+      tier: 'app', tierLabel: 'On-Device · MDM Profile',
+      price: '$59.95/yr (5 devices) · $109.95/yr unlimited',
+      features: [
+        { group: 'Cost' },
+        { feat: 'Monthly cost',       s: P, val: '~$5.00/mo billed annually' },
+        { feat: 'Annual cost',        s: P, val: '$59.95/yr (5 devices) · $109.95/yr unlimited' },
+        { feat: '3-year total',       s: P, val: '~$180 (5-device plan × 3 yrs)' },
+        { group: 'Coverage' },
+        { feat: 'Away from home',     s: Y, val: 'Yes — travels everywhere via device profile' },
+        { feat: 'Home network (WiFi)', s: P, val: 'Partial — no router filtering' },
+        { feat: 'Consoles & smart TVs', s: N, val: 'No' },
+        { group: 'Parental Controls' },
+        { feat: 'Web filtering',      s: Y, val: 'Strong — 27,000+ apps' },
+        { feat: 'Screen time limits', s: Y, val: 'Yes — per-app limits' },
+        { feat: 'App blocking',       s: Y, val: 'Yes — 27,000+ apps by category' },
+        { feat: 'Ad blocking',        s: N, val: 'No' },
+        { group: 'Monitoring & Reports' },
+        { feat: 'Activity reports',   s: Y, val: 'Detailed' },
+        { feat: 'Real-time alerts',   s: Y, val: 'Yes' },
+        { feat: 'Social monitoring',  s: P, val: 'Limited' },
+        { feat: 'Text monitoring',    s: P, val: 'Android only' },
+        { feat: 'Location tracking',  s: Y, val: 'Yes — real-time + geofencing' },
+        { group: 'Security' },
+        { feat: 'Bypass difficulty',  s: P, val: 'Hard — MDM profile, requires parent password' },
+        { feat: 'Identity protection',s: N, val: 'No' },
+      ]
+    },
+    {
+      id: 'canopy', tab: 'Canopy', name: 'Canopy',
+      tier: 'app', tierLabel: 'On-Device · AI Visual Filter',
+      price: '$7.99/mo · $95.90/yr',
+      features: [
+        { group: 'Cost' },
+        { feat: 'Monthly cost',       s: P, val: '$7.99/mo' },
+        { feat: 'Annual cost',        s: P, val: '~$95.90/yr (3–10 devices)' },
+        { feat: '3-year total',       s: P, val: '~$288' },
+        { group: 'Coverage' },
+        { feat: 'Away from home',     s: Y, val: 'Yes — travels with device' },
+        { feat: 'Home network (WiFi)', s: P, val: 'Partial — no router filtering' },
+        { feat: 'Consoles & smart TVs', s: N, val: 'No' },
+        { group: 'Parental Controls' },
+        { feat: 'Web filtering',      s: Y, val: 'AI visual + URL blocking' },
+        { feat: 'Screen time limits', s: P, val: 'Schedules only — no per-app limits' },
+        { feat: 'App blocking',       s: P, val: 'Block entirely only — unreliable on iOS' },
+        { feat: 'Ad blocking',        s: N, val: 'No' },
+        { group: 'Monitoring & Reports' },
+        { feat: 'Activity reports',   s: P, val: 'Basic' },
+        { feat: 'Real-time alerts',   s: P, val: 'Content-blocked alerts' },
+        { feat: 'Social monitoring',  s: N, val: 'No — blocks apps entirely' },
+        { feat: 'Text monitoring',    s: N, val: 'No' },
+        { feat: 'Location tracking',  s: N, val: 'No' },
+        { group: 'Security' },
+        { feat: 'Bypass difficulty',  s: P, val: 'Hard — MDM profile + anti-tamper' },
+        { feat: 'Identity protection',s: N, val: 'No' },
+      ]
+    },
+    {
+      id: 'aura', tab: 'Aura', name: 'Aura + Circle',
+      tier: 'hybrid', tierLabel: 'Identity + Family Safety · Hybrid',
+      price: '$50/mo family · $13/mo kids-only',
+      features: [
+        { group: 'Cost' },
+        { feat: 'Monthly cost',       s: P, val: '$50/mo family (5 adults + unlimited kids)' },
+        { feat: 'Annual cost',        s: P, val: '$384/yr intro · renews ~$420/yr · $120/yr kids-only' },
+        { feat: '3-year total',       s: P, val: '~$1,224 family (intro + 2 renewal yrs)' },
+        { group: 'Coverage' },
+        { feat: 'Away from home',     s: Y, val: 'Yes — app-based, follows the device' },
+        { feat: 'Home network (WiFi)', s: P, val: 'With Circle Home Plus hardware ($129 add-on)' },
+        { feat: 'Consoles & smart TVs', s: P, val: 'With Circle hardware only' },
+        { group: 'Parental Controls' },
+        { feat: 'Web filtering',      s: Y, val: 'Yes — SafeSearch, YouTube Restricted, site blocking' },
+        { feat: 'Screen time limits', s: Y, val: 'Yes — bedtimes, focus time, pause internet' },
+        { feat: 'App blocking',       s: Y, val: 'Yes — per-app & site controls' },
+        { feat: 'Ad blocking',        s: N, val: 'No' },
+        { group: 'Monitoring & Reports' },
+        { feat: 'Activity reports',   s: Y, val: 'Browser history, app usage, weekly summaries' },
+        { feat: 'Real-time alerts',   s: Y, val: 'Risk signals, self-harm, predator + fraud alerts' },
+        { feat: 'Social monitoring',  s: P, val: 'Partial — messaging app usage insights, AI alerts' },
+        { feat: 'Text monitoring',    s: P, val: 'Partial — app usage visibility, not message content' },
+        { feat: 'Location tracking',  s: N, val: 'No' },
+        { group: 'Security' },
+        { feat: 'Bypass difficulty',  s: P, val: 'Moderate — app can be uninstalled; parent email re-locks' },
+        { feat: 'Identity protection',s: Y, val: 'Yes — credit, dark web, $1M insurance' },
+      ]
+    }
+  ];
+
+  const svgYes  = '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>';
+  const svgNo   = '<svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+  const svgPart = '<svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>';
+
+  let activeId = 'bark'; // sensible default
+
+  function render() {
+    const tabsEl = document.getElementById('mc-tabs');
+    const cardEl = document.getElementById('mc-card');
+    if (!tabsEl || !cardEl) return;
+
+    // Tabs
+    tabsEl.innerHTML = products.map(p => {
+      const isActive = p.id === activeId;
+      const cls = isActive ? `mc-tab mc-active-${p.tier}` : 'mc-tab';
+      return `<button class="${cls}" onclick="mcSwitch('${p.id}')">${p.tab}</button>`;
+    }).join('');
+
+    // Card
+    const p = products.find(x => x.id === activeId);
+    let rows = '';
+    p.features.forEach(f => {
+      if (f.group) {
+        rows += `<div class="mc-section-label">${f.group}</div>`;
+      } else {
+        const ic = f.s === Y ? `<span class="mc-icon mc-yes">${svgYes}</span>`
+                 : f.s === N ? `<span class="mc-icon mc-no">${svgNo}</span>`
+                             : `<span class="mc-icon mc-part">${svgPart}</span>`;
+        rows += `<div class="mc-row">
+          <span class="mc-feat">${f.feat}</span>
+          <span class="mc-val">${ic}<span>${f.val}</span></span>
+        </div>`;
+      }
+    });
+
+    const tierColorMap = { free: 'mc-tier-free', network: 'mc-tier-network', app: 'mc-tier-app', hybrid: 'mc-tier-hybrid' };
+    cardEl.innerHTML = `
+      <div class="mc-card-head">
+        <span class="mc-card-tier ${tierColorMap[p.tier]}">${p.tierLabel}</span>
+        <div class="mc-card-name">${p.name}</div>
+        <div class="mc-card-price">${p.price}</div>
+      </div>
+      ${rows}
+      <div class="mc-hint">💡 Use the Stack Builder to see costs and coverage gaps for your household →</div>
+    `;
+  }
+
+  window.mcSwitch = function(id) {
+    activeId = id;
+    render();
+    document.getElementById('mc-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+
+  render();
+})();
+</script>
 </body>
 </html>
