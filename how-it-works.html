@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Parental Controls Actually Work — TechDad CLT</title>
+<meta name="description" content="A technical breakdown of how each parental control product actually works under the hood — DNS filtering, MDM profiles, VPN proxies, AI scanning, and desktop sync explained for families in Charlotte, NC.">
+<meta name="robots" content="noindex, nofollow">
+<script defer src="/_vercel/insights/script.js"></script>
+<script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+" (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||(window.posthog=[]));
+  posthog.init('phc_Cp4Ph3JUfeN63Mc2do2iLX4cVfU8HZdoznGbotcBZBUQ', {
+    api_host: 'https://us.i.posthog.com',
+    person_profiles: 'identified_only'
+  });
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --navy: #0f1c2e;
+  --navy2: #1a2d45;
+  --accent: #2563eb;
+  --accent-light: #dbeafe;
+  --green: #059669;
+  --green-light: #d1fae5;
+  --amber: #d97706;
+  --amber-light: #fef3c7;
+  --purple: #7c3aed;
+  --purple-light: #ede9fe;
+  --red: #dc2626;
+  --red-light: #fee2e2;
+  --teal: #0d9488;
+  --teal-light: #f0fdfa;
+  --text: #1e2532;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Figtree', sans-serif; background: var(--bg); color: var(--text); }
+
+nav {
+  background: var(--navy);
+  padding: 0 28px; height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.logo { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+.logo-mark { font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: white; background: var(--accent); padding: 4px 10px; border-radius: 5px; }
+.logo-text { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.7); }
+.logo-sep { color: rgba(255,255,255,0.25); margin: 0 2px; }
+.nav-badge { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 4px 10px; }
+
+.page-header {
+  background: var(--navy);
+  padding: 52px 28px 60px;
+  position: relative; overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 15% 70%, rgba(37,99,235,0.22) 0%, transparent 55%),
+              radial-gradient(ellipse at 85% 20%, rgba(124,58,237,0.12) 0%, transparent 50%);
+  pointer-events: none;
+}
+.page-header-inner { position: relative; max-width: 900px; margin: 0 auto; }
+.page-label { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 18px; }
+.page-header h1 { font-family: 'Instrument Serif', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 400; color: white; line-height: 1.2; margin-bottom: 14px; }
+.page-header h1 em { font-style: italic; color: #93c5fd; }
+.page-header p { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 620px; }
+.header-meta {
+  margin-top: 20px;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; color: rgba(255,255,255,0.35);
+  border: 1px solid rgba(255,255,255,0.12); border-radius: 20px;
+  padding: 5px 14px;
+}
+.header-meta svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.wrap { max-width: 900px; margin: 0 auto; padding: 52px 28px 80px; }
+
+/* MECHANISM CARDS */
+.mech-grid { display: flex; flex-direction: column; gap: 16px; margin-bottom: 52px; }
+.mech-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.mech-header {
+  display: flex; align-items: center; gap: 16px;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.mech-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.mech-title { font-family: 'Instrument Serif', serif; font-size: 20px; font-weight: 400; color: var(--navy); }
+.mech-tag { font-size: 10px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; margin-left: 8px; }
+.mech-body { padding: 20px 24px; }
+.mech-how {
+  font-size: 13px; color: var(--text); line-height: 1.75; margin-bottom: 18px;
+}
+.mech-how strong { color: var(--navy); font-weight: 600; }
+.mech-how em { font-style: italic; color: var(--muted); }
+
+.mech-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.mech-col h4 { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+.mech-col.can h4 { color: var(--green); }
+.mech-col.cant h4 { color: var(--red); }
+.mech-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+.mech-col ul li {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 12px; color: var(--text); line-height: 1.5;
+}
+.mech-col ul li svg { width: 14px; height: 14px; flex-shrink: 0; margin-top: 1px; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.mech-col.can ul li svg { stroke: var(--green); }
+.mech-col.cant ul li svg { stroke: var(--red); }
+
+.mech-bypass {
+  background: var(--amber-light);
+  border: 1px solid #fcd34d;
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 12px; color: #92400e; line-height: 1.65;
+  margin-bottom: 12px;
+}
+.mech-bypass svg { width: 14px; height: 14px; stroke: var(--amber); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 2px; }
+
+.mech-products {
+  display: flex; flex-wrap: wrap; gap: 6px; padding-top: 14px; border-top: 1px solid var(--border);
+}
+.mech-prod-pill {
+  font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; border: 1.5px solid;
+}
+
+/* SECTION HEAD */
+.section-head {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 24px; margin-top: 56px;
+}
+.section-head:first-child { margin-top: 0; }
+.section-line { flex: 1; height: 1px; background: var(--border); }
+.section-pill {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 20px; white-space: nowrap;
+}
+.pill-navy  { background: var(--navy); color: rgba(255,255,255,0.85); }
+.pill-blue  { background: var(--accent-light); color: var(--accent); }
+.pill-amber { background: var(--amber-light); color: var(--amber); }
+.pill-muted { background: #f3f4f6; color: var(--muted); }
+
+/* PRODUCT DEEP DIVES */
+.product-tech {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 30px;
+  margin-bottom: 24px;
+}
+.pt-header {
+  display: flex; align-items: flex-start; gap: 16px; margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+.pt-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.pt-name { font-family: 'Instrument Serif', serif; font-size: 22px; font-weight: 400; color: var(--navy); margin-bottom: 4px; }
+.pt-mechanism { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.pt-body { font-size: 13px; color: var(--text); line-height: 1.8; }
+.pt-body p { margin-bottom: 14px; }
+.pt-body p:last-child { margin-bottom: 0; }
+.pt-body strong { color: var(--navy); font-weight: 600; }
+.pt-body em { color: var(--muted); font-style: italic; }
+.pt-body .highlight {
+  display: inline-block;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 5px; margin-right: 4px;
+}
+.pt-body .highlight.green { background: var(--green-light); color: var(--green); }
+.pt-body .highlight.amber { background: var(--amber-light); color: var(--amber); }
+.pt-body .highlight.purple { background: var(--purple-light); color: var(--purple); }
+.pt-body .highlight.teal { background: var(--teal-light); color: var(--teal); }
+.pt-body .highlight.red { background: var(--red-light); color: var(--red); }
+
+.tech-table {
+  width: 100%; border-collapse: collapse; margin: 16px 0;
+  border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+}
+.tech-table th {
+  background: var(--bg);
+  font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--navy); padding: 10px 14px; text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.tech-table td {
+  padding: 10px 14px; font-size: 12px; color: var(--text); line-height: 1.55;
+  border-bottom: 1px solid var(--border); vertical-align: top;
+}
+.tech-table tr:last-child td { border-bottom: none; }
+.tech-table td:first-child { font-weight: 600; color: var(--navy); width: 200px; }
+.td-yes { color: var(--green); font-weight: 700; }
+.td-no  { color: var(--red); font-weight: 700; }
+.td-partial { color: var(--amber); font-weight: 700; }
+
+/* COMPARISON MATRIX */
+.matrix-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--border); margin-bottom: 52px; }
+.matrix-table { width: 100%; border-collapse: collapse; min-width: 700px; background: var(--surface); }
+.matrix-table th { padding: 12px 14px; font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; border-bottom: 2px solid var(--border); text-align: left; }
+.matrix-table th:first-child { background: var(--bg); color: var(--navy); min-width: 180px; }
+.matrix-table td { padding: 10px 14px; font-size: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.matrix-table td:first-child { font-weight: 600; color: var(--navy); background: var(--bg); }
+.matrix-table tr:last-child td { border-bottom: none; }
+.dot-yes    { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--green); margin-right: 5px; vertical-align: middle; }
+.dot-no     { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #d1d5db; margin-right: 5px; vertical-align: middle; }
+.dot-partial{ display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--amber); margin-right: 5px; vertical-align: middle; }
+
+/* KEY INSIGHT BOXES */
+.insight-box {
+  border-radius: 12px; padding: 18px 20px;
+  display: flex; gap: 14px; align-items: flex-start;
+  font-size: 13px; line-height: 1.7; margin: 20px 0;
+}
+.insight-box svg { width: 18px; height: 18px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 1px; }
+.insight-blue  { background: var(--accent-light); border: 1px solid #93c5fd; color: #1e40af; }
+.insight-blue svg  { stroke: var(--accent); }
+.insight-amber { background: var(--amber-light); border: 1px solid #fcd34d; color: #92400e; }
+.insight-amber svg { stroke: var(--amber); }
+.insight-green { background: var(--green-light); border: 1px solid #6ee7b7; color: #065f46; }
+.insight-green svg { stroke: var(--green); }
+
+footer {
+  background: var(--navy);
+  padding: 24px 28px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+footer a { color: inherit; text-decoration: none; }
+footer a:hover { color: rgba(255,255,255,0.55); }
+
+@media (max-width: 700px) {
+  .mech-cols { grid-template-columns: 1fr; }
+  .wrap { padding: 36px 18px 64px; }
+  .page-header { padding: 36px 18px 48px; }
+  .product-tech { padding: 22px 18px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <span class="logo-mark">TechDad</span>
+    <span class="logo-sep">/</span>
+    <span class="logo-text">Charlotte, NC</span>
+  </a>
+  <div class="nav-badge">Tech Deep Dive</div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="page-label">TechDad CLT · Internal Reference</div>
+    <h1>How parental controls <em>actually</em> work</h1>
+    <p>A plain-English breakdown of the technology behind each product — DNS filtering, MDM profiles, VPN proxies, AI scanning, and desktop sync. Understanding the mechanism tells you exactly what each tool can and can't do.</p>
+    <div class="header-meta">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Last updated: April 2026
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ── THE 5 MECHANISMS ── -->
+  <div class="section-head">
+    <span class="section-pill pill-navy">The 5 Core Mechanisms</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="insight-box insight-blue">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <div>Every parental control product is built on one (or more) of these five mechanisms. Once you understand the mechanism, you know exactly what it can see, what it can block, and how a determined kid could get around it — before you buy anything.</div>
+  </div>
+
+  <div class="mech-grid">
+
+    <!-- 1. DNS / ROUTER FILTERING -->
+    <div class="mech-card">
+      <div class="mech-header">
+        <div class="mech-icon" style="background:#eff6ff;">🌐</div>
+        <div>
+          <div class="mech-title">DNS &amp; Router-Level Filtering <span class="mech-tag" style="background:var(--accent-light);color:var(--accent);">Network</span></div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">All traffic passes through the router before reaching any device</div>
+        </div>
+      </div>
+      <div class="mech-body">
+        <div class="mech-how">
+          When your device asks to visit a website, it first asks a <strong>DNS server</strong> to look up the site's IP address — like a phone book. A filtering router intercepts that lookup and simply <strong>returns "not found"</strong> for blocked domains. The device never makes a connection. Because this happens at the network level, it covers <em>every device on your WiFi</em> — phones, tablets, game consoles, smart TVs, guests' phones — with zero per-device setup.
+          <br><br>
+          More advanced routers also do <strong>Deep Packet Inspection (DPI)</strong> — actually reading the content of unencrypted traffic to apply more granular rules. Modern HTTPS makes most content encrypted, but metadata (which domain, how much data, timing) is still visible.
+        </div>
+        <div class="mech-cols">
+          <div class="mech-col can">
+            <h4>✓ Can Do</h4>
+            <ul>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Block entire websites/domains for every device at once</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Cover consoles, smart TVs, IoT — things apps can't reach</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Enforce SafeSearch on Google, Bing, YouTube</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Ad blocking network-wide</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> No app to install — invisible to kids</li>
+            </ul>
+          </div>
+          <div class="mech-col cant">
+            <h4>✗ Cannot Do</h4>
+            <ul>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Anything once device leaves home WiFi (cellular = bypassed)</li>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Read inside encrypted HTTPS traffic content</li>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Per-device time limits without additional software</li>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Monitor messages, texts, or social media content</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mech-bypass">
+          <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <div><strong>Bypass:</strong> Switch to cellular data. Use a hotspot. Connect to a different WiFi network. Gryphon's HomeBound VPN closes this gap for iOS/Android devices.</div>
+        </div>
+        <div class="mech-products">
+          <span class="mech-prod-pill" style="border-color:var(--purple);color:var(--purple);background:var(--purple-light);">Gryphon AX</span>
+          <span class="mech-prod-pill" style="border-color:#0d9488;color:#0d9488;background:#f0fdfa;">Circle Home Plus</span>
+          <span class="mech-prod-pill" style="border-color:var(--muted);color:var(--muted);background:#f3f4f6;">Apple Screen Time (partial)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. VPN PROXY -->
+    <div class="mech-card">
+      <div class="mech-header">
+        <div class="mech-icon" style="background:#f5f3ff;">🔒</div>
+        <div>
+          <div class="mech-title">VPN Proxy (Device-Level) <span class="mech-tag" style="background:var(--purple-light);color:var(--purple);">On-Device</span></div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">All device internet traffic tunneled through the vendor's servers for inspection</div>
+        </div>
+      </div>
+      <div class="mech-body">
+        <div class="mech-how">
+          The app installs a <strong>VPN profile</strong> on the device. All internet traffic — every app, every browser request — is tunneled through the vendor's servers before reaching its destination. At those servers, the vendor can inspect the traffic: block domains, scan images, enforce SafeSearch. Because it's <em>on the device</em>, it travels with the child everywhere — home WiFi, cellular, friend's house WiFi.
+          <br><br>
+          <strong>Important iOS limitation:</strong> iOS only allows <strong>one VPN active at a time</strong>. HomeBound, Qustodio, Canopy, and Bark's web filter all use this slot. You can only pick one. There's also measurable performance overhead — traffic has to make an extra round-trip through the vendor's servers.
+        </div>
+        <div class="mech-cols">
+          <div class="mech-col can">
+            <h4>✓ Can Do</h4>
+            <ul>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Works everywhere — cellular, any WiFi, any network</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Block categories, domains, SafeSearch enforcement</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> AI can scan unencrypted images/video as they pass through</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> One profile covers all browsers and most apps</li>
+            </ul>
+          </div>
+          <div class="mech-col cant">
+            <h4>✗ Cannot Do</h4>
+            <ul>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Read end-to-end encrypted app messages (iMessage, Snapchat, Signal)</li>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Coexist with another VPN on iOS</li>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Cover consoles or TVs (device-only, not network-wide)</li>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Be hidden from a child who knows where to look in Settings</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mech-bypass">
+          <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <div><strong>Bypass:</strong> Settings → General → VPN &amp; Device Management → toggle off. A teen who knows iOS can find this in under 30 seconds. The app fires a parent alert, but coverage drops immediately. Solution: lock Settings with Apple Screen Time PIN to hide the VPN toggle.</div>
+        </div>
+        <div class="mech-products">
+          <span class="mech-prod-pill" style="border-color:var(--purple);color:var(--purple);background:var(--purple-light);">Gryphon HomeBound</span>
+          <span class="mech-prod-pill" style="border-color:#c2410c;color:#c2410c;background:#fff7ed;">Canopy</span>
+          <span class="mech-prod-pill" style="border-color:#9d174d;color:#9d174d;background:#fdf2f8;">Bark (web filter)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. MDM PROFILE -->
+    <div class="mech-card">
+      <div class="mech-header">
+        <div class="mech-icon" style="background:#f0fdf4;">🛡️</div>
+        <div>
+          <div class="mech-title">MDM Profile (Mobile Device Management) <span class="mech-tag" style="background:var(--green-light);color:var(--green);">Strongest iOS</span></div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">Enterprise-grade device management — the same technology corporations use to manage employee phones</div>
+        </div>
+      </div>
+      <div class="mech-body">
+        <div class="mech-how">
+          An MDM profile is a <strong>configuration file installed at the OS level</strong> in Settings → General → VPN &amp; Device Management. It's the same mechanism corporations use to manage work iPhones. The profile can enforce policies that <em>regular apps cannot override</em>: restrict which apps can run, enforce content ratings, install certificates, and — critically — <strong>require the parent's account password to remove</strong>.
+          <br><br>
+          Qustodio uses both an MDM profile (for device management and app control) <em>and</em> a VPN (for web traffic filtering). This combination is the strongest iOS enforcement available outside of Apple's own Screen Time. The MDM profile does NOT disappear if the app is deleted — the child would need to go to Settings and delete the profile, which triggers an immediate parent alert and requires Qustodio's account password to complete.
+        </div>
+        <div class="mech-cols">
+          <div class="mech-col can">
+            <h4>✓ Can Do</h4>
+            <ul>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Block specific apps from running system-wide</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Require parent password to remove the profile</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Enforce policies that survive app deletion</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Trigger instant parent alert if removal is attempted</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Control App Store purchases and downloads</li>
+            </ul>
+          </div>
+          <div class="mech-col cant">
+            <h4>✗ Cannot Do</h4>
+            <ul>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Read iMessage, SMS, or end-to-end encrypted messages</li>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Monitor content inside social media apps (TikTok, Snapchat, Instagram)</li>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Filter network traffic by itself (needs the VPN component too)</li>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Be removed without parent password + alert firing</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mech-bypass">
+          <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <div><strong>Bypass:</strong> Settings → General → VPN &amp; Device Management → tap the profile → Delete Profile. Requires the parent's Qustodio password. Alert fires immediately. Determined teens have done this within 48 hours — it's doable, but noticeably harder than VPN-only tools. Factory reset also removes it, but that wipes the whole device.</div>
+        </div>
+        <div class="mech-products">
+          <span class="mech-prod-pill" style="border-color:var(--accent);color:var(--accent);background:var(--accent-light);">Qustodio (MDM + VPN)</span>
+          <span class="mech-prod-pill" style="border-color:#0d9488;color:#0d9488;background:#f0fdfa;">Aura (MDM)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. CLOUD OAUTH + DESKTOP SYNC -->
+    <div class="mech-card">
+      <div class="mech-header">
+        <div class="mech-icon" style="background:#fdf2f8;">☁️</div>
+        <div>
+          <div class="mech-title">Cloud OAuth &amp; Desktop Sync <span class="mech-tag" style="background:#fdf2f8;color:#9d174d;">Monitoring-Focused</span></div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">Read content where it lives — in the cloud account — not on the device</div>
+        </div>
+      </div>
+      <div class="mech-body">
+        <div class="mech-how">
+          Instead of intercepting traffic, this approach goes to the source. <strong>Cloud OAuth</strong>: you authorize Bark to read your child's Gmail, Google Drive, iCloud email, or YouTube account via official API keys. Bark's AI then scans that content in the cloud continuously — no device access needed. Works anywhere because the data lives on Google's/Apple's servers.
+          <br><br>
+          <strong>Desktop sync</strong> is the iOS workaround for on-device content: you run the Bark Desktop App on a Mac or Windows computer. When the iPad is on the same WiFi and syncs (like an iTunes backup), Bark reads texts, photos, and notes from the sync data. The limitation: <em>only works when the device is home, on WiFi, connected to the computer running Bark Desktop</em>. Not real-time. Not available at a friend's house or on cellular.
+        </div>
+        <div class="mech-cols">
+          <div class="mech-col can">
+            <h4>✓ Can Do</h4>
+            <ul>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Monitor Gmail, Google Drive, iCloud email, YouTube — anywhere, always</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Deep AI analysis of message content, tone, and context</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 30+ social platforms on Android (full app access)</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Zero device footprint for cloud monitoring — no app needed</li>
+            </ul>
+          </div>
+          <div class="mech-col cant">
+            <h4>✗ Cannot Do</h4>
+            <ul>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Monitor iMessage, Snapchat, TikTok, Instagram DMs on iOS (Apple blocks API access)</li>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Desktop sync: requires home WiFi + computer running Bark Desktop</li>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Block or control what the device can access</li>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Real-time alerts for on-device content on iOS (delayed to sync)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="insight-box insight-green" style="margin: 12px 0 12px 0;">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div><strong>Why Apple blocks this:</strong> Apple doesn't allow third-party apps to read iMessage, Snapchat, or TikTok data on iOS — this is a deliberate privacy protection. It's the same reason no parental control app can truly monitor in-app social media messages on iPhone/iPad. Android gives apps more system-level permissions, which is why Bark is dramatically more powerful on Android.</div>
+        </div>
+        <div class="mech-products">
+          <span class="mech-prod-pill" style="border-color:#9d174d;color:#9d174d;background:#fdf2f8;">Bark (primary mechanism)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. OS-NATIVE (SCREEN TIME / FAMILY LINK) -->
+    <div class="mech-card">
+      <div class="mech-header">
+        <div class="mech-icon" style="background:#fef3c7;">⚙️</div>
+        <div>
+          <div class="mech-title">OS-Native Controls <span class="mech-tag" style="background:var(--amber-light);color:var(--amber);">Built-In</span></div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">Apple Screen Time and Google Family Link run at the kernel level — below all apps</div>
+        </div>
+      </div>
+      <div class="mech-body">
+        <div class="mech-how">
+          Apple Screen Time and Google Family Link are built directly into the operating system — not apps running on top of it. This means they run at a lower level than any third-party app and <em>cannot be bypassed by any app</em>. Screen Time limits are enforced by the OS itself. Content restrictions are handled before any app even loads.
+          <br><br>
+          The key difference from every other mechanism: <strong>there is nothing to uninstall</strong>. A child cannot delete Screen Time. They cannot disable it from the App Store. The only bypass is the parent's PIN — or a full factory reset, which is hard to hide. When locked with a strong PIN that the parent keeps secret, Screen Time is the most tamper-resistant layer available.
+        </div>
+        <div class="mech-cols">
+          <div class="mech-col can">
+            <h4>✓ Can Do</h4>
+            <ul>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Enforce downtime/bedtime that no app can override</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Block entire app categories at OS level</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Prevent VPN settings from being changed (locks the VPN toggle)</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Works completely offline, no subscription, free</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Nothing to install, nothing to uninstall</li>
+            </ul>
+          </div>
+          <div class="mech-col cant">
+            <h4>✗ Cannot Do</h4>
+            <ul>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Monitor content — you set rules but get zero visibility into what was blocked or attempted</li>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Alert you when kids try to access blocked content</li>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Apply different rules per-app on a granular basis</li>
+              <li><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Cover other devices — only the specific iOS/Android device it's set up on</li>
+            </ul>
+          </div>
+        </div>
+        <div class="insight-box insight-amber" style="margin: 12px 0 12px 0;">
+          <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <div><strong>Screen Time's hidden superpower:</strong> Setting Screen Time → Content &amp; Privacy → VPN to "Don't Allow" prevents any VPN from being toggled off — including HomeBound, Qustodio, and Canopy. This one setting dramatically reduces the bypass risk of every VPN-based tool. Always configure this when installing any VPN-based parental control.</div>
+        </div>
+        <div class="mech-products">
+          <span class="mech-prod-pill" style="border-color:var(--muted);color:var(--muted);background:#f3f4f6;">Apple Screen Time</span>
+          <span class="mech-prod-pill" style="border-color:var(--green);color:var(--green);background:var(--green-light);">Google Family Link</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /mech-grid -->
+
+  <!-- ── PRODUCT DEEP DIVES ── -->
+  <div class="section-head">
+    <span class="section-pill pill-blue">Product Deep Dives</span>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- GRYPHON AX -->
+  <div class="product-tech">
+    <div class="pt-header">
+      <div class="pt-icon" style="background:#f5f3ff;">🔹</div>
+      <div>
+        <div class="pt-name">Gryphon AX</div>
+        <div class="pt-mechanism">Mechanism: DNS Filtering + Deep Packet Inspection · Router Hardware</div>
+      </div>
+    </div>
+    <div class="pt-body">
+      <p><span class="highlight">How it works</span> The Gryphon replaces your existing router entirely. Every packet from every device on your network flows through Gryphon's hardware before reaching the internet. Gryphon maintains a continuously-updated blocklist of millions of domains across 50+ content categories. When a device requests a blocked domain, Gryphon's DNS resolver returns a null/blocked response — the request never leaves your home.</p>
+      <p><span class="highlight green">Key insight</span> Because Gryphon IS the router, there's no way to "uninstall" it from within the network. A child would have to physically unplug the router and reconnect to a different internet source — which is very detectable. This makes it the most bypass-resistant home network solution available.</p>
+      <p><span class="highlight">HomeBound</span> is a VPN companion app (included with Premium) that creates an encrypted tunnel from iOS/Android devices back to your Gryphon router. When a device leaves home, all traffic still routes through Gryphon — same DNS filters, same rules. Uses the iOS VPN slot. Parent gets an alert if it's disabled.</p>
+      <table class="tech-table">
+        <tr><th>What it sees</th><th>iOS</th><th>Android</th><th>Consoles / TVs</th></tr>
+        <tr><td>Web domains visited</td><td class="td-yes">✓ On home WiFi</td><td class="td-yes">✓ On home WiFi</td><td class="td-yes">✓ All devices</td></tr>
+        <tr><td>Off-home via HomeBound</td><td class="td-yes">✓ With HomeBound</td><td class="td-yes">✓ With HomeBound</td><td class="td-no">✗ No VPN on consoles</td></tr>
+        <tr><td>Message/text content</td><td class="td-no">✗ Encrypted</td><td class="td-no">✗ Encrypted</td><td class="td-no">✗</td></tr>
+        <tr><td>Social media content</td><td class="td-no">✗ App traffic encrypted</td><td class="td-no">✗ App traffic encrypted</td><td class="td-no">✗</td></tr>
+        <tr><td>Ad blocking</td><td class="td-yes">✓ Network-wide</td><td class="td-yes">✓ Network-wide</td><td class="td-yes">✓ Network-wide</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- QUSTODIO -->
+  <div class="product-tech">
+    <div class="pt-header">
+      <div class="pt-icon" style="background:#eff6ff;">🔵</div>
+      <div>
+        <div class="pt-name">Qustodio</div>
+        <div class="pt-mechanism">Mechanism: MDM Profile + VPN Proxy · iOS &amp; Android App</div>
+      </div>
+    </div>
+    <div class="pt-body">
+      <p><span class="highlight">How it works on iOS</span> Qustodio installs two things: (1) an <strong>MDM configuration profile</strong> for device management — controls which apps run, enforces time limits, requires parent password to remove; and (2) a <strong>VPN profile</strong> that routes all web traffic through Qustodio's cloud servers for content filtering and monitoring. Both live in Settings → General → VPN &amp; Device Management.</p>
+      <p><span class="highlight">Plan difference</span> <strong>Basic ($59.95/yr, 5 devices)</strong>: web filtering, app blocking, screen time, location, social monitoring, AI alerts, gaming alerts. <strong>Complete ($109.95/yr, unlimited devices)</strong>: adds YouTube monitoring, 30-day activity history, AI-powered message and search alerts, panic button, app download alerts. For multi-kid families or anyone who wants YouTube visibility — Complete is the right plan.</p>
+      <p><span class="highlight amber">iOS limitation</span> Qustodio cannot read iMessage, SMS, or in-app messages from Snapchat, TikTok, or Instagram on iOS. Apple does not allow any third-party access to these. The <em>calls &amp; messages monitoring feature on iOS requires running Qustodio Family Portal on a Mac or Windows computer</em> — when the device syncs to the desktop app, call logs and some message metadata are captured. This is NOT real-time and NOT available without the desktop app running.</p>
+      <table class="tech-table">
+        <tr><th>What it sees</th><th>iOS (Basic)</th><th>iOS (Complete)</th><th>Android</th></tr>
+        <tr><td>Web browsing everywhere</td><td class="td-yes">✓</td><td class="td-yes">✓</td><td class="td-yes">✓</td></tr>
+        <tr><td>App usage &amp; blocking</td><td class="td-yes">✓</td><td class="td-yes">✓</td><td class="td-yes">✓</td></tr>
+        <tr><td>YouTube monitoring</td><td class="td-no">✗</td><td class="td-yes">✓</td><td class="td-yes">✓</td></tr>
+        <tr><td>30-day activity history</td><td class="td-no">✗</td><td class="td-yes">✓</td><td class="td-yes">✓</td></tr>
+        <tr><td>Social platform alerts</td><td class="td-partial">⚠ Desktop sync req'd</td><td class="td-partial">⚠ Desktop sync req'd</td><td class="td-yes">✓ Real-time</td></tr>
+        <tr><td>iMessage / SMS monitoring</td><td class="td-no">✗ Apple blocks</td><td class="td-no">✗ Apple blocks</td><td class="td-yes">✓</td></tr>
+        <tr><td>Location tracking</td><td class="td-yes">✓ Real-time + geofence</td><td class="td-yes">✓ Real-time + geofence</td><td class="td-yes">✓</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- BARK -->
+  <div class="product-tech">
+    <div class="pt-header">
+      <div class="pt-icon" style="background:#fdf2f8;">🐕</div>
+      <div>
+        <div class="pt-name">Bark</div>
+        <div class="pt-mechanism">Mechanism: Cloud OAuth + Desktop Sync + VPN (web filter) · AI Monitoring</div>
+      </div>
+    </div>
+    <div class="pt-body">
+      <p><span class="highlight">Three separate components</span> Bark Premium combines three distinct technologies: <strong>(1) Cloud OAuth</strong> — you connect your child's Google account, iCloud email, YouTube, etc. Bark reads these via authorized API access, continuously, from anywhere. <strong>(2) Desktop sync</strong> — Bark Desktop on Mac/Windows syncs texts, photos, notes when the iPad is home on WiFi. <strong>(3) Bark Kids VPN app</strong> — a VPN-based web filter on the device that travels everywhere. These three components work independently of each other.</p>
+      <p><span class="highlight green">Why cloud monitoring is powerful</span> Cloud-based Gmail/Drive monitoring works even when the device is off, broken, or at a friend's house — because the data lives on Google's servers, not the device. A child can't "block" this by turning off their phone. This is why Bark catches concerning emails and Drive documents that other products miss entirely.</p>
+      <p><span class="highlight amber">Bark Jr vs Premium</span> <strong>Bark Jr ($49/yr)</strong>: screen time, web/app blocking, location tracking only. <strong>No AI content monitoring</strong>. Essentially a basic controls-only tool. <strong>Bark Premium ($99/yr)</strong>: adds full AI monitoring of cloud accounts, Android social/text monitoring, desktop sync for iOS. Most families need Premium.</p>
+      <p><span class="highlight amber">iOS fundamental limitation</span> Snapchat, TikTok, Instagram, and Discord do not allow any third-party app to access their message content on iOS — period. This isn't a Bark limitation, it's Apple's privacy architecture. On Android, Bark has full access to these apps via device-level permissions. For an iPad household, Bark's value is cloud accounts (Gmail, YouTube, iCloud email) plus the web filter — not social media message monitoring.</p>
+      <table class="tech-table">
+        <tr><th>What it monitors</th><th>iOS (how)</th><th>Android (how)</th></tr>
+        <tr><td>Gmail / Google Drive</td><td class="td-yes">✓ Cloud OAuth — always-on</td><td class="td-yes">✓ Cloud OAuth — always-on</td></tr>
+        <tr><td>iCloud email</td><td class="td-yes">✓ Cloud OAuth — always-on</td><td class="td-yes">✓ Cloud OAuth — always-on</td></tr>
+        <tr><td>YouTube activity</td><td class="td-yes">✓ Cloud OAuth — always-on</td><td class="td-yes">✓ Cloud OAuth — always-on</td></tr>
+        <tr><td>SMS / iMessage</td><td class="td-partial">⚠ Desktop sync when home</td><td class="td-yes">✓ Real-time device agent</td></tr>
+        <tr><td>Instagram, TikTok, Snapchat</td><td class="td-no">✗ Apple blocks access</td><td class="td-yes">✓ Real-time device agent</td></tr>
+        <tr><td>Web browsing filter</td><td class="td-yes">✓ VPN — everywhere</td><td class="td-yes">✓ VPN — everywhere</td></tr>
+        <tr><td>Photos / notes</td><td class="td-partial">⚠ Desktop sync when home</td><td class="td-yes">✓ Real-time</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- CANOPY -->
+  <div class="product-tech">
+    <div class="pt-header">
+      <div class="pt-icon" style="background:#f5f3ff;">🌿</div>
+      <div>
+        <div class="pt-name">Canopy</div>
+        <div class="pt-mechanism">Mechanism: VPN Proxy + AI Computer Vision · Content-Blocking Focused</div>
+      </div>
+    </div>
+    <div class="pt-body">
+      <p><span class="highlight">How the AI scanning works</span> Canopy's VPN routes all device internet traffic through their servers. As images and video frames pass through, Canopy's computer vision model analyzes them in real-time for explicit content — nudity, sexual content, suggestive imagery. This happens <em>before</em> the content reaches the screen. If an explicit image is detected, it's replaced with a block screen and the parent is alerted.</p>
+      <p><span class="highlight">Sexting prevention</span> Canopy can detect explicit images being sent <em>or</em> received through any channel that passes through its VPN — browsers, most apps. The caveat: <strong>end-to-end encrypted apps</strong> (iMessage, Snapchat, Signal) encrypt their traffic before it hits the VPN tunnel. Canopy cannot scan inside that encrypted payload. So sexting detection works on browser-based sharing, web apps, and some non-E2E channels — but NOT iMessage or Snapchat on iOS.</p>
+      <p><span class="highlight amber">Family plan</span> Individual plan = $7.99/mo (3 devices, billed annually). Family plan = $9.99/mo (10 devices, billed annually). For families with multiple children, the Family plan is necessary and still less than Qustodio Complete or Aura.</p>
+      <p><span class="highlight amber">Data usage warning</span> Because ALL device traffic routes through Canopy's servers — including video streaming — it can consume 10–13 GB of cellular data per month on an active device. For families on limited data plans, this is a real cost to factor in.</p>
+      <table class="tech-table">
+        <tr><th>What it does</th><th>iOS</th><th>Android</th></tr>
+        <tr><td>Explicit image blocking (browsers)</td><td class="td-yes">✓ AI real-time</td><td class="td-yes">✓ AI real-time</td></tr>
+        <tr><td>Sexting detection (browser/web)</td><td class="td-yes">✓ Via VPN scan</td><td class="td-yes">✓ Via VPN scan</td></tr>
+        <tr><td>Sexting in iMessage/Snapchat</td><td class="td-no">✗ E2E encrypted — invisible to VPN</td><td class="td-partial">⚠ Limited</td></tr>
+        <tr><td>URL / domain filtering</td><td class="td-yes">✓ Everywhere</td><td class="td-yes">✓ Everywhere</td></tr>
+        <tr><td>Location tracking</td><td class="td-yes">✓ Real-time + geofences</td><td class="td-yes">✓ Real-time + geofences</td></tr>
+        <tr><td>Social monitoring (browsing context)</td><td class="td-partial">⚠ Web-based content only</td><td class="td-partial">⚠ Web-based content only</td></tr>
+        <tr><td>Message/text content</td><td class="td-no">✗</td><td class="td-no">✗</td></tr>
+        <tr><td>App blocking</td><td class="td-partial">⚠ Unreliable on iOS</td><td class="td-yes">✓</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- AURA -->
+  <div class="product-tech">
+    <div class="pt-header">
+      <div class="pt-icon" style="background:#f0fdfa;">🌐</div>
+      <div>
+        <div class="pt-name">Aura</div>
+        <div class="pt-mechanism">Mechanism: MDM + Identity APIs + PC Agent (Safe Gaming) · Hybrid Platform</div>
+      </div>
+    </div>
+    <div class="pt-body">
+      <p><span class="highlight teal">Three separate systems in one subscription</span> Aura bundles three independent technology layers: <strong>(1) Parental controls</strong> — MDM-based device profile on iOS/Android for content filtering, screen time, app blocking; <strong>(2) Identity protection</strong> — API connections to the three major credit bureaus plus dark web scanning for SSNs, passwords, financial accounts; <strong>(3) Safe Gaming</strong> — a Windows PC desktop agent that hooks into game audio/video output to monitor voice and text chat.</p>
+      <p><span class="highlight">Parental controls on iOS</span> Uses an MDM profile (similar to Qustodio) for device management: content filtering via SafeSearch, app blocking, screen time schedules, internet pause. Activity reports show browser history and app usage. Requires iOS 16+. No location tracking — Aura's parental controls do not include GPS/location features.</p>
+      <p><span class="highlight teal">Safe Gaming is unique</span> No other product in this comparison monitors gaming voice chat. The Windows desktop agent runs alongside games and uses AI to analyze conversations in 200+ PC games — flagging predatory language, threats, and grooming attempts. Reports are weekly, not real-time. <em>Windows only — does not work on consoles, iPad, or Mac games.</em></p>
+      <p><span class="highlight">Plans</span> <strong>Kids Plan ($10/mo annually, $120/yr)</strong>: parental controls + safe gaming + wellbeing tools. <strong>Family Plan ($32/mo annually, $384/yr intro, renews ~$35/mo)</strong>: adds identity theft protection for the whole family — credit monitoring, $5M insurance, antivirus, VPN, password manager. Aura also owns Circle Home Plus, whose network-filtering tech is integrated into the Family Plan.</p>
+      <table class="tech-table">
+        <tr><th>What it does</th><th>Kids Plan</th><th>Family Plan</th><th>Platform</th></tr>
+        <tr><td>Content filtering / app blocking</td><td class="td-yes">✓</td><td class="td-yes">✓</td><td>iOS 16+, Android</td></tr>
+        <tr><td>Screen time / schedules</td><td class="td-yes">✓</td><td class="td-yes">✓</td><td>iOS 16+, Android</td></tr>
+        <tr><td>Activity reports</td><td class="td-yes">✓</td><td class="td-yes">✓</td><td>iOS 16+, Android</td></tr>
+        <tr><td>Safe Gaming (voice/text in 200+ PC games)</td><td class="td-yes">✓</td><td class="td-yes">✓</td><td>Windows PC only</td></tr>
+        <tr><td>Location tracking</td><td class="td-no">✗</td><td class="td-no">✗</td><td>—</td></tr>
+        <tr><td>Identity theft protection</td><td class="td-no">✗</td><td class="td-yes">✓</td><td>Cloud-based</td></tr>
+        <tr><td>Credit monitoring / dark web alerts</td><td class="td-no">✗</td><td class="td-yes">✓</td><td>Cloud-based</td></tr>
+        <tr><td>Antivirus / VPN / password manager</td><td class="td-no">✗</td><td class="td-yes">✓</td><td>All platforms</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── MECHANISM COMPARISON MATRIX ── -->
+  <div class="section-head">
+    <span class="section-pill pill-amber">Which Mechanism Wins — By Scenario</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="matrix-wrap">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th style="background:#f5f3ff;color:var(--purple);">Gryphon + HomeBound</th>
+          <th style="background:#eff6ff;color:var(--accent);">Qustodio Complete</th>
+          <th style="background:#fdf2f8;color:#9d174d;">Bark Premium</th>
+          <th style="background:#f5f3ff;color:#7c3aed;">Canopy</th>
+          <th style="background:#f0fdfa;color:#0d9488;">Aura Family</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Kids at home on WiFi</td>
+          <td><span class="dot-yes"></span>Strong</td>
+          <td><span class="dot-yes"></span>Strong</td>
+          <td><span class="dot-partial"></span>Web filter only</td>
+          <td><span class="dot-yes"></span>Strong</td>
+          <td><span class="dot-yes"></span>Strong</td>
+        </tr>
+        <tr>
+          <td>Kids at friend's house / cellular</td>
+          <td><span class="dot-yes"></span>HomeBound VPN</td>
+          <td><span class="dot-yes"></span>Device profile</td>
+          <td><span class="dot-partial"></span>Web filter VPN</td>
+          <td><span class="dot-yes"></span>Device VPN</td>
+          <td><span class="dot-yes"></span>Device profile</td>
+        </tr>
+        <tr>
+          <td>Game consoles / smart TVs</td>
+          <td><span class="dot-yes"></span>Network level</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-no"></span>No</td>
+        </tr>
+        <tr>
+          <td>Instagram / TikTok DM monitoring (iOS)</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-no"></span>No (Apple blocks)</td>
+          <td><span class="dot-no"></span>No (Apple blocks)</td>
+          <td><span class="dot-no"></span>No (E2E encrypted)</td>
+          <td><span class="dot-no"></span>No (Apple blocks)</td>
+        </tr>
+        <tr>
+          <td>Gmail / cloud account monitoring</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-yes"></span>Best-in-class</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-no"></span>No</td>
+        </tr>
+        <tr>
+          <td>Explicit image detection (browser)</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-yes"></span>AI scanning</td>
+          <td><span class="dot-no"></span>No</td>
+        </tr>
+        <tr>
+          <td>PC game chat monitoring</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-yes"></span>Safe Gaming (Windows)</td>
+        </tr>
+        <tr>
+          <td>Location tracking</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-yes"></span>Real-time + geofence</td>
+          <td><span class="dot-yes"></span>Real-time</td>
+          <td><span class="dot-yes"></span>Real-time + geofence</td>
+          <td><span class="dot-no"></span>No</td>
+        </tr>
+        <tr>
+          <td>Tamper resistance (iOS)</td>
+          <td><span class="dot-partial"></span>VPN alert if off</td>
+          <td><span class="dot-yes"></span>MDM + password req'd</td>
+          <td><span class="dot-partial"></span>VPN removable</td>
+          <td><span class="dot-partial"></span>Anti-tamper VPN</td>
+          <td><span class="dot-yes"></span>MDM profile</td>
+        </tr>
+        <tr>
+          <td>Identity / credit protection</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-no"></span>No</td>
+          <td><span class="dot-yes"></span>Family Plan</td>
+        </tr>
+        <tr>
+          <td>Annual cost (comparable tier)</td>
+          <td>$89.99/yr + $299 hardware</td>
+          <td>$109.95/yr</td>
+          <td>$99/yr</td>
+          <td>$95.90/yr (3 devices)</td>
+          <td>$384/yr (family, intro)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── KEY TAKEAWAY ── -->
+  <div class="section-head">
+    <span class="section-pill pill-muted">The Big Picture</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="insight-box insight-blue" style="margin-bottom:20px;">
+    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div><strong>No single product covers everything.</strong> Gryphon covers your home and consoles. Qustodio/HomeBound covers devices away from home. Bark covers cloud accounts and Android social media. Canopy covers explicit visual content. Aura covers identity and PC gaming. The best stacks combine two or three mechanisms to close each other's gaps.</div>
+  </div>
+
+  <div class="insight-box insight-amber" style="margin-bottom:20px;">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <div><strong>On iOS, nobody can read Snapchat, TikTok, or iMessage content.</strong> This is Apple's privacy architecture — not a vendor limitation. Any product that claims to "monitor Snapchat on iPhone" is either misleading or using accessibility features that Apple has been progressively locking down. Set the right expectation with parents upfront: iOS visibility is web-focused, not app-message-focused.</div>
+  </div>
+
+  <div class="insight-box insight-green">
+    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    <div><strong>The most bypass-resistant iOS stack:</strong> Screen Time PIN locked → VPN restriction enabled in Screen Time → Qustodio MDM + VPN installed. To bypass this, a child would need the Screen Time PIN AND the Qustodio account password AND be willing to factory-reset their device. This is the gold standard for younger kids where trust isn't yet established.</div>
+  </div>
+
+</div>
+
+<footer>
+  <div>&copy; <span id="yr"></span> AMP IT Solutions &middot; TechDad CLT &middot; Charlotte, NC &middot; <a href="https://techdadclt.com">techdadclt.com</a></div>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
