@@ -223,6 +223,57 @@ nav {
 .dot-no     { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #d1d5db; margin-right: 5px; vertical-align: middle; }
 .dot-partial{ display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--amber); margin-right: 5px; vertical-align: middle; }
 
+/* ELI5 SUMMARY */
+.eli5-section {
+  background: var(--navy2);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 48px 28px 52px;
+}
+.eli5-inner { max-width: 900px; margin: 0 auto; }
+.eli5-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.eli5-headline {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(22px, 3vw, 30px); font-weight: 400;
+  color: white; line-height: 1.3; margin-bottom: 28px;
+}
+.eli5-headline em { font-style: italic; color: #93c5fd; }
+.eli5-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.eli5-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 18px 20px;
+}
+.eli5-card-emoji { font-size: 28px; margin-bottom: 10px; line-height: 1; }
+.eli5-card-title {
+  font-size: 14px; font-weight: 700; color: white;
+  margin-bottom: 6px; line-height: 1.3;
+}
+.eli5-card-body {
+  font-size: 13px; color: rgba(255,255,255,0.55);
+  line-height: 1.65;
+}
+.eli5-card-body strong { color: rgba(255,255,255,0.8); font-weight: 600; }
+.eli5-wall {
+  background: rgba(220,38,38,0.12);
+  border: 1px solid rgba(220,38,38,0.3);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex; gap: 14px; align-items: flex-start;
+  font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.65;
+}
+.eli5-wall svg { width: 18px; height: 18px; stroke: #f87171; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 1px; }
+.eli5-wall strong { color: #fca5a5; font-weight: 600; }
+
 /* KEY INSIGHT BOXES */
 .insight-box {
   border-radius: 12px; padding: 18px 20px;
@@ -278,6 +329,50 @@ footer a:hover { color: rgba(255,255,255,0.55); }
     </div>
   </div>
 </header>
+
+<!-- ── ELI5 SUMMARY ── -->
+<section class="eli5-section">
+  <div class="eli5-inner">
+    <div class="eli5-label">
+      <svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:rgba(255,255,255,0.4);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      The simple version first
+    </div>
+    <h2 class="eli5-headline">Every parental control is really just one of <em>four things</em></h2>
+
+    <div class="eli5-cards">
+
+      <div class="eli5-card">
+        <div class="eli5-card-emoji">🏠</div>
+        <div class="eli5-card-title">A guard at the front door of your internet</div>
+        <div class="eli5-card-body">Your router checks every website your kid tries to visit <strong>before it loads</strong>. If it's on the blocked list, the door doesn't open. Works for every device in your house — phone, tablet, game console, TV. Stops working the moment they leave home.</div>
+      </div>
+
+      <div class="eli5-card">
+        <div class="eli5-card-emoji">🕵️</div>
+        <div class="eli5-card-title">A hall monitor that follows the device everywhere</div>
+        <div class="eli5-card-body">An app on the device routes all traffic through a parental control server — even on cellular at a friend's house. The server checks everything, blocks what's not allowed, and reports back. Works everywhere, <strong>but uses the same "hall monitor slot" all other VPN apps need</strong> — only one can be active at a time on iPhone/iPad.</div>
+      </div>
+
+      <div class="eli5-card">
+        <div class="eli5-card-emoji">📬</div>
+        <div class="eli5-card-title">Reading your kid's email and Google account</div>
+        <div class="eli5-card-body">Your kid gives the app permission to read their Gmail, Google Drive, YouTube, and iCloud email — like handing over a key to their mailbox. The app's AI reads everything looking for warning signs and alerts you. <strong>Works anywhere because it reads cloud servers, not the device itself.</strong></div>
+      </div>
+
+      <div class="eli5-card">
+        <div class="eli5-card-emoji">🔒</div>
+        <div class="eli5-card-title">Rules built into the phone itself</div>
+        <div class="eli5-card-body">Apple Screen Time runs at the operating system level — below every app. No app can override it. You set a PIN, lock down what can be installed, and control screen time. <strong>It's the only tool that can scan iMessage photos for explicit content</strong> — because Apple built it directly into iOS before encryption happens.</div>
+      </div>
+
+    </div>
+
+    <div class="eli5-wall">
+      <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <div><strong>The one thing nobody can do on iPhone or iPad:</strong> Read messages inside iMessage, Snapchat, WhatsApp, TikTok DMs, or Instagram DMs. Those apps scramble the message on the device before it ever hits the internet — so the hall monitor, the guard at the door, and the email reader all see gibberish. The only partial exception is Apple's own Screen Time, which can blur nude images in iMessage because it runs inside the phone's own operating system before the scrambling happens.</div>
+    </div>
+  </div>
+</section>
 
 <div class="wrap">
 
