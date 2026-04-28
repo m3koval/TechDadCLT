@@ -360,6 +360,73 @@ tbody td:first-child { font-weight: 500; color: var(--navy); background: var(--b
 .ac-amber  { border-color: var(--amber); color: var(--amber); background: var(--amber-light); }
 .ac-muted  { border-color: var(--border); color: var(--muted); background: #f9fafb; }
 
+/* ── ENCRYPTED APPS SECTION ── */
+.enc-intro {
+  background: var(--navy2);
+  border-radius: 16px;
+  padding: 28px 30px;
+  color: white;
+  margin-bottom: 24px;
+}
+.enc-intro h3 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px; font-weight: 400; color: white;
+  margin-bottom: 10px; line-height: 1.3;
+}
+.enc-intro p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 10px; }
+.enc-intro p:last-child { margin-bottom: 0; }
+.enc-intro strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+
+.enc-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+@media (max-width: 700px) { .enc-two-col { grid-template-columns: 1fr; } }
+
+.enc-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 22px;
+}
+.enc-block-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 8px;
+}
+.enc-block h4 {
+  font-size: 15px; font-weight: 700; color: var(--navy);
+  margin-bottom: 10px; line-height: 1.3;
+}
+.enc-block ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.enc-block ul li { font-size: 13px; color: var(--muted); line-height: 1.6; display: flex; gap: 8px; align-items: flex-start; }
+.enc-block ul li svg { width: 14px; height: 14px; flex-shrink: 0; margin-top: 2px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.enc-block ul li strong { color: var(--text); font-weight: 600; }
+.enc-block .li-yes svg { stroke: var(--green); }
+.enc-block .li-no  svg { stroke: var(--red); }
+.enc-block .li-tip svg { stroke: var(--accent); }
+
+.platform-cards { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.platform-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.platform-card-icon {
+  width: 42px; height: 42px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.platform-card-body { flex: 1; min-width: 0; }
+.platform-card-name { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.platform-card-how { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.platform-card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.platform-card-desc strong { color: var(--text); font-weight: 600; }
+.platform-card-path {
+  margin-top: 8px;
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 600; color: var(--accent);
+  background: var(--accent-light); border-radius: 6px; padding: 3px 9px;
+}
+
 /* ── SOURCES ── */
 .sources-section {
   background: var(--surface);
@@ -998,11 +1065,13 @@ Included with Gryphon Premium · $89.99/yr (no extra charge)
 
     <div class="age-card age-card-14p">
       <div class="age-label">Ages 14+</div>
-      <h3>Conversation matters more than software</h3>
-      <p>Tech-savvy teens can bypass most solutions. <strong>Bark's monitoring respects privacy while catching real dangers.</strong> Tools work best when teens understand the boundaries — not when secretly imposed without discussion.</p>
+      <h3>Conversation + platform tools + behavioral signals</h3>
+      <p>Blocking rarely works at this age — a determined teen uses a friend's device. <strong>The goal shifts from blocking to awareness.</strong> Use Bark for behavioral signals (usage patterns, email content), Screen Time for time limits (not full blocks), and the platform-native supervision tools built into Snapchat, Instagram, and TikTok — they expose contact lists and usage without killing the social life.</p>
       <div class="age-chips">
         <span class="age-chip ac-purple">Bark</span>
         <span class="age-chip ac-blue">Apple Screen Time</span>
+        <span class="age-chip ac-amber">Snapchat Family Center</span>
+        <span class="age-chip ac-amber">Instagram Supervision</span>
         <span class="age-chip ac-muted">Open conversation</span>
       </div>
     </div>
@@ -1010,9 +1079,121 @@ Included with Gryphon Premium · $89.99/yr (no extra charge)
   </div>
 
   <!-- ────────────────────────────────────────
-       SECTION 6 — SOURCES & RESEARCH
+       SECTION 6 — ENCRYPTED APPS (SNAPCHAT ETC)
   ──────────────────────────────────────── -->
   <div class="section-head">
+    <span class="section-pill pill-amber">Snapchat, TikTok &amp; Encrypted Apps</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="enc-intro">
+    <h3>The honest problem: no parental control app can read these messages</h3>
+    <p>iMessage, Snapchat, WhatsApp, TikTok DMs, and Instagram DMs all encrypt messages <strong>on the device before they leave the app.</strong> The VPN, the router, and every third-party monitoring tool sees only scrambled data. This isn't a flaw in the apps you're using — it's Apple's privacy architecture.</p>
+    <p>What you do about it depends entirely on your child's age. The right answer for a 10-year-old is completely different from the right answer for a 15-year-old.</p>
+  </div>
+
+  <div class="enc-two-col">
+
+    <div class="enc-block">
+      <div class="enc-block-label">Under 13 — Block it entirely</div>
+      <h4>Two steps that actually close the door</h4>
+      <ul>
+        <li class="li-yes">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>Step 1 — Screen Time:</strong> Block the app from installing. Settings → Screen Time → Content &amp; Privacy → Allowed Apps, or use App Limits to set zero minutes for Social Networking.</span>
+        </li>
+        <li class="li-yes">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>Step 2 — Router/VPN block the domain:</strong> Block snapchat.com, tiktok.com, instagram.com at the network level. Now the browser workaround is closed too — there's no route in at all.</span>
+        </li>
+        <li class="li-tip">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>At this age, kids accept it. The social life doesn't depend on Snapchat yet. This is the cleanest, most effective approach.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="enc-block">
+      <div class="enc-block-label">Ages 13+ — Blocking usually backfires</div>
+      <h4>What happens when you block a teen's Snapchat</h4>
+      <ul>
+        <li class="li-no">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <span>They use a friend's phone — now you have zero visibility instead of partial visibility</span>
+        </li>
+        <li class="li-no">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <span>Social isolation — Snapchat is where friend groups coordinate at this age; removing it is a real cost</span>
+        </li>
+        <li class="li-no">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <span>Damages the trust that makes them come to you when something actually goes wrong</span>
+        </li>
+        <li class="li-tip">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>The goal shifts: not "prevent all risk" but "stay close enough to know when something is wrong."</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Platform-native tools -->
+  <div class="section-head" style="margin-top:8px;">
+    <span class="section-pill pill-blue">Platform-Native Supervision Tools</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px;max-width:720px;">
+    These tools are built by the platforms themselves — which means they can surface information no third-party app can access. They require your teen to opt in, which makes the setup conversation a useful trust-building moment in itself.
+  </div>
+
+  <div class="platform-cards">
+
+    <div class="platform-card">
+      <div class="platform-card-icon" style="background:#fff0f8;">👻</div>
+      <div class="platform-card-body">
+        <div class="platform-card-name">Snapchat Family Center</div>
+        <div class="platform-card-how">What you can see</div>
+        <div class="platform-card-desc">Who your teen is friends with, who they've been messaging (contact names — not message content), and new friend requests. You can report accounts directly from the parent dashboard. <strong>Both parent and teen must accept the invitation</strong> — Snapchat designed it this way intentionally.</div>
+        <div class="platform-card-path">Snapchat → Profile → Family Center → Invite</div>
+      </div>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-card-icon" style="background:#fff0e8;">📸</div>
+      <div class="platform-card-body">
+        <div class="platform-card-name">Instagram Family Supervision (Meta)</div>
+        <div class="platform-card-how">What you can see</div>
+        <div class="platform-card-desc">Who they follow and who follows them, accounts they've blocked or reported, time spent in the app, and DM settings (who can message them). You can set time limits and schedule supervised breaks. <strong>Content of DMs is not visible</strong> — but you can restrict who can send them DMs at all.</div>
+        <div class="platform-card-path">Instagram → Settings → Supervision → Invite Parent</div>
+      </div>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-card-icon" style="background:#f0f8ff;">🎵</div>
+      <div class="platform-card-body">
+        <div class="platform-card-name">TikTok Family Pairing</div>
+        <div class="platform-card-how">What you can see</div>
+        <div class="platform-card-desc">Screen time controls, content restrictions (filter mature content), DM settings (turn off DMs entirely for under-16), and search restrictions. <strong>You can disable DMs completely</strong> — which removes the main risk vector while leaving TikTok itself accessible for normal viewing.</div>
+        <div class="platform-card-path">TikTok → Profile → Settings → Family Pairing → Parent</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Behavioral stack callout -->
+  <div class="insight-row" style="margin-bottom:52px;">
+    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div>
+      <strong>The realistic monitoring stack for teens on Snapchat:</strong> Platform-native tools (contact visibility) + Bark (usage patterns, email/Drive monitoring, behavioral signals) + Screen Time time limits (off at 10pm, not a full block) + Gryphon blocking domains overnight. This keeps you close without creating an adversarial dynamic that pushes them to hide more.
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────────────
+       SECTION 7 — SOURCES & RESEARCH
+  ──────────────────────────────────────── -->
+  <div class="section-head" style="margin-top:0;">
     <span class="section-pill pill-muted">Sources &amp; Research</span>
     <div class="section-line"></div>
   </div>
