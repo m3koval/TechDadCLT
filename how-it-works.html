@@ -274,6 +274,31 @@ nav {
 .eli5-wall svg { width: 18px; height: 18px; stroke: #f87171; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 1px; }
 .eli5-wall strong { color: #fca5a5; font-weight: 600; }
 
+/* VERDICT CARDS */
+.verdict-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 52px; }
+.verdict-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px 18px 24px;
+  border-left: 4px solid transparent;
+  display: grid;
+  grid-template-columns: 160px 1fr 1fr;
+  gap: 0 24px;
+  align-items: center;
+}
+@media (max-width: 700px) {
+  .verdict-card { grid-template-columns: 1fr; gap: 10px; }
+}
+.verdict-product { font-size: 14px; font-weight: 700; color: var(--navy); line-height: 1.3; }
+.verdict-mechanism { font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+.verdict-col { display: flex; flex-direction: column; gap: 4px; }
+.verdict-col-label { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.verdict-col-label.best { color: var(--green); }
+.verdict-col-label.lacks { color: var(--red); }
+.verdict-col-text { font-size: 13px; color: var(--muted); line-height: 1.55; }
+.verdict-col-text strong { color: var(--text); font-weight: 600; }
+
 /* KEY INSIGHT BOXES */
 .insight-box {
   border-radius: 12px; padding: 18px 20px;
@@ -886,6 +911,91 @@ footer a:hover { color: rgba(255,255,255,0.55); }
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- ── VERDICT CARDS ── -->
+  <div class="section-head">
+    <span class="section-pill pill-navy">One-Line Verdict</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="verdict-grid">
+
+    <div class="verdict-card" style="border-left-color:var(--purple);">
+      <div>
+        <div class="verdict-product">Gryphon + HomeBound</div>
+        <div class="verdict-mechanism">Router + VPN</div>
+      </div>
+      <div class="verdict-col">
+        <div class="verdict-col-label best">Best at</div>
+        <div class="verdict-col-text">Protecting <strong>every device in the home</strong> — TVs, consoles, every phone on WiFi — without touching any individual device; HomeBound extends it everywhere the iPad goes.</div>
+      </div>
+      <div class="verdict-col">
+        <div class="verdict-col-label lacks">Struggles with</div>
+        <div class="verdict-col-text">No monitoring or alerts — you block categories but <strong>don't see what your kid tried to access</strong>, where they are, or what they're communicating.</div>
+      </div>
+    </div>
+
+    <div class="verdict-card" style="border-left-color:var(--accent);">
+      <div>
+        <div class="verdict-product">Qustodio Complete</div>
+        <div class="verdict-mechanism">MDM Profile + VPN</div>
+      </div>
+      <div class="verdict-col">
+        <div class="verdict-col-label best">Best at</div>
+        <div class="verdict-col-text">The most complete on-device control — <strong>MDM protection, per-app time limits, location tracking, and reporting</strong> that travels with the device on cellular, everywhere.</div>
+      </div>
+      <div class="verdict-col">
+        <div class="verdict-col-label lacks">Struggles with</div>
+        <div class="verdict-col-text">Can't read any <strong>message content on iOS</strong>; call and text monitoring requires a Mac/Windows desktop app running at home; not a set-and-forget tool.</div>
+      </div>
+    </div>
+
+    <div class="verdict-card" style="border-left-color:#9d174d;">
+      <div>
+        <div class="verdict-product">Bark Premium</div>
+        <div class="verdict-mechanism">Cloud OAuth + Desktop Sync</div>
+      </div>
+      <div class="verdict-col">
+        <div class="verdict-col-label best">Best at</div>
+        <div class="verdict-col-text">Catching real warning signs in <strong>Gmail, YouTube, and Google Drive</strong> — its AI flags only what's concerning without reading everything, which makes it the right tool for teens where privacy matters.</div>
+      </div>
+      <div class="verdict-col">
+        <div class="verdict-col-label lacks">Struggles with</div>
+        <div class="verdict-col-text"><strong>Almost no real-time protection on iPad away from home</strong> — it's a monitoring and alerting tool, not a blocker; device content only syncs when back on home WiFi.</div>
+      </div>
+    </div>
+
+    <div class="verdict-card" style="border-left-color:#7c3aed;">
+      <div>
+        <div class="verdict-product">Canopy</div>
+        <div class="verdict-mechanism">VPN + AI Visual Scan</div>
+      </div>
+      <div class="verdict-col">
+        <div class="verdict-col-label best">Best at</div>
+        <div class="verdict-col-text">Visually scanning images as they load in browsers — <strong>catches explicit photos on sites that aren't on any block list</strong>, which URL-based tools miss entirely.</div>
+      </div>
+      <div class="verdict-col">
+        <div class="verdict-col-label lacks">Struggles with</div>
+        <div class="verdict-col-text">Can't see inside iMessage or Snapchat; <strong>app blocking unreliable on iOS</strong>; consumes significant cellular data; best as an add-on layer, not a standalone solution.</div>
+      </div>
+    </div>
+
+    <div class="verdict-card" style="border-left-color:var(--teal);">
+      <div>
+        <div class="verdict-product">Aura Family</div>
+        <div class="verdict-mechanism">MDM + Identity APIs + Safe Gaming</div>
+      </div>
+      <div class="verdict-col">
+        <div class="verdict-col-label best">Best at</div>
+        <div class="verdict-col-text">Protecting the <strong>whole family's identity</strong> (credit monitoring, dark web alerts, $1M insurance) and monitoring <strong>PC game chat on Windows</strong> — two things no other product in this list does.</div>
+      </div>
+      <div class="verdict-col">
+        <div class="verdict-col-label lacks">Struggles with</div>
+        <div class="verdict-col-text"><strong>No location tracking</strong>; parental controls less robust than Qustodio; priced for identity protection first — child safety features are secondary to its core offering.</div>
+      </div>
+    </div>
+
   </div>
 
   <!-- ── KEY TAKEAWAY ── -->
