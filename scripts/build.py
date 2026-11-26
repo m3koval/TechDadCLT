@@ -5,8 +5,8 @@ import shutil
 import subprocess
 import sys
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = ['index.html','kids.html','seniors.html','Intakeform.html','ThankYou.html','parent-guide.html','how-it-works.html','solutions-comparison.html','stack-builder.html','privacy.html','blog/index.html','blog/parental-controls-guide.html','blog/senior-scam-protection.html']
-ASSETS = ['assets/site.css','assets/site.js','assets/products.json','assets/favicon.svg','robots.txt','sitemap.xml']
+PAGES = ['assessment-guide.html','index.html','kids.html','seniors.html','Intakeform.html','ThankYou.html','parent-guide.html','how-it-works.html','solutions-comparison.html','stack-builder.html','privacy.html','blog/index.html','blog/parental-controls-guide.html','blog/senior-scam-protection.html']
+ASSETS = ['assets/guided.css','assets/guided.js','assets/site.css','assets/site.js','assets/products.json','assets/favicon.svg','robots.txt','sitemap.xml']
 PUBLIC_FILES = PAGES + ASSETS
 
 def build():
