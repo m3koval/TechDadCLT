@@ -1,0 +1,162 @@
+{
+  "checked": "2026-11-25",
+  "currency": "USD",
+  "basis": "US advertised prices reviewed against official pages; not checkout, renewal or installed-device verification. Taxes may apply. Recheck before buying.",
+  "products": [
+    {
+      "id": "apple",
+      "name": "Apple Screen Time",
+      "group": "native",
+      "price": "Included with supported Apple devices",
+      "billing": "No separate subscription",
+      "devices": "Compatible iPhone, iPad and Mac",
+      "coverage": "App and website activity reports, time limits, content restrictions and supported communication safeguards.",
+      "limits": "Not a parent-readable transcript of every conversation. Menus and features vary by OS. Screen Time has no general VPN-toggle lock.",
+      "source": "https://support.apple.com/en-us/108806",
+      "support": "https://support.apple.com/en-us/105121"
+    },
+    {
+      "id": "google",
+      "name": "Google Family Link",
+      "group": "native",
+      "price": "Free",
+      "billing": "No separate subscription",
+      "devices": "Supported child Android and Chromebook devices",
+      "coverage": "App approvals, usage reports, supported time and content controls, selected notifications and location.",
+      "limits": "A parent iPhone app does not supervise a child iPhone. Supervision does not automatically stop at 13; current under-18 stop-supervision rules require parent approval. Location needs a connected, active device.",
+      "source": "https://families.google/familylink/",
+      "support": "https://support.google.com/families/answer/7106787?hl=en"
+    },
+    {
+      "id": "microsoft",
+      "name": "Microsoft Family Safety",
+      "group": "native",
+      "price": "Core controls are free",
+      "billing": "No mandatory Microsoft 365 subscription for core controls",
+      "devices": "Windows, Xbox and supported Android features",
+      "coverage": "Activity reports, Windows/Xbox device limits and supported app/game limits. Web filtering uses Microsoft Edge.",
+      "limits": "Other browsers must be restricted for web enforcement. Parent iOS management is not child iOS monitoring. Do not assume location or drive-safety features.",
+      "source": "https://www.microsoft.com/en-us/microsoft-365/family-safety",
+      "support": "https://support.microsoft.com/en-us/family-safety/set-up-microsoft-family-safety"
+    },
+    {
+      "id": "qustodio",
+      "name": "Qustodio",
+      "group": "optional",
+      "price": "Basic $59.95/year \u00b7 Complete $104.95/year",
+      "billing": "Annual billing; advertised card prices before optional promotion codes. Renewal not verified.",
+      "devices": "Basic: 5 devices \u00b7 Complete: unlimited family devices",
+      "coverage": "Multi-device rules and reports; supported message monitoring subject to plan and platform. iOS SMS/iMessage content and WhatsApp/LINE concerning-topic alerts use desktop-assisted sync.",
+      "limits": "iOS collection needs a compatible Mac/Windows computer, initial cable setup, running app and same Wi-Fi; automatic sync is hourly when available, not live away-from-home monitoring. Verify Complete entitlement. Optional Advance removal prevention supports iOS 15\u201326, not iOS 27+, in reviewed documentation.",
+      "source": "https://www.qustodio.com/en/premium/",
+      "support": "https://help.qustodio.com/hc/en-us/articles/4986837688465-How-do-I-set-up-calls-messages-monitoring-for-iOS-devices"
+    },
+    {
+      "id": "bark",
+      "name": "Bark App",
+      "group": "optional",
+      "price": "$14/month or $99/year",
+      "billing": "Monthly or annual subscription. Optional Bark Sync: $6/month or $49/year; App Store subscriber route lists $79 one-time. Renewal not verified.",
+      "devices": "Unlimited children and devices, with platform-specific features",
+      "coverage": "Supported content-risk alerts, web filtering, screen-time tools and location. iOS supported content scans are separate from filtering.",
+      "limits": "iOS device-content monitoring needs a supported scan method such as an existing compatible desktop or optional Bark Sync. Sync can scan on Wi-Fi away from home; alerts are delayed, not instantaneous. Not every social app or message is supported. Verify the current monitoring matrix.",
+      "source": "https://www.bark.us/bark-app",
+      "support": "https://support.bark.us/en/articles/13461187-how-to-set-up-monitoring-on-iphone-and-ipad"
+    },
+    {
+      "id": "canopy",
+      "name": "Canopy",
+      "group": "optional",
+      "price": "$8.33 / $9.99 / $12.50 monthly equivalents",
+      "billing": "Billed annually. Rounded advertised equivalents, not monthly payments or verified annual invoice totals. Renewal not verified.",
+      "devices": "Essential: 1 \u00b7 Plus: up to 3 \u00b7 Premium: up to 10",
+      "coverage": "Supported explicit web-content filtering and separate saved-photo sexting alerts; capabilities vary by OS and permissions.",
+      "limits": "Not universal in-app message monitoring. Private/encrypted folders are excluded from saved-photo scans. iOS Removal Prevention requires separate setup; default alerts do not prevent removal. Do not equate VPN-attributed traffic with additional data use.",
+      "source": "https://canopy.us/pricing/",
+      "support": "https://support.canopy.us/portal/en/kb/articles/comparison-of-ios-removal-alerts-and-removal-prevention"
+    },
+    {
+      "id": "netnanny",
+      "name": "Net Nanny",
+      "group": "alternative",
+      "price": "Sale: $39.99 / $54.99 / $89.99 per year",
+      "billing": "Limited-time annual sale; renewal not verified",
+      "devices": "1 desktop / 5 PC-Mac-iOS devices / 20 PC-Mac-iOS devices",
+      "coverage": "Web filtering, supported time controls, location and reports; a conditional alternative, not our default.",
+      "limits": "Official support currently excludes Android, Kindle Fire and Chromebook. Published Mac support ends at 11.x; confirm newer OS support before buying. The single-desktop license is not an iPhone license.",
+      "source": "https://www.netnanny.com/products/",
+      "support": "https://www.netnanny.com/support/documentation/"
+    },
+    {
+      "id": "eero",
+      "name": "eero Plus",
+      "group": "network",
+      "price": "$9.99/month or $99.99/year",
+      "billing": "Auto-renewing subscription; compatible hardware separate",
+      "devices": "Compatible eero home network",
+      "coverage": "Network content filters, scheduling and activity history, with bundled services. Free eero profiles and pause controls may already be enough.",
+      "limits": "Home-network filters do not automatically follow devices onto cellular. Bundled privacy VPN is not equivalent to off-network parental filtering.",
+      "source": "https://eero.com/eero-plus"
+    },
+    {
+      "id": "deco",
+      "name": "TP-Link HomeShield",
+      "group": "network",
+      "price": "Parental controls starting at $2.99/month or $17.99/year",
+      "billing": "Model/account/region dependent; separate Security+ and bundle prices are not required parental-control fees",
+      "devices": "Compatible TP-Link router or Deco hardware",
+      "coverage": "Free basic controls plus optional advanced parental controls on compatible hardware.",
+      "limits": "Confirm features and renewal in the actual app/account. Router controls cover connected traffic, not every app or cellular connection.",
+      "source": "https://www.tp-link.com/us/support/faq/3007",
+      "support": "https://www.tp-link.com/us/homeshield"
+    },
+    {
+      "id": "gryphon",
+      "name": "Gryphon",
+      "group": "network",
+      "price": "Confirm hardware and subscription price in current offer/account",
+      "billing": "Hardware and optional Premium separate; no universal annual price verified",
+      "devices": "Compatible Gryphon hardware and supported mobile devices",
+      "coverage": "Home-network controls; current HomeBound+ describes a cloud-based virtual router for supported mobile traffic.",
+      "limits": "AX is presented as earlier-generation recertified hardware. Do not assume a new $299 AX, a fixed Premium price or a tunnel back through a home AX. Confirm generation, availability and actual mobile setup.",
+      "source": "https://gryphonconnect.com/pages/premium-protection",
+      "support": "https://gryphonconnect.com/products/gryphon-ax"
+    },
+    {
+      "id": "aura",
+      "name": "Aura",
+      "group": "senior",
+      "price": "Family: observed $20/month equivalent annual promotion; other official copy $32",
+      "billing": "Conflicting seasonal offers; exact annual charge, renewal and feature inclusions require checkout verification",
+      "devices": "Adults/devices depend on the selected offer",
+      "coverage": "Identity and financial alerts, device-security tools and consent-based Trusted Family Access.",
+      "limits": "Not a guarantee against scams. Family access must be granted and can be revoked. Insurance terms, eligibility and exclusions apply; identity coverage is not universal scam reimbursement. Separate cyber-insurance add-on is not assumed included.",
+      "source": "https://www.aura.com/pricing",
+      "support": "https://aura.com/press/release/new-feature-to-help-protect-senior-adults-from-online-crime"
+    },
+    {
+      "id": "eversafe",
+      "name": "EverSafe",
+      "group": "senior",
+      "price": "Essentials $7.49/month or $76.32/year \u00b7 Plus $16.99 or $173.28 \u00b7 Gold $26.99 or $275.28",
+      "billing": "Monthly or annual billing; exact renewal changes and annual refund terms not verified",
+      "devices": "Eligible connected financial accounts, not a device filter",
+      "coverage": "Financial anomaly alerts with consent-based Trusted Advocates; plan-dependent credit and investment features.",
+      "limits": "Does not stop every payment or replace a fiduciary. Online account access is required. Sharing transaction/balance details needs explicit designation. Insurance is subject to terms.",
+      "source": "https://www.eversafe.com/pricing",
+      "support": "https://www.eversafe.com/faqs/"
+    },
+    {
+      "id": "norton",
+      "name": "Norton 360 with LifeLock Select",
+      "group": "senior",
+      "price": "Observed $69.99 first year \u00b7 $189.99/year renewal",
+      "billing": "Annual introductory offer; official page also labels corresponding offer Select Plus. Confirm exact checkout plan.",
+      "devices": "10 devices in reviewed offer; feature support varies by OS",
+      "coverage": "Device security, scam-related tools and identity features; combined Norton/LifeLock plan, not standalone LifeLock.",
+      "limits": "Not universal scam reimbursement. Reviewed Select offer distinguishes up to $25,000 identity-theft stolen-funds reimbursement from up to $1M lawyers/experts. Full policy governs. Windows backup and other features have platform limits.",
+      "source": "https://us.norton.com/products/norton-360-lifelock-select",
+      "support": "https://us.norton.com/pricing"
+    }
+  ]
+}

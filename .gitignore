@@ -30,3 +30,9 @@ ehthumbs.db
 
 # Claude Code (local dev tooling — never commit)
 .claude/
+
+# Generated public artifact and local QA
+/dist/
+/__pycache__/
+/scripts/__pycache__/
+/qa/
