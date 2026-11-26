@@ -6,7 +6,8 @@ A dependency-free, generated static website. **Do not deploy the repository root
 
 - `scripts/build_pages.py`: shared navigation/footer, page copy and original HTML/CSS-stage markup. Public `.html` files are generated, checked in for familiar route continuity and local review.
 - `assets/site.css`: responsive blue/ink design system, warm senior stage, opaque focal cards, acrylic layers and bounded entry motion. No continuous animation, paid media or copied Iru assets.
-- `assets/site.js`: intake, local plan finder and existing-vendor analytics with opt-in.
+- `assets/site.js`: preserved Formspark intake transport and existing-vendor analytics with opt-in.
+- `scripts/guided_pages.py`, `assets/guided.js`, `assets/guided.css`: generated one-question assessment/intake shells, branch decisions and scoped viewport layout. Loaded only on the two app routes.
 - `data/products.json`: single editorial source of product prices, billing, platform scope, checked date, limitations and official sources. The build copies it to `assets/products.json`; comparison and finder consume the same facts.
 - `scripts/build.py`: explicit public-file allowlist. Private notes, tests, source data and scripts never ship.
 
@@ -16,6 +17,7 @@ A dependency-free, generated static website. **Do not deploy the repository root
 python3 scripts/build.py
 python3 scripts/test_site.py
 node --check assets/site.js
+node --check assets/guided.js
 python3 scripts/test_browser.py
 python3 scripts/test_analytics.py
 ```
@@ -35,9 +37,18 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory dist
 - Existing public HTML routes retained, plus `kids.html`, `seniors.html`, `privacy.html` and `/blog/`.
 - Existing `https://submit-form.com/rkMLUXlZj` action; successful navigation only after `response.ok`. An acceptance marker contains no intake answers. A direct receipt-page visit does not claim a submission.
 - Shared exact-once linked `Built by AMP IT LLC` credit remains governed by the existing footer generator/tests.
-- Existing PostHog project, Vercel Analytics and Speed Insights only. No new analytics vendors. Consent defaults off; no runtime on intake/receipt or parameterized/hash URLs. No autocapture, replay, custom form events or persistent PostHog identity. Pageview properties are explicitly allowlisted, including the ingestion-required token.
+- Existing PostHog project, Vercel Analytics and Speed Insights only. No new analytics vendors. Consent defaults off; no runtime on assessment/intake/receipt or parameterized/hash URLs. No autocapture, replay, custom form events or persistent PostHog identity. Pageview properties are explicitly allowlisted, including the ingestion-required token.
 - Existing visible phone `(980) 399-6020` and email retained. The old malformed masked `tel:`/schema token was replaced using the separately displayed complete phone number, not guessed digits.
 - Approximately 45-minute free onsite assessment only. Quoted implementation, hardware and subscriptions remain separate. No new labor prices, subscription plans, staffing promises, testimonials or guarantees.
+
+## Guided assessment contract
+
+- One question per screen, native radio/checkbox tiles, explicit Next, focus on each new heading, retained Back answers and removal of irrelevant branch values. Children, independent adults and both have distinct concerns. Device selection supports multiple platforms; current protections and OS readiness affect the result. Away-use and iOS scan questions are conditional.
+- Results are a free baseline, at most one optional candidate, and practical next steps. Bark is offered only as a conditional mobile message-alert candidate with exact-app/OS verification still required. Existing paid tools, unknown protections and older/unknown OS suppress new candidates. The ledger does not establish exact Canopy OS compatibility, so web-filter branches defer a purchase rather than invent support. No new router or protection score is generated.
+- Answers stay in page memory, never analytics, storage or URL parameters. Summary download is a local text file. Contact is a separate unprefilled form; nothing submits automatically. Footer/credit is unchanged and accessible through Site info in a native dialog.
+- Ordinary no-scroll targets: 375×667, 390×844, 768×1024 and 1440×900. The layout deliberately allows document scrolling with enlarged text, short landscape/keyboard viewports, long review values and submission errors. Details and site information are optional scrollable dialogs. No clipping or fixed action overlays are used.
+- Browser QA uses Chromium emulation, native keyboard controls and a 200% root-font simulation, not physical mobile keyboards, Safari or a screen reader. Product facts are editorial evidence, not installed-device compatibility tests.
+- The intake retains the same six fields and endpoint. Each field is a screen; a short review is followed by explicit Send. Phone can be left empty. Provider failures preserve the draft in the page. Tests intercept every provider request.
 
 ## Release review
 

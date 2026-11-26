@@ -53,6 +53,15 @@ urls=[x.text or '' for x in ET.parse(DIST/'sitemap.xml').iter('{http://www.sitem
 assert len(urls)==len(set(urls))
 assert all(u.startswith('https://www.techdadclt.com/') for u in urls)
 assert not any('ThankYou' in u for u in urls)
+assert len(urls)==len(PAGES)-2
+assert 'https://www.techdadclt.com/assessment-guide.html' in urls
+import re
+for path in PAGES:
+    for raw in re.findall(r'<script type="application/ld\+json">(.*?)</script>',(DIST/path).read_text(),re.S):
+        schema=json.loads(raw)
+        assert schema.get('@context')=='https://schema.org',path
+        if schema.get('@type')=='FAQPage':
+            assert all(item['name'] in (DIST/path).read_text() and item['acceptedAnswer']['text'] in (DIST/path).read_text() for item in schema['mainEntity'])
 form=(DIST/'Intakeform.html').read_text()
 assert 'action="https://submit-form.com/rkMLUXlZj"' in form
 assert len([1 for tag,a in parsed['Intakeform.html'].tags if tag in ('input','select','textarea')])==6
