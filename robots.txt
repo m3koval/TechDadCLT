@@ -1,7 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /ThankYou.html
-Disallow: /solutions-comparison.html
-Disallow: /stack-builder.html
-
-Sitemap: https://techdadclt.com/sitemap.xml
+Sitemap: https://www.techdadclt.com/sitemap.xml
